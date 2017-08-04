@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,8 +29,10 @@
         Author: BootstrapMade
         Author URL: https://bootstrapmade.com
     ======================================================= -->
-
 </head>
+
+
+
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
     <!-- Preloader -->
@@ -47,6 +50,25 @@
                     <h1>약속택시</h1>
                 </a>
             </div>
+            
+            <div class="navbar-header page-scroll">
+                <a class="navbar-brand">
+                  <input type="text" name="user_id" class="form-control" id="user_id" placeholder="아이디 입력"  />
+                 </a>
+            </div>
+            
+            <div class="navbar-header page-scroll">
+                <a class="navbar-brand">
+                 <input type="password" name="user_pw" class="form-control" id="user_pw" placeholder="비밀번호 입력"  />
+                </a>
+            </div>
+            
+            <div class="navbar-header page-scroll">
+                <a class="navbar-brand">
+                 <button type="submit" class="btn btn-skin pull-center" id="submit_btn">로그인</button>
+                </a>
+            </div>
+            
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
@@ -69,6 +91,12 @@
         </div>
         <!-- /.container -->
     </nav>
+    
+    
+
+
+
+
 
     <!-- Section: intro -->
     <section id="intro" class="intro">
@@ -455,6 +483,9 @@
         </div>
     </section>
     <!-- /Section: contact -->
+    
+    
+
 
     <footer>
         <div class="container">
@@ -481,6 +512,7 @@
             </div>  
         </div>
     </footer>
+    
 
     <!-- Core JavaScript Files -->
     <script src="resources/js/jquery.min.js"></script>

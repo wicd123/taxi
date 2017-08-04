@@ -808,6 +808,7 @@ Parallax
 	
 }
 
+
 @media (max-width:480px) {
 
 	.navbar-custom .nav.navbar-nav {
@@ -831,5 +832,6 @@ Parallax
 		border-radius: 50%;
 		font-size: 20px;
 	}
+	
 	
 }
