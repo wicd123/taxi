@@ -4,6 +4,18 @@
 
 <mapper namespace="mapper.mapperUser">
     
-	
+	<insert id="insertUser" parameterType="ModelUser">
+        INSERT INTO user (user_id,      user_pw,    user_email,    user_phone,    user_gender,     user_carnum,    user_lv)
+        VALUES          (#{user_id}, #{user_pw}, #{user_email}, #{user_phone}, #{user_gender} , #{user_carnum}, #{user_lv})
+        
+    </insert>
+
+    <select id="login" parameterType="ModelUser" resultType="ModelUser">
+            select user_id, user_email, user_phone, user_gender, user_carnum, user_lv, user_no 
+              from user
+             WHERE  user_id = #{user_id}
+              AND user_pw = #{user_pw}
+    </select>
+    
 
 </mapper>

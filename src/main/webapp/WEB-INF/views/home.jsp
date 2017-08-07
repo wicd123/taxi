@@ -65,7 +65,7 @@
             
             <div class="navbar-header page-scroll">
                 <a class="navbar-brand">
-                 <button type="submit" class="btn btn-skin pull-center" id="submit_btn">로그인</button>
+                 <button type="submit" class="btn btn-skin pull-center" id="login">로그인</button>
                 </a>
             </div>
             
@@ -323,7 +323,7 @@
                 
                 <div id="sendmessage">Your message has been sent. Thank you!</div>
                 <div id="errormessage"></div>
-                <form id="contact-form" action="" method="post" role="form" class="contactForm">
+                <form id="signUpForm"  action="" method="post" role="form" class="contactForm">
                 
                 
                 <div class="row" id="user" style="display:none">
@@ -331,28 +331,29 @@
                         <div class="form-group">
                             <label for="user_id">
                                 아이디</label>
-                            <input type="text" name="user_id" class="form-control" id="user_id" placeholder="아이디 입력"  />
+                            <input type="text" name="id" class="form-control" id="user_id" placeholder="아이디 입력"  />
+                            <input type="button" class="btn btn-skin pull-left"  value="아이디 중복 조회" id="checkuserid"/><br>
                             <div class="validation"></div>
                         </div>
                         <div class="form-group">
                             <label for="user_passwd">
                                 비밀번호</label>
                             <div class="form-group">
-                                <input type="password" class="form-control" name="user_passwd" id="user_passwd" placeholder="비밀번호 입력" />
+                                <input type="password" class="form-control" name="passwd" id="req_input" placeholder="비밀번호 입력" />
                                 <div class="validation"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="user_passwd_ck">
                                 비밀번호 확인</label>
-                            <input type="password" class="form-control" name="user_passwd_ck" id="user_passwd_ck" placeholder="비밀번호 확인"  />
+                            <input type="password" class="form-control" name="confirm" id="req_input" placeholder="비밀번호 확인"  />
                             <div class="validation"></div>
                         </div>
                         <div class="form-group">
                             <label for="email">
                                 이메일</label>
                             <div class="form-group">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="이메일 입력" />
+                                <input type="email" class="form-control" name="email" id="req_input" placeholder="이메일 입력" />
                                 <div class="validation"></div>
                             </div>
                         </div>
@@ -360,14 +361,15 @@
                             <label for="phone">
                                 핸드폰</label>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="핸드폰 입력" />
+                                <input type="text" class="form-control" name="mobile"  id=req_input placeholder="핸드폰 입력" />
                                 <div class="validation"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="gener">
                                 성별</label>
-                              <input type="radio" name="gener" checked="checked" /> <span class="up">남자</span>&nbsp;&nbsp; <input type="radio"     name="gener"/> <span class="up">여자</span>
+                              <input type="radio" name="gener" checked="checked" /> <span class="up">남자</span>&nbsp;&nbsp; 
+                              <input type="radio"     name="gener"/> <span class="up">여자</span>
                             <div class="validation"></div>
                         </div>
                         
@@ -391,6 +393,7 @@
                             <label for="user_id">
                                 아이디</label>
                             <input type="text" name="user_id" class="form-control" id="user_id" placeholder="아이디 입력"  />
+                            <input type="button" class="btn btn-skin pull-left"  value="아이디 중복 조회" id="checkuserid"/><br>
                             <div class="validation"></div>
                         </div>
                         <div class="form-group">
@@ -524,10 +527,12 @@
     <script src="resources/js/custom.js"></script>
     <script src="resources/js/jquery-1.10.2.js"></script>
     <script src="resources/js/jquery.easing.1.3.js"></script>
+    <script src="resources/js/ajaxsetup.js"></script>
+    <script src="resources/js/MyApp.board.js"></script>
     
     <script>
     $(document).ready(function (e){
-    	//회원가입 제이꽈리
+    	//회원가입 외부 제이꽈리
     	$('#user_btn').click(function(e){
     		$('#user').show(1000, 'easeOutBounce', function(){})
     		$('#driver').hide(1000, 'easeOutBounce', function(){})
@@ -583,7 +588,67 @@
             }
         });
     	
+    	//회원가입 내부 제이 꽈리
+    	$('#checkuserid').click(function(e){
+            var userid = $('#user_id').val();
+    
+            $.ajax({
+                 url : '/user/checkuserid'
+                ,data: {'user_id' :  user_id }      // 사용하는 경우에는 { data1:'test1', data2:'test2' }
+                ,type: 'get'       // get, post
+                ,timeout: 30000    // 30초
+                ,dataType: 'json'  // text, html, xml, json, jsonp, script
+            })
+            .done( function(data, textStatus, xhr ){
+                // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
+                if(data === 1 ){
+                    alert('존재하는 id');
+                }
+                else{
+                    alert('가능한 id');
+                    $('#signUpForm  input').prop('disabled', false);
+                }
+            });
+            
+            
+            $("#submit_btn").click(function(e){
+
+                var list = $('#req_input');
+
+                for( var i=0; i< list.length; i= i+1){
+
+                    if( $( list[i] ).val() === '' ) {
+                        list[i].focus();
+
+                        if( $(list[i]).next().length == 0 ) {
+                            $(list[i]).after('<label>입력하세요</label>');
+                        }
+
+                        return false;
+                    }
+                }
+                
+                // 패스워드 동일 여부 체크
+                if ($('input:password[name="passwd"]').val() === $('input:password[name="confirm"]').val() ) {
+                  // 서브밑 호출 : form 의 action 이 실행됨
+                  $('#signUpForm').submit();
+                return true;
+               }
+                else{
+                    alert('패스워드가 다릅니다');
+                    return false;
+            }
+            });
+    
+            $('.req_input').keyup( function (e) {
+                if( $(this).val() !== '') {
+                    $(this).next('label').remove();
+                }
+        });
     });
+    });
+    	
+    	
     
     
     
