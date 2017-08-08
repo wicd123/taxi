@@ -52,4 +52,15 @@ public class ServiceUser implements IServiceUser {
         return result;
     }
 
+    @Override
+    public int checkuserid(String userid) {
+        int result = -1;
+        try {
+            result = daouser.checkuserid(userid);
+        } catch (Exception e) {
+            logger.error("checkuserid " + e.getMessage() );
+        }
+        return result;
+    }
+
 }

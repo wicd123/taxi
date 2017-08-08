@@ -6,6 +6,7 @@
 
 
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -53,13 +54,13 @@
             
             <div class="navbar-header page-scroll">
                 <a class="navbar-brand">
-                  <input type="text" name="user_id" class="form-control" id="user_id" placeholder="아이디 입력"  />
+                  <input type="text" name="user_id" class="form-control" id="login_user_id" placeholder="아이디 입력"  />
                  </a>
             </div>
             
             <div class="navbar-header page-scroll">
                 <a class="navbar-brand">
-                 <input type="password" name="user_pw" class="form-control" id="user_pw" placeholder="비밀번호 입력"  />
+                 <input type="password" name="login_user_pw" class="form-control" id="user_pw" placeholder="비밀번호 입력"  />
                 </a>
             </div>
             
@@ -323,71 +324,10 @@
                 
                 <div id="sendmessage">Your message has been sent. Thank you!</div>
                 <div id="errormessage"></div>
-                <form id="signUpForm"  action="" method="post" role="form" class="contactForm">
+                <form id="signUpForm"  action="register" method="post" role="form" class="contactForm">
                 
                 
                 <div class="row" id="user" style="display:none">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="user_id">
-                                아이디</label>
-                            <input type="text" name="id" class="form-control" id="user_id" placeholder="아이디 입력"  />
-                            <input type="button" class="btn btn-skin pull-left"  value="아이디 중복 조회" id="checkuserid"/><br>
-                            <div class="validation"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="user_passwd">
-                                비밀번호</label>
-                            <div class="form-group">
-                                <input type="password" class="form-control" name="passwd" id="req_input" placeholder="비밀번호 입력" />
-                                <div class="validation"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="user_passwd_ck">
-                                비밀번호 확인</label>
-                            <input type="password" class="form-control" name="confirm" id="req_input" placeholder="비밀번호 확인"  />
-                            <div class="validation"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">
-                                이메일</label>
-                            <div class="form-group">
-                                <input type="email" class="form-control" name="email" id="req_input" placeholder="이메일 입력" />
-                                <div class="validation"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">
-                                핸드폰</label>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="mobile"  id=req_input placeholder="핸드폰 입력" />
-                                <div class="validation"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="gener">
-                                성별</label>
-                              <input type="radio" name="gener" checked="checked" /> <span class="up">남자</span>&nbsp;&nbsp; 
-                              <input type="radio"     name="gener"/> <span class="up">여자</span>
-                            <div class="validation"></div>
-                        </div>
-                        
-                        <div class="col-md-12">
-                            <button type="submit" class="btn btn-skin pull-center" id="submit_btn">
-                              회원가입</button>
-                        </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="avatar"><img src="resources/img/imageplus/user_plus.png" alt="" /></div>
-                        </div>
-                    </div>
-                </div>
-                
-                
-                
-                <div class="row" id="driver" style="display:none">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="user_id">
@@ -400,21 +340,85 @@
                             <label for="user_passwd">
                                 비밀번호</label>
                             <div class="form-group">
-                                <input type="password" class="form-control" name="user_passwd" id="user_passwd" placeholder="비밀번호 입력" />
+                                <input type="password" disabled="disabled" class="form-control" name="user_pw" id="req_input" placeholder="비밀번호 입력" />
                                 <div class="validation"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="user_passwd_ck">
                                 비밀번호 확인</label>
-                            <input type="password" class="form-control" name="user_passwd_ck" id="user_passwd_ck" placeholder="비밀번호 확인"  />
+                            <input type="password" disabled="disabled" class="form-control" name="confirm" id="req_input" placeholder="비밀번호 확인"  />
+                            <div class="validation"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">
+                                이메일</label>
+                            <div class="form-group">
+                                <input type="email" disabled="disabled" class="form-control" name="user_email" id="req_input" placeholder="이메일 입력" />
+                                <div class="validation"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">
+                                핸드폰</label>
+                            <div class="form-group">
+                                <input type="text"  disabled="disabled" class="form-control" name="user_phone"  id=req_input placeholder="핸드폰 입력" />
+                                <div class="validation"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gener">
+                                성별</label>
+                              <input type="radio" disabled="disabled" value="남"   name="user_gender" checked="checked" /> <span class="up">남</span>&nbsp;&nbsp; 
+                              <input type="radio" disabled="disabled" value="여"  name="user_gender" /> <span class="up">여</span>
+                            <div class="validation"></div>
+                        </div>
+                        
+                        
+                        <div class="col-md-12">
+                              <input type="submit" class="btn btn-skin pull-center"  value="회원가입" id = "submit_btn"/>
+                        </div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="avatar"><img src="resources/img/imageplus/user_plus.png" alt="" /></div>
+                        </div>
+                    </div>
+                </div>
+                </form>
+                
+                <!-- 여기부터는 드라이브 회원 입니다람쥐 -->
+                
+                <form id="d_signUpForm"  action="register" method="post" role="form" class="contactForm">
+                <div class="row" id="driver" style="display:none">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="user_id">
+                                아이디</label>
+                            <input type="text" name="user_id" class="form-control" id="d_user_id" placeholder="아이디 입력"  />
+                            <input type="button" class="btn btn-skin pull-left"  value="아이디 중복 조회" id="d_checkuserid"/><br>
+                            <div class="validation"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_passwd">
+                                비밀번호</label>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="user_pw" id="d_req_input" placeholder="비밀번호 입력" />
+                                <div class="validation"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_passwd_ck">
+                                비밀번호 확인</label>
+                            <input type="password" class="form-control" name="confirm" id="d_req_input" placeholder="비밀번호 확인"  />
                             <div class="validation"></div>
                         </div>
                         <div class="form-group">
                             <label for="user_email">
                                 이메일</label>
                             <div class="form-group">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="이메일 입력" />
+                                <input type="email" class="form-control" name="user_email" id="d_req_input" placeholder="이메일 입력" />
                                 <div class="validation"></div>
                             </div>
                         </div>
@@ -422,24 +426,25 @@
                             <label for="user_phone">
                                 핸드폰</label>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="phone" id="phone" placeholder="핸드폰 입력" />
+                                <input type="text" class="form-control" name="user_phone" id="d_req_input" placeholder="핸드폰 입력" />
                                 <div class="validation"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="user_carnum">
                                 차번호</label>
-                            <input type="text" name="user_carnum" class="form-control" id="user_carnum" placeholder="차번호입력(ex:00차0000)"  />
+                            <input type="text" name="user_carnum" class="form-control" id="d_req_input" placeholder="차번호입력(ex:00차0000)"  />
                             <div class="validation"></div>
                         </div>
                         <div class="form-group">
                             <label for="gener">
                                 성별</label>
-                              <input type="radio" name="gener" checked="checked" /> <span class="up">남자</span>&nbsp;&nbsp; <input type="radio"     name="gener"/> <span class="up">여자</span>
+                              <input type="radio" disabled="disabled" value="남"   name="user_gender" checked="checked" /> <span class="up">남</span>&nbsp;&nbsp; 
+                              <input type="radio" disabled="disabled" value="여"  name="user_gender" /> <span class="up">여</span>
                             <div class="validation"></div>
                         </div>
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-skin pull-center" id="submit_btn">
+                            <button type="button" class="btn btn-skin pull-center" id="d_submit_btn">
                               회원가입</button>
                         </div>
                      </div>
@@ -588,9 +593,9 @@
             }
         });
     	
-    	//회원가입 내부 제이 꽈리
+    	//일반_회원가입 내부 제이 꽈리
     	$('#checkuserid').click(function(e){
-            var userid = $('#user_id').val();
+            var user_id = $('#user_id').val();
     
             $.ajax({
                  url : '/user/checkuserid'
@@ -611,25 +616,10 @@
             });
             
             
-            $("#submit_btn").click(function(e){
-
-                var list = $('#req_input');
-
-                for( var i=0; i< list.length; i= i+1){
-
-                    if( $( list[i] ).val() === '' ) {
-                        list[i].focus();
-
-                        if( $(list[i]).next().length == 0 ) {
-                            $(list[i]).after('<label>입력하세요</label>');
-                        }
-
-                        return false;
-                    }
-                }
+            $('#submit_btn').click(function(e){
                 
                 // 패스워드 동일 여부 체크
-                if ($('input:password[name="passwd"]').val() === $('input:password[name="confirm"]').val() ) {
+                if ($('input:password[name="user_pw"]').val() === $('input:password[name="confirm"]').val() ) {
                   // 서브밑 호출 : form 의 action 이 실행됨
                   $('#signUpForm').submit();
                 return true;
@@ -640,12 +630,58 @@
             }
             });
     
-            $('.req_input').keyup( function (e) {
+            $('#req_input').keyup( function (e) {
                 if( $(this).val() !== '') {
                     $(this).next('label').remove();
                 }
         });
     });
+    	
+    	//드라이브_회원가입 내부 제이 꽈리
+        $('#d_checkuserid').click(function(e){
+            var d_user_id = $('#d_user_id').val();
+    
+            $.ajax({
+                 url : '/user/checkuserid'
+                ,data: {'user_id' :  d_user_id }      // 사용하는 경우에는 { data1:'test1', data2:'test2' }
+                ,type: 'get'       // get, post
+                ,timeout: 30000    // 30초
+                ,dataType: 'json'  // text, html, xml, json, jsonp, script
+            })
+            .done( function(data, textStatus, xhr ){
+                // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
+                if(data === 1 ){
+                    alert('존재하는 id');
+                }
+                else{
+                    alert('가능한 id');
+                    $('#d_signUpForm  input').prop('disabled', false);
+                }
+            });
+            
+            
+            $('#d_submit_btn').click(function(e){
+                
+                // 패스워드 동일 여부 체크
+                if ($('input:password[name="d_user_pw"]').val() === $('input:password[name="d_confirm"]').val() ) {
+                  // 서브밑 호출 : form 의 action 이 실행됨
+                  $('#d_signUpForm').submit();
+                return true;
+               }
+                else{
+                    alert('패스워드가 다릅니다');
+                    return false;
+            }
+            });
+    
+            $('#req_input').keyup( function (e) {
+                if( $(this).val() !== '') {
+                    $(this).next('label').remove();
+                }
+        });
+    });
+    	
+    	
     });
     	
     	

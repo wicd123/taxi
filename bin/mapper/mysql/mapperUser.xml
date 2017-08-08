@@ -17,5 +17,10 @@
               AND user_pw = #{user_pw}
     </select>
     
+    <select id="checkuserid" parameterType="string" resultType="int">
+            SELECT count(user_id)
+            FROM user
+            where user_id = #{user_id}
+    </select>
 
 </mapper>

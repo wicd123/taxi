@@ -5,17 +5,22 @@
 <mapper namespace="mapper.mapperUser">
     
 	<insert id="insertUser" parameterType="ModelUser">
-        INSERT INTO user (user_id,      user_pw,    user_email,    user_phone,    user_gender,     user_carnum,    user_lv)
+        INSERT INTO user2 (user_id,      user_pw,    user_email,    user_phone,    user_gender,     user_carnum,    user_lv)
         VALUES          (#{user_id}, #{user_pw}, #{user_email}, #{user_phone}, #{user_gender} , #{user_carnum}, #{user_lv})
         
     </insert>
 
     <select id="login" parameterType="ModelUser" resultType="ModelUser">
             select user_id, user_email, user_phone, user_gender, user_carnum, user_lv, user_no 
-              from user
+              from user2
              WHERE  user_id = #{user_id}
               AND user_pw = #{user_pw}
     </select>
     
+    <select id="checkuserid" parameterType="string" resultType="int">
+            SELECT count(user_id)
+            FROM user2
+            where user_id = #{user_id}
+    </select>
 
 </mapper>
