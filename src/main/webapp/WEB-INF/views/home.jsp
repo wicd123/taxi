@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <jsp:include page="header.jsp" />
     <title>Squadfree - Free bootstrap 3 one page template</title>
 
     <!-- Bootstrap Core CSS -->
@@ -31,72 +31,6 @@
         Author URL: https://bootstrapmade.com
     ======================================================= -->
 </head>
-
-
-
-
-<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
-    <!-- Preloader -->
-    <div id="preloader">
-      <div id="load"></div>
-    </div>
-
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="index.html">
-                    <h1>약속택시</h1>
-                </a>
-            </div>
-            
-            <div class="navbar-header page-scroll">
-                <a class="navbar-brand">
-                  <input type="text" name="user_id" class="form-control" id="login_user_id" placeholder="아이디 입력"  />
-                 </a>
-            </div>
-            
-            <div class="navbar-header page-scroll">
-                <a class="navbar-brand">
-                 <input type="password" name="login_user_pw" class="form-control" id="user_pw" placeholder="비밀번호 입력"  />
-                </a>
-            </div>
-            
-            <div class="navbar-header page-scroll">
-                <a class="navbar-brand">
-                 <button type="submit" class="btn btn-skin pull-center" id="login">로그인</button>
-                </a>
-            </div>
-            
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#intro">Home</a></li>
-        <li><a href="#about">이용방법</a></li>
-        <li><a href="#service">자주묻는질문</a></li>
-        <li><a href="#contact">회원가입</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Example menu</a></li>
-            <li><a href="#">Example menu</a></li>
-            <li><a href="#">Example menu</a></li>
-          </ul>
-        </li>
-      </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-    
-    
-
-
-
 
 
     <!-- Section: intro -->
@@ -404,21 +338,21 @@
                             <label for="user_passwd">
                                 비밀번호</label>
                             <div class="form-group">
-                                <input type="password" class="form-control" name="user_pw" id="d_req_input" placeholder="비밀번호 입력" />
+                                <input type="password" class="form-control" disabled="disabled" name="user_pw" id="d_req_input" placeholder="비밀번호 입력" />
                                 <div class="validation"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="user_passwd_ck">
                                 비밀번호 확인</label>
-                            <input type="password" class="form-control" name="confirm" id="d_req_input" placeholder="비밀번호 확인"  />
+                            <input type="password" class="form-control" name="confirm" disabled="disabled" id="d_req_input" placeholder="비밀번호 확인"  />
                             <div class="validation"></div>
                         </div>
                         <div class="form-group">
                             <label for="user_email">
                                 이메일</label>
                             <div class="form-group">
-                                <input type="email" class="form-control" name="user_email" id="d_req_input" placeholder="이메일 입력" />
+                                <input type="email" class="form-control" name="user_email" disabled="disabled" id="d_req_input" placeholder="이메일 입력" />
                                 <div class="validation"></div>
                             </div>
                         </div>
@@ -426,14 +360,14 @@
                             <label for="user_phone">
                                 핸드폰</label>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="user_phone" id="d_req_input" placeholder="핸드폰 입력" />
+                                <input type="text" class="form-control" name="user_phone" disabled="disabled" id="d_req_input" placeholder="핸드폰 입력" />
                                 <div class="validation"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="user_carnum">
                                 차번호</label>
-                            <input type="text" name="user_carnum" class="form-control" id="d_req_input" placeholder="차번호입력(ex:00차0000)"  />
+                            <input type="text" name="user_carnum" class="form-control" disabled="disabled" id="d_req_input" placeholder="차번호입력(ex:00차0000)"  />
                             <div class="validation"></div>
                         </div>
                         <div class="form-group">
@@ -495,31 +429,7 @@
     
 
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-lg-12">
-                    <div class="wow shake" data-wow-delay="0.4s">
-                    <div class="page-scroll marginbot-30">
-                        <a href="#intro" id="totop" class="btn btn-circle">
-                            <i class="fa fa-angle-double-up animated"></i>
-                        </a>
-                    </div>
-                    </div>
-                    <p>&copy;SquadFREE. All rights reserved.</p>
-                    <div class="credits">
-                        <!-- 
-                            All the links in the footer should remain intact. 
-                            You can delete the links only if you purchased the pro version.
-                            Licensing information: https://bootstrapmade.com/license/
-                            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Squadfree
-                        -->
-                        <a href="https://bootstrapmade.com/free-one-page-bootstrap-themes-website-templates/">One Page Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-                    </div>
-                </div>
-            </div>  
-        </div>
-    </footer>
+    
     
 
     <!-- Core JavaScript Files -->
@@ -690,7 +600,7 @@
     
     </script>
     
-    
+    <jsp:include page="footer.jsp" />
 </body>
 
 </html>

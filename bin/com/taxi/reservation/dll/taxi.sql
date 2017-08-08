@@ -1,6 +1,6 @@
 
         
-CREATE TABLE user (
+CREATE TABLE user2 (
    user_no INT UNSIGNED    NOT NULL AUTO_INCREMENT,
     user_id  VARCHAR(10)   NOT NULL, -- user_id
     user_pw VARCHAR(15)   NOT NULL,     -- user_pw
@@ -8,7 +8,7 @@ CREATE TABLE user (
     user_phone VARCHAR(20)   NOT NULL,     -- user_phone
     user_gender VARCHAR(10) NOT NULL,     -- user_gender
     user_carnum VARCHAR(12)   NULL,     -- user_carnum
-    user_lv INTEGER(2)    NOT NULL      -- user_lv
+    user_lv INTEGER(2)     NULL      -- user_lv
     
     , PRIMARY KEY(user_no)
     , UNIQUE KEY(user_id)
@@ -27,7 +27,7 @@ CREATE TABLE reservation (
 );
 
 INSERT INTO user (user_id,      user_pw,    user_email,    user_phone,    user_gender,     user_carnum,    user_lv)
-        VALUES ("goall2", "1234", "wicd123@email.com", "010-7777-7777", "남" , "23차2555", 1);
+        VALUES ("goall2", "1234", "w23@email.com", "010-7777-7777", "남" , "23차2555", 1);
         
 select user_id, user_email, user_phone, user_gender, user_carnum, user_lv, user_no 
               from user
@@ -36,17 +36,5 @@ select user_id, user_email, user_phone, user_gender, user_carnum, user_lv, user_
         
         
         
-CREATE TABLE user (
-   user_no INT UNSIGNED    NOT NULL AUTO_INCREMENT,
-    user_id  VARCHAR(10)   NOT NULL, -- user_id
-    user_pw VARCHAR(15)   NOT NULL,     -- user_pw
-    user_email VARCHAR(40)   NOT NULL,     -- user_email
-    user_phone VARCHAR(20)   NOT NULL,     -- user_phone
-    user_gender VARCHAR(10) NOT NULL,     -- user_gender
-    user_carnum VARCHAR(12)   NULL,     -- user_carnum
-    user_lv INTEGER(2)    NOT NULL      -- user_lv
-    
-    , PRIMARY KEY(user_no)
-    , UNIQUE KEY(user_id)
-);
+
 
