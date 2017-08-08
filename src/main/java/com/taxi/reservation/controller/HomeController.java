@@ -28,19 +28,19 @@ import com.taxi.reservation.service.IServiceUser;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	   @Autowired
 	    @Qualifier("serviceuser")
 	    IServiceUser usersvr;
-	
+
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		
+
+
 		return "home";
 	}
 	@RequestMapping(value = "/user/checkuserid", method = RequestMethod.POST)
@@ -48,11 +48,11 @@ public class HomeController {
             , @ModelAttribute ModelUser user
             , HttpSession session) {
         logger.info("register : POST");
-        
+
         usersvr.insertUser(user);
-        
+
         return "home/sucsses";
-        
+
     }
 	
 }

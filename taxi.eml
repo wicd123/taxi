@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/out/test/taxi"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$">
+		<excludeFolder url="file://$MODULE_DIR$/.gradle"/>
+		<excludeFolder url="file://$MODULE_DIR$/build"/>
+		<excludeFolder url="file://$MODULE_DIR$/out"/>
+	</contentEntry>
+	<lib name="Gradle: junit:junit:3.8.2" scope="TEST"/>
+	<lib name="Gradle: junit:junit:4.12" scope="TEST"/>
+	<lib name="Gradle: org.aspectj:aspectjtools:1.8.6" scope="PROVIDED"/>
+	<lib name="Gradle: org.hamcrest:hamcrest-core:1.3" scope="TEST"/>
+	<levels>
+		<level name="Gradle: org.springframework:spring-core:4.1.9.RELEASE" value="project"/>
+		<level name="Gradle: antlr:antlr:2.7.7" value="project"/>
+		<level name="Gradle: aopalliance:aopalliance:1.0" value="project"/>
+		<level name="Gradle: cglib:cglib-nodep:2.2.2" value="project"/>
+		<level name="Gradle: com.google.android.gcm:gcm-server:1.0.2" value="project"/>
+		<level name="Gradle: com.google.android:android:4.1.1.4" value="project"/>
+		<level name="Gradle: com.google.code.gson:gson:2.8.0" value="project"/>
+		<level name="Gradle: com.google.guava:guava:20.0" value="project"/>
+		<level name="Gradle: com.googlecode.json-simple:json-simple:1.1" value="project"/>
+		<level name="Gradle: com.googlecode.log4jdbc:log4jdbc:1.2" value="project"/>
+		<level name="Gradle: commons-beanutils:commons-beanutils:1.9.2" value="project"/>
+		<level name="Gradle: commons-codec:commons-codec:1.10" value="project"/>
+		<level name="Gradle: commons-collections:commons-collections:3.2.1" value="project"/>
+		<level name="Gradle: commons-digester:commons-digester:2.0" value="project"/>
+		<level name="Gradle: commons-fileupload:commons-fileupload:1.2.1" value="project"/>
+		<level name="Gradle: commons-io:commons-io:2.4" value="project"/>
+		<level name="Gradle: commons-logging:commons-logging:1.2" value="project"/>
+		<level name="Gradle: commons-pool:commons-pool:1.6" value="project"/>
+		<level name="Gradle: dom4j:dom4j:1.6.1" value="project"/>
+		<level name="Gradle: javax.activation:activation:1.1" value="project"/>
+		<level name="Gradle: javax.inject:javax.inject:1" value="project"/>
+		<level name="Gradle: javax.mail:mail:1.4.7" value="project"/>
+		<level name="Gradle: javax.persistence:persistence-api:1.0.2" value="project"/>
+		<level name="Gradle: javax.servlet.jsp.jstl:jstl-api:1.2" value="project"/>
+		<level name="Gradle: javax.servlet.jsp:javax.servlet.jsp-api:2.3.1" value="project"/>
+		<level name="Gradle: javax.servlet.jsp:jsp-api:2.1" value="project"/>
+		<level name="Gradle: javax.servlet:javax.servlet-api:3.1.0" value="project"/>
+		<level name="Gradle: javax.servlet:jstl:1.2" value="project"/>
+		<level name="Gradle: javax.servlet:servlet-api:2.5" value="project"/>
+		<level name="Gradle: joda-time:joda-time:2.7" value="project"/>
+		<level name="Gradle: junit:junit:3.8.2" value="project"/>
+		<level name="Gradle: junit:junit:4.12" value="project"/>
+		<level name="Gradle: log4j:log4j:1.2.17" value="project"/>
+		<level name="Gradle: mysql:mysql-connector-java:5.1.34" value="project"/>
+		<level name="Gradle: opensymphony:ognl:2.6.11" value="project"/>
+		<level name="Gradle: opensymphony:sitemesh:2.4.2" value="project"/>
+		<level name="Gradle: org.apache.commons:commons-dbcp2:2.0" value="project"/>
+		<level name="Gradle: org.apache.commons:commons-lang3:3.4" value="project"/>
+		<level name="Gradle: org.apache.commons:commons-pool2:2.2" value="project"/>
+		<level name="Gradle: org.apache.httpcomponents:httpclient:4.3.6" value="project"/>
+		<level name="Gradle: org.apache.httpcomponents:httpcore:4.3.3" value="project"/>
+		<level name="Gradle: org.apache.logging.log4j:log4j-api:2.1" value="project"/>
+		<level name="Gradle: org.apache.logging.log4j:log4j-core:2.1" value="project"/>
+		<level name="Gradle: org.apache.tiles:tiles-api:3.0.5" value="project"/>
+		<level name="Gradle: org.apache.tiles:tiles-autotag-core-runtime:1.1.0" value="project"/>
+		<level name="Gradle: org.apache.tiles:tiles-core:3.0.5" value="project"/>
+		<level name="Gradle: org.apache.tiles:tiles-jsp:3.0.5" value="project"/>
+		<level name="Gradle: org.apache.tiles:tiles-request-api:1.0.6" value="project"/>
+		<level name="Gradle: org.apache.tiles:tiles-request-jsp:1.0.6" value="project"/>
+		<level name="Gradle: org.apache.tiles:tiles-request-servlet:1.0.6" value="project"/>
+		<level name="Gradle: org.apache.tiles:tiles-servlet:3.0.5" value="project"/>
+		<level name="Gradle: org.apache.tiles:tiles-template:3.0.5" value="project"/>
+		<level name="Gradle: org.apache.tomcat:tomcat-servlet-api:7.0.73" value="project"/>
+		<level name="Gradle: org.aspectj:aspectjrt:1.8.6" value="project"/>
+		<level name="Gradle: org.aspectj:aspectjtools:1.8.6" value="project"/>
+		<level name="Gradle: org.aspectj:aspectjweaver:1.8.6" value="project"/>
+		<level name="Gradle: org.aspectj:aspectjweaver:1.8.7" value="project"/>
+		<level name="Gradle: org.dbunit:dbunit:2.4.9" value="project"/>
+		<level name="Gradle: org.freemarker:freemarker:2.3.21" value="project"/>
+		<level name="Gradle: org.hamcrest:hamcrest-core:1.3" value="project"/>
+		<level name="Gradle: org.hibernate.common:hibernate-commons-annotations:4.0.2.Final" value="project"/>
+		<level name="Gradle: org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final" value="project"/>
+		<level name="Gradle: org.hibernate:hibernate-core:4.2.20.Final" value="project"/>
+		<level name="Gradle: org.hibernate:hibernate-entitymanager:4.2.20.Final" value="project"/>
+		<level name="Gradle: org.javassist:javassist:3.18.1-GA" value="project"/>
+		<level name="Gradle: org.jboss.logging:jboss-logging:3.1.0.GA" value="project"/>
+		<level name="Gradle: org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec:1.0.1.Final" value="project"/>
+		<level name="Gradle: org.json:json:20140107" value="project"/>
+		<level name="Gradle: org.jsoup:jsoup:1.7.3" value="project"/>
+		<level name="Gradle: org.khronos:opengl-api:gl1.1-android-2.1_r1" value="project"/>
+		<level name="Gradle: org.mockito:mockito-core:1.9.0" value="project"/>
+		<level name="Gradle: org.mybatis:mybatis-spring:1.2.2" value="project"/>
+		<level name="Gradle: org.mybatis:mybatis:3.2.8" value="project"/>
+		<level name="Gradle: org.objenesis:objenesis:1.0" value="project"/>
+		<level name="Gradle: org.slf4j:jcl-over-slf4j:1.7.6" value="project"/>
+		<level name="Gradle: org.slf4j:jcl-over-slf4j:1.7.9" value="project"/>
+		<level name="Gradle: org.slf4j:slf4j-api:1.7.9" value="project"/>
+		<level name="Gradle: org.slf4j:slf4j-log4j12:1.7.9" value="project"/>
+		<level name="Gradle: org.springframework.security:spring-security-config:3.2.8.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework.security:spring-security-core:3.2.8.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework.security:spring-security-web:3.2.8.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework.webflow:spring-binding:2.4.1.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework.webflow:spring-js-resources:2.4.1.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework.webflow:spring-js:2.4.1.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework.webflow:spring-webflow:2.4.1.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework:spring-aop:4.1.9.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework:spring-aspects:4.1.9.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework:spring-beans:4.1.9.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework:spring-context-support:4.1.9.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework:spring-context:4.1.9.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework:spring-expression:4.1.9.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework:spring-jdbc:4.1.9.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework:spring-messaging:4.1.9.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework:spring-orm:4.1.9.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework:spring-test:4.1.9.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework:spring-tx:4.1.9.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework:spring-web:4.1.9.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework:spring-webmvc:4.1.9.RELEASE" value="project"/>
+		<level name="Gradle: org.springframework:spring-websocket:4.1.9.RELEASE" value="project"/>
+		<level name="Gradle: taglibs:standard:1.1.2" value="project"/>
+		<level name="Gradle: xerces:xmlParserAPIs:2.6.2" value="project"/>
+		<level name="Gradle: xpp3:xpp3:1.1.4c" value="project"/>
+	</levels>
+</component>
