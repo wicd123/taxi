@@ -27,7 +27,6 @@ public class ServiceUser implements IServiceUser {
 
     @Override
     public int insertUser(ModelUser user) {
-        
         int result = -1;
         try {
             result = daouser.insertUser(user);
@@ -41,9 +40,7 @@ public class ServiceUser implements IServiceUser {
 
     @Override
     public ModelUser login(String id, String pw) {
-        
         ModelUser result = null;
-		
         try {
             result = daouser.login(id, pw);
         } catch (Exception e) {

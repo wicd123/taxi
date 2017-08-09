@@ -85,6 +85,12 @@ a:focus {
   line-height: 40px;
 }
 
+.navbar-brand h2{
+    color: #fff;
+    font-size: 14px;
+    line-height: 37px;
+}
+
 .navbar-brand:focus {
     outline: 0;
 }

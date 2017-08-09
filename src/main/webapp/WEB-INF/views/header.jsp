@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.io.PrintWriter" %>   
+<%@ page import="java.io.PrintWriter" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -38,36 +40,50 @@
     <div id="preloader">
       <div id="load"></div>
     </div>
-
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header page-scroll">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="/">
                     <h1>약속택시</h1>
                 </a>
             </div>
-            
-            <div class="navbar-header page-scroll">
-                <a class="navbar-brand">
-                  <input type="text" name="user_id" class="form-control" id="login_user_id" placeholder="아이디 입력"  />
-                 </a>
-            </div>
-            
-            <div class="navbar-header page-scroll">
-                <a class="navbar-brand">
-                 <input type="password" name="login_user_pw" class="form-control" id="user_pw" placeholder="비밀번호 입력"  />
-                </a>
-            </div>
-            
-            <div class="navbar-header page-scroll">
-                <a class="navbar-brand">
-                 <button type="submit" class="btn btn-skin pull-center" id="login">로그인</button>
-                </a>
-            </div>
-            
+            <c:if test="${empty user.user_id}">
+                <form id="loginForm"  action="login" method="post">
+                    <div class="navbar-header page-scroll">
+                        <a class="navbar-brand">
+                          <input type="text" name="user_id" class="form-control" id="login_user_id" placeholder="아이디 입력"  />
+                         </a>
+                    </div>
+
+                    <div class="navbar-header page-scroll">
+                        <a class="navbar-brand">
+                         <input type="password" name="user_pw" class="form-control" id="login_user_pw" placeholder="비밀번호 입력"  />
+                        </a>
+                    </div>
+
+                    <div class="navbar-header page-scroll">
+                        <a class="navbar-brand">
+                         <button type="submit" class="btn btn-skin pull-center" id="login">로그인</button>
+                        </a>
+                    </div>
+                </form>
+            </c:if>
+            <c:if test="${!empty user.user_id}">
+                    <div class="navbar-header page-scroll">
+                        <a class="navbar-brand">
+                            <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ${user.user_id} 님 환영합니다!</h2>
+                        </a>
+                    </div>
+
+                    <div class="navbar-header page-scroll">
+                        <a class="navbar-brand">
+                            <button type="button" class="btn btn-skin pull-center" id="logout" onclick="location.href='/logout'">로그아웃</button>
+                        </a>
+                    </div>
+            </c:if>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">

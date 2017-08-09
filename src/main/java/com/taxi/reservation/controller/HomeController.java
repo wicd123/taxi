@@ -13,21 +13,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.taxi.reservation.model.ModelUser;
 import com.taxi.reservation.service.IServiceUser;
+import org.springframework.web.bind.support.SessionStatus;
 
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-@RequestMapping("/")
+@SessionAttributes("user")
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -77,6 +74,58 @@ public class HomeController {
 
         return "home";
     }
-	
-	
+    @RequestMapping(value = "/register")
+    public String registerGet(Model model){
+        return "home";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String login(Model model, @ModelAttribute ModelUser user){
+
+        logger.info("Login : POST");
+
+        ModelUser loginUser = new ModelUser();
+        loginUser = usersvr.login(user.getUser_id(), user.getUser_pw());
+
+        String msg = null;
+        String url = null;
+
+        // 로그인에 실패하였을 경우 해당 에러 메시지를 출력하고 다시 되돌아가기 위해 사용하는 템플릿
+        // msg와 돌아갈 url 주소를 String 타입으로 모델에 등록하고 msg/msg.jsp 템플릿에 보내면
+        // 해당 jsp는 알림을 띄운뒤 저장된 주소창으로 이동하는 역할만 담당함.
+        if(loginUser == null){
+            msg = "등록된 아이디나 비밀번호가 맞지 않습니다.";
+            url = "/";
+            model.addAttribute("msg", msg);
+            model.addAttribute("url", url);
+            return "msg/msg";
+        } else {
+            // 모델에 해당 attribute가 올라감과 동시에 @SessionAttributes에도 등록 됌
+            // 이후 view 단에서는 user라는 객체가 해당 로그인 유저의 정보를 모두 가지고 있으며
+            // 사용하기 위해서는 ${user.user_id} 와 같이 처음에 객체명을 써주고 사용하면 됌.
+            model.addAttribute("user", loginUser);
+            return "home";
+        }
+    }
+
+    @RequestMapping(value = "/login")
+    public String loginGet(Model model){
+        return "home";
+    }
+
+    @RequestMapping(value = "/logout")
+    public String logout(Model model, SessionStatus status){
+
+        logger.info("Logout : GET");
+
+        status.setComplete(); // SessionAttributes에 있는 세션값들을 초기화 함 (HttpSession에서 session.invalidate()와 같음)
+
+        String msg = "정상적으로 로그아웃 되었습니다.";
+        String url = "/";
+
+        model.addAttribute("msg", msg);
+        model.addAttribute("url", url);
+
+        return "msg/msg";
+    }
 }
