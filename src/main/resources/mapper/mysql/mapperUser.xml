@@ -22,5 +22,12 @@
             FROM user2
             where user_id = #{user_id}
     </select>
+    
+    <insert id="insertRservation" parameterType="ModelReservation">
+        INSERT INTO user2 (user_id,      user_pw,    user_email,    user_phone,    user_gender,     user_carnum,    user_lv)
+        VALUES          (#{user_id}, #{user_pw}, #{user_email}, #{user_phone}, #{user_gender} , #{user_carnum}, #{user_lv})
+        
+    </insert>
+    
 
 </mapper>
