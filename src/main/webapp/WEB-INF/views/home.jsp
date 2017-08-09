@@ -471,34 +471,34 @@
                 
                 <div id="sendmessage">Your message has been sent. Thank you!</div>
                 <div id="errormessage"></div>
-                <form id="r_signUpForm"  action="reservation" method="post" role="form" class="contactForm">
+                <form id="reservationForm"  action="reservation" method="post" role="form" class="contactForm">
                     <div class="row" id="reservation" style="display:none">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="user_id">
                                     날짜</label>
-                                <input type="date" name="r_date" class="form-control" id="r_date" placeholder="날짜 입력"  />
+                                <input type="date" name="r_date" class="form-control" id="r_date" placeholder="날짜 입력" required  />
                                 <div class="validation"></div>
                             </div>
                             <div class="form-group">
                                 <label for="user_passwd">
                                     시간</label>
                                 <div class="form-group">
-                                    <input type="time" class="form-control" name="r_time" id="r_time" placeholder="시간 입력" />
+                                    <input type="time" class="form-control" name="r_time" id="r_time" placeholder="시간 입력" required />
                                     <div class="validation"></div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="user_passwd_ck">
                                     출발 장소</label>
-                                <input type="text"  class="form-control" name="r_start_place" id="r_start_place" placeholder="출발 장소 입력"  />
+                                <input type="text"  class="form-control" name="r_start_place" id="r_start_place" placeholder="출발 장소 입력" required  />
                                 <div class="validation"></div>
                             </div>
                             <div class="form-group">
                                 <label for="email">
                                     도착 장소</label>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" name="r_arrival_place" id="r_arrival_place" placeholder="도착 장소 입력" />
+                                    <input type="text" class="form-control" name="r_arrival_place" id="r_arrival_place" placeholder="도착 장소 입력" required />
                                     <div class="validation"></div>
                                 </div>
                             </div>
@@ -563,11 +563,19 @@
             $('#reservation_ck').show(1000, 'easeOutBounce', function(){})
             /* $('#reservation').hide(1000, 'easeOutBounce', function(){}) */
         });
-        
-    	
-    	
-    	
-    	//자주묻는질문 제이꽈리
+
+        // 예약하기 관련 미로그인시 거절하기
+        $('#reservationForm').submit(function(){
+            var login = $('#login').val();
+
+            if(login != undefined ){
+                alert('로그인 후 예약해주세요');
+                return false;
+            }
+
+        });
+
+        //자주묻는질문 제이꽈리
     	$('#q_1').click(function(e){
     		if($('#ico_ar_1').html() == '▼'){
     			$('#n_1').show(1000, 'easeOutBounce', function(){})

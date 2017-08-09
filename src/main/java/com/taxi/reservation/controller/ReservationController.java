@@ -27,6 +27,7 @@ public class ReservationController {
                                     @ModelAttribute("user")ModelUser modelUser){
 
         modelReservation.setUser_no(modelUser.getUser_no());
+
         int result = serviceReservation.insertReservation(modelReservation);
 
         String msg = result > 0 ? "예약 완료!" : "예약 실패!";
