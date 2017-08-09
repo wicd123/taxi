@@ -258,9 +258,8 @@
                 
                 <div id="sendmessage">Your message has been sent. Thank you!</div>
                 <div id="errormessage"></div>
+                
                 <form id="signUpForm"  action="register" method="post" role="form" class="contactForm">
-                
-                
                 <div class="row" id="user" style="display:none">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -427,11 +426,109 @@
     <!-- /Section: contact -->
     
     
+    <!--  예약하기 입니다 -->
+    <section id="contact" class="home-section text-center">
+        <div class="heading-contact">
+            <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="wow bounceInDown" data-wow-delay="0.4s">
+                    <div class="section-heading">
+                    <h2>예약하기</h2>
+                    <i class="fa fa-2x fa-angle-down"></i>
 
+                    </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="section-heading" >
+            <label for="userordriver">
+                    어떤작업을 하실꺼죠?</label><br>
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-skin pull-center" id="reservation_btn">
+                          약속하기</button>
+                      <button type="button" class="btn btn-skin pull-center" id="reservation_ck_btn">
+                          약속확인하기</button>
+                </div>
+        </div>
+        
+        <div class="container">
 
+        <div class="row">
+            <div class="col-lg-2 col-lg-offset-5">
+                <hr class="marginbot-50">
+            </div>
+        </div>
+        
+        
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="boxed-grey">
+                
+                
+                <div id="sendmessage">Your message has been sent. Thank you!</div>
+                <div id="errormessage"></div>
+                <form id="r_signUpForm"  action="register" method="post" role="form" class="contactForm">
+                <div class="row" id="reservation" style="display:none">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="user_id">
+                                날짜</label>
+                            <input type="date" name="r_date" class="form-control" id="r_date" placeholder="날짜 입력"  />
+                            <div class="validation"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_passwd">
+                                시간</label>
+                            <div class="form-group">
+                                <input type="time" class="form-control" name="r_time" id="r_time" placeholder="시간 입력" />
+                                <div class="validation"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_passwd_ck">
+                                출발 장소</label>
+                            <input type="text"  class="form-control" name="r_start_place" id="r_start_place" placeholder="출발 장소 입력"  />
+                            <div class="validation"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">
+                                도착 장소</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="r_arrival_place" id="r_arrival_place" placeholder="도착 장소 입력" />
+                                <div class="validation"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                              <input type="submit" class="btn btn-skin pull-center"  value="예약하기" id = "reservation_submit_btn"/>
+                        </div>
+                        <br>
+                        
+                     </div>
+                     <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="avatar"><img src="resources/img/imageplus/reservation.png" alt="" /></div>
+                        </div>
+                    </div>
+                    
+                </div>
+                </form>
+            </div>
+        </div>
+        
+        
+        
+        
+        
+    </div>  
+
+        </div>
+    </section>
+    <!--  예약하기 끝입니다. -->
     
-    
-
     <!-- Core JavaScript Files -->
     <script src="resources/js/jquery.min.js"></script>
     <script src="resources/js/bootstrap.min.js"></script>
@@ -456,6 +553,19 @@
             $('#driver').show(1000, 'easeOutBounce', function(){})
             $('#user').hide(1000, 'easeOutBounce', function(){})
         });
+    	
+    	//일반회원 약속 하기 / 약속 확인 제이 꽈리
+        $('#reservation_btn').click(function(e){
+            $('#reservation').show(1000, 'easeOutBounce', function(){})
+           /*  $('#reservation_ck').hide(1000, 'easeOutBounce', function(){}) */
+        });
+        $('#reservation_ck_btn').click(function(e){
+            $('#reservation_ck').show(1000, 'easeOutBounce', function(){})
+            /* $('#reservation').hide(1000, 'easeOutBounce', function(){}) */
+        });
+        
+    	
+    	
     	
     	//자주묻는질문 제이꽈리
     	$('#q_1').click(function(e){
@@ -546,7 +656,6 @@
                 }
         });
     });
-    	
     	//드라이브_회원가입 내부 제이 꽈리
         $('#d_checkuserid').click(function(e){
             var d_user_id = $('#d_user_id').val();
@@ -568,8 +677,6 @@
                     $('#d_signUpForm  input').prop('disabled', false);
                 }
             });
-            
-            
             $('#d_submit_btn').click(function(e){
                 
                 // 패스워드 동일 여부 체크
@@ -591,6 +698,11 @@
         });
     });
     	
+      //일반 회원 예약하기 제이 꽈리
+            $('#reservation_submit_btn').click(function(e){
+                  $('#r_signUpForm').submit();
+                return true;
+            });
     	
     });
     	
