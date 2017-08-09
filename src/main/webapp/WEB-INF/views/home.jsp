@@ -471,50 +471,50 @@
                 
                 <div id="sendmessage">Your message has been sent. Thank you!</div>
                 <div id="errormessage"></div>
-                <form id="r_signUpForm"  action="register" method="post" role="form" class="contactForm">
-                <div class="row" id="reservation" style="display:none">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="user_id">
-                                날짜</label>
-                            <input type="date" name="r_date" class="form-control" id="r_date" placeholder="날짜 입력"  />
-                            <div class="validation"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="user_passwd">
-                                시간</label>
+                <form id="r_signUpForm"  action="reservation" method="post" role="form" class="contactForm">
+                    <div class="row" id="reservation" style="display:none">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <input type="time" class="form-control" name="r_time" id="r_time" placeholder="시간 입력" />
+                                <label for="user_id">
+                                    날짜</label>
+                                <input type="date" name="r_date" class="form-control" id="r_date" placeholder="날짜 입력"  />
                                 <div class="validation"></div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="user_passwd_ck">
-                                출발 장소</label>
-                            <input type="text"  class="form-control" name="r_start_place" id="r_start_place" placeholder="출발 장소 입력"  />
-                            <div class="validation"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">
-                                도착 장소</label>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="r_arrival_place" id="r_arrival_place" placeholder="도착 장소 입력" />
+                                <label for="user_passwd">
+                                    시간</label>
+                                <div class="form-group">
+                                    <input type="time" class="form-control" name="r_time" id="r_time" placeholder="시간 입력" />
+                                    <div class="validation"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="user_passwd_ck">
+                                    출발 장소</label>
+                                <input type="text"  class="form-control" name="r_start_place" id="r_start_place" placeholder="출발 장소 입력"  />
                                 <div class="validation"></div>
                             </div>
+                            <div class="form-group">
+                                <label for="email">
+                                    도착 장소</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="r_arrival_place" id="r_arrival_place" placeholder="도착 장소 입력" />
+                                    <div class="validation"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                  <input type="submit" class="btn btn-skin pull-center"  value="예약하기" id = "reservation_submit_btn"/>
+                            </div>
+                            <br>
+
+                         </div>
+                         <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="avatar"><img src="resources/img/imageplus/reservation.png" alt="" /></div>
+                            </div>
                         </div>
-                        <div class="col-md-12">
-                              <input type="submit" class="btn btn-skin pull-center"  value="예약하기" id = "reservation_submit_btn"/>
-                        </div>
-                        <br>
-                        
-                     </div>
-                     <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="avatar"><img src="resources/img/imageplus/reservation.png" alt="" /></div>
-                        </div>
+
                     </div>
-                    
-                </div>
                 </form>
             </div>
         </div>
