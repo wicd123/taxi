@@ -603,25 +603,25 @@
                         location.href="/";
                     } else {
                         alert('총 ' + result.length + '개의 예약 내역이 있습니다.');
-
+                        $('.reservation_ck_content').remove();
                         for(var i=0; i < result.length; i++){
                             $('#reservation_ck_content').append($('<div/>', {
-                                class: 'col-md-3',
+                                class: 'reservation_ck_content col-md-3',
                                 id: 'r_date_'+i,
                                 text: result[i].r_date
                             }));
                             $('#reservation_ck_content').append($('<div/>', {
-                                class: 'col-md-3',
+                                class: 'reservation_ck_content col-md-3',
                                 id: 'r_time_'+i,
                                 text: result[i].r_time
                             }));
                             $('#reservation_ck_content').append($('<div/>', {
-                                class: 'col-md-3',
+                                class: 'reservation_ck_content col-md-3',
                                 id: 'r_start_place_'+i,
                                 text: result[i].r_start_place
                             }));
                             $('#reservation_ck_content').append($('<div/>', {
-                                class: 'col-md-3',
+                                class: 'reservation_ck_content col-md-3',
                                 id: 'r_arrival_place_'+i,
                                 text: result[i].r_arrival_place
                             }));
