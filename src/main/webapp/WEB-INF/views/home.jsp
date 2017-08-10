@@ -575,11 +575,14 @@
     	
     	//일반회원 약속 하기 / 약속 확인 제이 꽈리
         $('#reservation_btn').click(function(e){
+            $('#reservation_ck').hide(1000, 'easeOutBounce', function(){})
             $('#reservation').show(1000, 'easeOutBounce', function(){})
            /*  $('#reservation_ck').hide(1000, 'easeOutBounce', function(){}) */
         });
 
         $('#reservation_ck_btn').click(function(e){
+
+            $('#reservation').hide(1000, 'easeOutBounce', function(){})
 
             var login = $('#login').val();
             var user_no = <c:out value="${user.user_no}" default="-1"/>;
