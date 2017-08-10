@@ -516,6 +516,25 @@
 
                     </div>
                 </form>
+                <div class="row" id="reservation_ck" style="display:none">
+                    <div class = "col-md-12" id="reservation_ck_title">
+                        <div class = "col-md-3" id="r_date_ck">
+                            예약날짜
+                        </div>
+                        <div class = "col-md-3" id="r_time_ck">
+                            예약시간
+                        </div>
+                        <div class = "col-md-3" id="r_start_place_ck">
+                            출발장소
+                        </div>
+                        <div class = "col-md-3" id="r_arrival_place_ck">
+                            도착장소
+                        </div>
+                    </div>
+                    <div class = "col-md-12" id="reservation_ck_content">
+
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -559,12 +578,64 @@
             $('#reservation').show(1000, 'easeOutBounce', function(){})
            /*  $('#reservation_ck').hide(1000, 'easeOutBounce', function(){}) */
         });
+
         $('#reservation_ck_btn').click(function(e){
+
+            var login = $('#login').val();
+            var user_no = <c:out value="${user.user_no}" default="-1"/>;
+
+            if(login != undefined ){
+                alert('로그인 후 예약 확인해주세요');
+                return false;
+            }
+
+            $.ajax({
+                url : '/reservationCheck'
+                ,data: {'user_no' : user_no }
+                ,type: 'post'
+                ,dataType: 'json'
+                ,success : function(result) {
+                    console.log(result);
+                    if(result.length == 0){
+                        alert('예약 내역이 없습니다! 예약 후 이용해주세요');
+                    } else {
+                        alert('총 ' + result.length + '개의 예약 내역이 있습니다.');
+
+                        for(var i=0; i < result.length; i++){
+                            $('#reservation_ck_content').append($('<div/>', {
+                                class: 'col-md-3',
+                                id: 'r_date_'+i,
+                                text: result[i].r_date
+                            }));
+                            $('#reservation_ck_content').append($('<div/>', {
+                                class: 'col-md-3',
+                                id: 'r_time_'+i,
+                                text: result[i].r_time
+                            }));
+                            $('#reservation_ck_content').append($('<div/>', {
+                                class: 'col-md-3',
+                                id: 'r_start_place_'+i,
+                                text: result[i].r_start_place
+                            }));
+                            $('#reservation_ck_content').append($('<div/>', {
+                                class: 'col-md-3',
+                                id: 'r_arrival_place_'+i,
+                                text: result[i].r_arrival_place
+                            }));
+                        }
+                    }
+                }
+                ,error:function(request,status,error){
+                    alert("code:"+request.status+"\n"+"error:"+error);
+                }
+            });
+
             $('#reservation_ck').show(1000, 'easeOutBounce', function(){})
             /* $('#reservation').hide(1000, 'easeOutBounce', function(){}) */
         });
 
-        // 예약하기 관련 미로그인시 거절하기
+
+        // 예약하기 관련 미로그인시 예외상황 처리
         $('#reservationForm').submit(function(){
             var login = $('#login').val();
 
