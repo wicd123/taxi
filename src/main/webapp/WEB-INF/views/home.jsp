@@ -595,9 +595,9 @@
                 ,type: 'post'
                 ,dataType: 'json'
                 ,success : function(result) {
-                    console.log(result);
                     if(result.length == 0){
                         alert('예약 내역이 없습니다! 예약 후 이용해주세요');
+                        location.href="/";
                     } else {
                         alert('총 ' + result.length + '개의 예약 내역이 있습니다.');
 
