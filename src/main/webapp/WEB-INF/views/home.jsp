@@ -443,7 +443,6 @@
             </div>
             </div>
         </div>
-        
         <div class="section-heading" >
             <label for="userordriver">
                     어떤작업을 하실꺼죠?</label><br>
@@ -454,7 +453,6 @@
                           약속확인하기</button>
                 </div>
         </div>
-        
         <div class="container">
 
         <div class="row">
@@ -467,8 +465,6 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="boxed-grey">
-                
-                
                 <div id="sendmessage">Your message has been sent. Thank you!</div>
                 <div id="errormessage"></div>
                 <form id="reservationForm"  action="reservation" method="post" role="form" class="contactForm">
@@ -516,7 +512,55 @@
 
                     </div>
                 </form>
-                <div class="row" id="reservation_ck" style="display:none">
+                
+                <table class="table table-condensed" id="reservation_ck" style="display:none">
+                  <thead>
+                    <tr  id="reservation_ck_title">
+                       <th id="r_date_ck">
+                            예약날짜
+                        </th>
+                        <th  id="r_time_ck">
+                            예약시간
+                        </th>
+                        <th id="r_start_place_ck">
+                            출발장소
+                        </th>
+                        <th id="r_arrival_place_ck">
+                            도착장소
+                        </th>
+                        <th id="r_arrival_place_ck">
+                            삭제
+                        </th>
+                     </tr>
+                  </thead>
+                  <tbody id="reservation_ck_content">
+                  </tbody>
+                </table>
+                
+<!--               <table class="table table-striped" id="reservation_ck" style="display:none">
+                    <thead > 
+                    <tr class = "col-md-12"  id="reservation_ck_title">
+                        <th class = "col-md-3" id="r_date_ck">
+                            예약날짜
+                        </th>
+                        <th  class = "col-md-3"  id="r_time_ck">
+                            예약시간
+                        </th>
+                        <th class = "col-md-3" id="r_start_place_ck">
+                            출발장소
+                        </th>
+                        <th class = "col-md-3" id="r_arrival_place_ck">
+                            도착장소
+                        </th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                        <tr class = "col-md-12" id="reservation_ck_content">
+                        </tr>
+                    </tbody>
+                </table> -->
+                
+<!--                <div class="table table-striped" id="reservation_ck" style="display:none">
                     <div class = "col-md-12" id="reservation_ck_title">
                         <div class = "col-md-3" id="r_date_ck">
                             예약날짜
@@ -532,16 +576,10 @@
                         </div>
                     </div>
                     <div class = "col-md-12" id="reservation_ck_content">
-
                     </div>
-                </div>
+                </div>  -->
             </div>
         </div>
-        
-        
-        
-        
-        
     </div>  
 
         </div>
@@ -579,7 +617,12 @@
             $('#reservation').show(1000, 'easeOutBounce', function(){})
            /*  $('#reservation_ck').hide(1000, 'easeOutBounce', function(){}) */
         });
-
+    	
+    	$('#r_c_button0').click(function(e){
+    	        		
+    	});
+    	
+        //일반회원 약속하기 내부 제이 꽈리
         $('#reservation_ck_btn').click(function(e){
 
             $('#reservation').hide(1000, 'easeOutBounce', function(){})
@@ -604,27 +647,38 @@
                     } else {
                         alert('총 ' + result.length + '개의 예약 내역이 있습니다.');
                         $('.reservation_ck_content').remove();
+                        
                         for(var i=0; i < result.length; i++){
-                            $('#reservation_ck_content').append($('<div/>', {
-                                class: 'reservation_ck_content col-md-3',
+                        	$('#reservation_ck_content').append($('<tr>', {
+                                class: 'reservation_ck_content',
+                                id: 'aaa'+i,
+                            }));
+                            $('#aaa'+i).append($('<td/>', {
+                            	class: 'reservation_ck_content',
                                 id: 'r_date_'+i,
                                 text: result[i].r_date
                             }));
-                            $('#reservation_ck_content').append($('<div/>', {
-                                class: 'reservation_ck_content col-md-3',
+                            $('#aaa'+i).append($('<td/>', {
+                            	class: 'reservation_ck_content',
                                 id: 'r_time_'+i,
                                 text: result[i].r_time
                             }));
-                            $('#reservation_ck_content').append($('<div/>', {
-                                class: 'reservation_ck_content col-md-3',
+                            $('#aaa'+i).append($('<td/>', {
+                            	class: 'reservation_ck_content',
                                 id: 'r_start_place_'+i,
                                 text: result[i].r_start_place
                             }));
-                            $('#reservation_ck_content').append($('<div/>', {
-                                class: 'reservation_ck_content col-md-3',
+                            $('#aaa'+i).append($('<td/>', {
+                            	class: 'reservation_ck_content',
                                 id: 'r_arrival_place_'+i,
                                 text: result[i].r_arrival_place
                             }));
+                            $('#aaa'+i).append($('<button/>', {
+                                class: 'reservation_ck_content',
+                                id: 'r_c_button'+i,
+                                text: '약속삭제'
+                            }));
+                            $('#reservation_ck_content').append("</tr>") 
                         }
                     }
                 }

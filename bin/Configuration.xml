@@ -10,7 +10,7 @@
     </settings>
     
     
-    <!-- Model 클래스의 패키지명을 등록한다. -->
+    <!-- Model 클래스의 패키지명을 등록한다. 이를통해서 mapper에서 result나 parameter 타입을 심플하게 줄 수 있다. -->
     <typeAliases>
         <package name="com.taxi.reservation.model" />
     </typeAliases>
@@ -19,6 +19,7 @@
     <!-- sql 이 저장되는 xml 파일 등록: 주의 사항은 경로로 설정해야 한다. -->
     <mappers>
         <mapper resource="mapper/mysql/mapperUser.xml" />
+        <mapper resource="mapper/mysql/mapperReservation.xml" />
     </mappers>
     
 </configuration>

@@ -18,5 +18,12 @@
                 order by r_idx DESC
         ]]>
     </select>
+    
+    <delete id="deleteReservation" parameterType="ModelReservation">
+        <![CDATA[
+             delete from reservation          
+             WHERE user_no = #{user_no} and r_idx = #{t_idx}
+        ]]>
+    </delete>
 
 </mapper>

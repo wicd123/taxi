@@ -1,14 +1,14 @@
 package com.taxi.reservation.service;
 
-import com.taxi.reservation.dao.DaoReservation;
-import com.taxi.reservation.model.ModelReservation;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.taxi.reservation.dao.DaoReservation;
+import com.taxi.reservation.model.ModelReservation;
 
 @Service("serviceReservation")
 public class ServiceReservation implements IServiceReservation {
@@ -45,6 +45,17 @@ public class ServiceReservation implements IServiceReservation {
             logger.error("findReservation " + e.getMessage());
         }
 
+        return result;
+    }
+    @Override
+    public int deleteReservation(ModelReservation ModelReservation) {
+        int result = -1;
+        try {
+            result = daoReservation.deleteReservation(ModelReservation);
+        } catch (Exception e) {
+            logger.error("deleteReservation" + e.getMessage());
+        }
+        
         return result;
     }
 }
