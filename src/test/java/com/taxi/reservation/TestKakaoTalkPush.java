@@ -98,6 +98,7 @@ public class TestKakaoTalkPush {
         final HttpPost post = new HttpPost(RequestUrl);
 
         final List<NameValuePair> postParams = new ArrayList<NameValuePair>();
+        final List<NameValuePair> postParams2 = new ArrayList<NameValuePair>();
         JSONObject objSub3 = new JSONObject();
         objSub3.put("article_id", "test");
         objSub3.put("comment_id", "test");
@@ -110,9 +111,9 @@ public class TestKakaoTalkPush {
         objContent2.put("ios_execution_params","contentId=100");
 
         JSONObject objContent = new JSONObject();
-        objContent.put("title","맛집을 찾아서");
-        objContent.put("description","맛집 맛집해!");
-        objContent.put("image_url","http://mud-kage.kakao.co.kr/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg");
+        objContent.put("title","예약 내역 확인");
+        objContent.put("description","2017년 8월 11일 \n 오후 8시에 예약이 있습니다.");
+        objContent.put("image_url","http://mud-kage.kakao.co.kr/14/dn/btqg2ZR3KBg/XNnUz2renH3yaZLG3g8Twk/o.jpg");
         objContent.put("image_width", 640);
         objContent.put("image_height", 640);
         objContent.put("link", objContent2);
@@ -125,13 +126,22 @@ public class TestKakaoTalkPush {
         objbuttons2.put("web_url","http://www.daum.net");
         objbuttons2.put("mobile_web_url","http://m.daum.net");
 
-        JSONObject objbuttons = new JSONObject();
-        objbuttons.put("title","웹으로 열기");
-        objbuttons.put("link", objbuttons2);
+        JSONObject objbuttons_r = new JSONObject();
+        objbuttons_r.put("title","웹으로 열기");
+        objbuttons_r.put("link", objbuttons2);
+
+        JSONObject objbuttons_l = new JSONObject();
+        objbuttons_l.put("title","앱으로 열기");
+        objbuttons_l.put("link", objbuttons3);
+
+        org.json.simple.JSONArray objbuttons = new org.json.simple.JSONArray();
+        objbuttons.add(objbuttons_r);
+        objbuttons.add(objbuttons_l);
 
         JSONObject objSub = new JSONObject();
         objSub.put("object_type","feed");
         objSub.put("content",objContent);
+        objSub.put("buttons:", objbuttons);
 
         postParams.add(new BasicNameValuePair("template_object", objSub.toString()));
 
