@@ -52,4 +52,10 @@ public class ReservationController {
         return checkResult;
     }
 
+//    @RequestMapping(value="/kakaoLogin", method = {RequestMethod.POST, RequestMethod.GET})
+//    public String kakaoLogin(@RequestParam("code")String code, Model model){
+//        System.out.println("code: " + code);
+//        return "home";
+//    }
+
 }

@@ -27,7 +27,7 @@ public class TestServiceReservation {
 
     @Test
     public void findReservation(){
-        List<ModelReservation> modelReservation = serviceReservation.findReservation(2);
+        List<ModelReservation> modelReservation = serviceReservation.findReservation(1);
         assertEquals(modelReservation.size(), 4);
 
         for(ModelReservation model : modelReservation){
