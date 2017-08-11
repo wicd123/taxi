@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.mapperReservation">
+
+    <insert id="insertReservation" parameterType="ModelReservation">
+    <![CDATA[
+            INSERT INTO reservation (user_no,      r_date,    r_time,    r_start_place,    r_arrival_place)
+            VALUES          (#{user_no}, #{r_date}, #{r_time}, #{r_start_place}, #{r_arrival_place})
+        ]]>
+    </insert>
+
+    <select id="findReservation" parameterType="Integer" resultType="ModelReservation">
+        <![CDATA[
+            Select * from reservation
+              where user_no = #{user_no}
+                order by r_idx DESC
+        ]]>
+    </select>
+    
+    <delete id="deleteReservation" parameterType="ModelReservation">
+        <![CDATA[
+             delete from reservation          
+             WHERE user_no = #{user_no} and r_idx = #{t_idx}
+        ]]>
+    </delete>
+
+</mapper>
