@@ -7,6 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service("serviceReservation")
 public class ServiceReservation implements IServiceReservation {
 
@@ -26,6 +29,20 @@ public class ServiceReservation implements IServiceReservation {
             result = daoReservation.insertReservation(modelReservation);
         } catch (Exception e) {
             logger.error("insertReservation " + e.getMessage() );
+        }
+
+        return result;
+    }
+
+    @Override
+    public List<ModelReservation> findReservation(int user_no) {
+
+        List<ModelReservation> result = null;
+
+        try{
+            result = daoReservation.findReservation(user_no);
+        }catch (Exception e){
+            logger.error("findReservation " + e.getMessage());
         }
 
         return result;

@@ -11,4 +11,12 @@
         ]]>
     </insert>
 
+    <select id="findReservation" parameterType="Integer" resultType="ModelReservation">
+        <![CDATA[
+            Select * from reservation
+              where user_no = #{user_no}
+                order by r_idx DESC
+        ]]>
+    </select>
+
 </mapper>
