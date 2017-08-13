@@ -6,8 +6,8 @@
     
 	<insert id="insertUser" parameterType="ModelUser">
         <![CDATA[
-            INSERT INTO user2 (user_id,      user_pw,    user_email,    user_phone,    user_gender,     user_carnum,    user_lv)
-            VALUES          (#{user_id}, #{user_pw}, #{user_email}, #{user_phone}, #{user_gender} , #{user_carnum}, #{user_lv})
+            INSERT INTO user2 (user_id,      user_pw,    user_email,    user_phone,    user_gender,     user_carnum, user_check_kakao, user_refresh_token,   user_lv)
+            VALUES          (#{user_id}, #{user_pw}, #{user_email}, #{user_phone}, #{user_gender} , #{user_carnum}, #{user_check_kakao}, #{user_refresh_token}, #{user_lv})
         ]]>
     </insert>
 
@@ -27,12 +27,14 @@
             where user_id = #{user_id}
         ]]>
     </select>
-    
-    <insert id="insertRservation" parameterType="ModelReservation">
-        INSERT INTO user2 (user_id,      user_pw,    user_email,    user_phone,    user_gender,     user_carnum,    user_lv)
-        VALUES          (#{user_id}, #{user_pw}, #{user_email}, #{user_phone}, #{user_gender} , #{user_carnum}, #{user_lv})
-        
-    </insert>
+
+    <update id="refreshToken" parameterType="ModelUser">
+        <![CDATA[
+            update user2
+            set user_refresh_token = #{user_refresh_token}
+            where user_id = #{user_id}
+        ]]>
+    </update>
     
 
 </mapper>

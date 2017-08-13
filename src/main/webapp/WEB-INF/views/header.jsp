@@ -23,7 +23,7 @@
     <!-- Squad theme CSS -->
     <link href="resources/css/style.css" rel="stylesheet">
     <link href="resources/color/default.css" rel="stylesheet">
-    
+
     <!-- =======================================================
         Theme Name: Squadfree
         Theme URL: https://bootstrapmade.com/squadfree-free-bootstrap-template-creative/
@@ -36,6 +36,7 @@
 
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+
     <!-- Preloader -->
     <div id="preloader">
       <div id="load"></div>
@@ -50,7 +51,7 @@
                     <h1>약속택시</h1>
                 </a>
             </div>
-            <c:if test="${empty user.user_id}">
+            <c:if test="${empty user.user_no}">
                 <form id="loginForm"  action="login" method="post">
                     <div class="navbar-header page-scroll">
                         <a class="navbar-brand">
@@ -71,7 +72,7 @@
                     </div>
                 </form>
             </c:if>
-            <c:if test="${!empty user.user_id}">
+            <c:if test="${!empty user.user_no}">
                     <div class="navbar-header page-scroll">
                         <a class="navbar-brand">
                             <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    ${user.user_id} 님 환영합니다!</h2>

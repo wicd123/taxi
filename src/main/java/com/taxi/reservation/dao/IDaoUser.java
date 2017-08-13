@@ -11,5 +11,7 @@ public interface IDaoUser {
    ModelUser login(String id, String pw );
    
    int checkuserid(String userid );
+
+   int refreshToken(ModelUser user);
    
 }

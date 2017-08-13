@@ -19,6 +19,9 @@ public class ReservationController {
     @Autowired
     ServiceReservation serviceReservation;
 
+    @Autowired
+    KakaoController kakao;
+
     private static final Logger logger = LoggerFactory.getLogger(ReservationController.class);
 
     @RequestMapping(value="/reservation", method = RequestMethod.POST)
@@ -36,6 +39,13 @@ public class ReservationController {
 
         model.addAttribute("msg", msg);
         model.addAttribute("url", url);
+
+        if(result > 0){
+            String r_date = modelReservation.getR_date();
+            System.out.println(r_date);
+            String r_time = modelReservation.getR_time();
+            kakao.sendSelfMessage(r_date, r_time);
+        }
 
         return "msg/msg";
 

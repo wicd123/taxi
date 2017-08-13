@@ -33,13 +33,18 @@ public class HomeController {
 	    @Qualifier("serviceuser")
 	    IServiceUser usersvr;
 
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+	   @Autowired
+	   KakaoController kakao;
+
+    @ModelAttribute("user")
+    public ModelUser mockUser(){
+        ModelUser user = new ModelUser();
+        return user;
+    }
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-
 
 		return "home";
 	}
@@ -56,10 +61,12 @@ public class HomeController {
         return result;
         
     }
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(Model model
-            , @ModelAttribute ModelUser user
-            , HttpSession session) {
+            , ModelUser user
+            , HttpSession session
+            , @ModelAttribute("user")ModelUser user2) {
         logger.info("register : POST");
 
         if(user.getUser_carnum() == null){
@@ -67,12 +74,23 @@ public class HomeController {
         }
         else{
         user.setUser_lv(2);
-        }        
-        
-        
-        usersvr.insertUser(user);
+        }
 
-        return "home";
+        if(user.getUser_check_kakao() == null){
+            user.setUser_check_kakao("off");
+        } else {
+            user.setUser_refresh_token(user2.getUser_refresh_token());
+        }
+
+        System.out.println("refresh_token :" + user2.getUser_refresh_token());
+
+        int result = usersvr.insertUser(user);
+        String msg = result > 0 ? "회원 가입을 축하드립니다." : "회원 가입 실패!";
+        String url = "/";
+        model.addAttribute("msg", msg);
+        model.addAttribute("url", url);
+
+        return "msg/msg";
     }
     @RequestMapping(value = "/register")
     public String registerGet(Model model){
@@ -104,6 +122,12 @@ public class HomeController {
             // 이후 view 단에서는 user라는 객체가 해당 로그인 유저의 정보를 모두 가지고 있으며
             // 사용하기 위해서는 ${user.user_id} 와 같이 처음에 객체명을 써주고 사용하면 됌.
             model.addAttribute("user", loginUser);
+
+            // 카카오 알림 서비스 가입시 토큰 업데이트를 통한 access_token 값 취득.
+            if(loginUser.getUser_check_kakao().equals("on")){
+                kakao.kakaoRefreshToken(loginUser);
+            }
+
             return "home";
         }
     }
