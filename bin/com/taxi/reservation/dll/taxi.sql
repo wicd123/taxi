@@ -16,8 +16,8 @@ CREATE TABLE user2 (
 
 -- reservation
 CREATE TABLE reservation (
-    r_idx INTEGER(10) NOT NULL, -- r_idx
-    user_no  INTEGER(10) NOT NULL, -- user_id
+    r_idx INT UNSIGNED    NOT NULL AUTO_INCREMENT, -- r_idx
+    user_no  INTEGER(10)  NULL, -- user_id
     r_date DATE        NOT NULL,     -- r_date
     r_time TIME        NOT NULL,     -- r_time
     r_start_place VARCHAR(30) NOT NULL,     -- r_start_place

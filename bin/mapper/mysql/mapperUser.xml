@@ -5,22 +5,34 @@
 <mapper namespace="mapper.mapperUser">
     
 	<insert id="insertUser" parameterType="ModelUser">
+        <![CDATA[
+            INSERT INTO user2 (user_id,      user_pw,    user_email,    user_phone,    user_gender,     user_carnum,    user_lv)
+            VALUES          (#{user_id}, #{user_pw}, #{user_email}, #{user_phone}, #{user_gender} , #{user_carnum}, #{user_lv})
+        ]]>
+    </insert>
+
+    <select id="login" parameterType="ModelUser" resultType="ModelUser">
+        <![CDATA[
+            select *
+              from user2
+             WHERE  user_id = #{user_id}
+              AND user_pw = #{user_pw}
+        ]]>
+    </select>
+    
+    <select id="checkuserid" parameterType="string" resultType="int">
+        <![CDATA[
+            SELECT count(user_id)
+            FROM user2
+            where user_id = #{user_id}
+        ]]>
+    </select>
+    
+    <insert id="insertRservation" parameterType="ModelReservation">
         INSERT INTO user2 (user_id,      user_pw,    user_email,    user_phone,    user_gender,     user_carnum,    user_lv)
         VALUES          (#{user_id}, #{user_pw}, #{user_email}, #{user_phone}, #{user_gender} , #{user_carnum}, #{user_lv})
         
     </insert>
-
-    <select id="login" parameterType="ModelUser" resultType="ModelUser">
-            select user_id, user_email, user_phone, user_gender, user_carnum, user_lv, user_no 
-              from user2
-             WHERE  user_id = #{user_id}
-              AND user_pw = #{user_pw}
-    </select>
     
-    <select id="checkuserid" parameterType="string" resultType="int">
-            SELECT count(user_id)
-            FROM user2
-            where user_id = #{user_id}
-    </select>
 
 </mapper>

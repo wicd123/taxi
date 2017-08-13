@@ -1,16 +1,21 @@
 package com.taxi.reservation.controller;
 
-import com.taxi.reservation.model.ModelReservation;
-import com.taxi.reservation.model.ModelUser;
-import com.taxi.reservation.service.ServiceReservation;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-import java.util.List;
+import com.taxi.reservation.model.ModelReservation;
+import com.taxi.reservation.model.ModelUser;
+import com.taxi.reservation.service.ServiceReservation;
 
 @Controller
 @SessionAttributes("user")
@@ -61,6 +66,27 @@ public class ReservationController {
 
         return checkResult;
     }
+    
+    @RequestMapping(value = "/reservationDelete", method = RequestMethod.POST)
+    public String reservationDelete( Model model 
+                             , @ModelAttribute ModelReservation modelReservation,
+                             @ModelAttribute("user")ModelUser modelUser) {
+        
+        
+        modelReservation.setUser_no(modelUser.getUser_no());
+        // DB 처리              
+        int result =  serviceReservation.deleteReservation(modelReservation);
+        
+        String msg = result > 0 ? "약속 취소 완료!!" : "약속 취소 실패!";
+        String url = "/";
+        
+        logger.info("/reservationDelete");
+        
+        model.addAttribute("msg", msg);
+        model.addAttribute("url", url);
+
+        return "msg/msg";
+    } 
 
 //    @RequestMapping(value="/kakaoLogin", method = {RequestMethod.POST, RequestMethod.GET})
 //    public String kakaoLogin(@RequestParam("code")String code, Model model){
