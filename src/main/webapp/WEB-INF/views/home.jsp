@@ -677,6 +677,7 @@
                                 class: 'reservation_ck_content',
                                 id: 'r_c_button'+i,
                                 text: '약속삭제'
+                                action: '/reservationDelete/?r_idx=${r_idx}/?user_no=${user_no}'
                             }));
                             $('#reservation_ck_content').append("</tr>") 
                         }
