@@ -104,6 +104,7 @@
             <tx:method name="create*"       rollback-for="RuntimeException" />
             <tx:method name="regist*"       rollback-for="RuntimeException" />
             <tx:method name="set*"          rollback-for="RuntimeException" />
+            <tx:method name="refresh*"      rollback-for="RuntimeException" />
 
             <tx:method name="update*"       rollback-for="RuntimeException" />
             <tx:method name="modify*"       rollback-for="RuntimeException" />

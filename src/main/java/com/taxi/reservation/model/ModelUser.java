@@ -11,7 +11,9 @@ public class ModelUser {
     private String  user_phone      = "";   // VARCHAR(30) NULL DEFAULT NULL
     private String  user_gender    = "";   // VARCHAR(20) NULL DEFAULT NULL
     private String user_carnum  = null; // TINYINT(1) NULL DEFAULT '1'
-    private Integer  user_lv = null;   // VARCHAR(40) NULL DEFAULT NULL
+    private String user_check_kakao = null;
+    private String user_refresh_token = null;
+    private Integer user_lv = null;   // VARCHAR(40) NULL DEFAULT NULL
     public Integer getUser_no() {
         return user_no;
     }
@@ -53,6 +55,18 @@ public class ModelUser {
     }
     public void setUser_carnum(String user_carnum) {
         this.user_carnum = user_carnum;
+    }
+    public String getUser_check_kakao() {
+        return user_check_kakao;
+    }
+    public void setUser_check_kakao(String user_check_kakao) {
+        this.user_check_kakao = user_check_kakao;
+    }
+    public String getUser_refresh_token() {
+        return user_refresh_token;
+    }
+    public void setUser_refresh_token(String user_refresh_token) {
+        this.user_refresh_token = user_refresh_token;
     }
     public Integer getUser_lv() {
         return user_lv;

@@ -30,11 +30,9 @@ public class ServiceUser implements IServiceUser {
         int result = -1;
         try {
             result = daouser.insertUser(user);
-            //session.commit();
         } catch (Exception e) {
             logger.error("insertUser " + e.getMessage() );
         }
-		
         return result;
     }
 
@@ -60,4 +58,14 @@ public class ServiceUser implements IServiceUser {
         return result;
     }
 
+    @Override
+    public int refreshToken(ModelUser user) {
+        int result = -1;
+        try {
+            result = daouser.refreshToken(user);
+        } catch (Exception e) {
+            logger.error("refreshToken " + e.getMessage() );
+        }
+        return result;
+    }
 }

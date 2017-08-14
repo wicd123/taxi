@@ -18,8 +18,6 @@ public class DaoUser implements IDaoUser {
     @Qualifier("sqlSession")
     private SqlSession session;
     
-
-    
     @Override
     public int insertUser(ModelUser user) {
         return session.insert("mapper.mapperUser.insertUser", user);   
@@ -36,5 +34,8 @@ public class DaoUser implements IDaoUser {
         return session.selectOne("mapper.mapperUser.login", user);
     }
 
-    
+    @Override
+    public int refreshToken(ModelUser user) {
+        return session.insert("mapper.mapperUser.refreshToken", user);
+    }
 }

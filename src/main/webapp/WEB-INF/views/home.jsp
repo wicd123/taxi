@@ -214,6 +214,7 @@
     
 
     <!-- Section: contact -->
+<c:if test="${empty user.user_no}">
     <section id="contact" class="home-section text-center">
         <div class="heading-contact">
             <div class="container">
@@ -230,7 +231,8 @@
             </div>
             </div>
         </div>
-        
+
+
         <div class="section-heading" >
             <label for="userordriver">
                     어떤회원이세요?</label><br>
@@ -241,7 +243,7 @@
                           택시드라이버</button>
                 </div>
         </div>
-        
+
         <div class="container">
 
         <div class="row">
@@ -252,10 +254,9 @@
         
         
     <div class="row">
-        <div class="col-lg-8">
-            <div class="boxed-grey">
-                
-                
+        <div class="col-lg-12">
+            <div class="boxed-grey" disabled="disabled">
+
                 <div id="sendmessage">Your message has been sent. Thank you!</div>
                 <div id="errormessage"></div>
                 
@@ -265,7 +266,7 @@
                         <div class="form-group">
                             <label for="user_id">
                                 아이디</label>
-                            <input type="text" name="user_id" class="form-control" id="user_id" placeholder="아이디 입력"  />
+                            <input type="text" name="user_id" class="form-control" id="user_id" placeholder="아이디 입력"  required="required"/>
                             <input type="button" class="btn btn-skin pull-left"  value="아이디 중복 조회" id="checkuserid"/><br>
                             <div class="validation"></div>
                         </div>
@@ -273,21 +274,21 @@
                             <label for="user_passwd">
                                 비밀번호</label>
                             <div class="form-group">
-                                <input type="password" disabled="disabled" class="form-control" name="user_pw" id="req_input" placeholder="비밀번호 입력" />
+                                <input type="password" disabled="disabled" class="form-control" name="user_pw" id="user_pw" placeholder="비밀번호 입력" required />
                                 <div class="validation"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="user_passwd_ck">
                                 비밀번호 확인</label>
-                            <input type="password" disabled="disabled" class="form-control" name="confirm" id="req_input" placeholder="비밀번호 확인"  />
+                            <input type="password" disabled="disabled" class="form-control" name="confirm" id="confirm" placeholder="비밀번호 확인" required  />
                             <div class="validation"></div>
                         </div>
                         <div class="form-group">
                             <label for="email">
                                 이메일</label>
                             <div class="form-group">
-                                <input type="email" disabled="disabled" class="form-control" name="user_email" id="req_input" placeholder="이메일 입력" />
+                                <input type="email" disabled="disabled" class="form-control" name="user_email" id="req_input" placeholder="이메일 입력" required />
                                 <div class="validation"></div>
                             </div>
                         </div>
@@ -295,7 +296,7 @@
                             <label for="phone">
                                 핸드폰</label>
                             <div class="form-group">
-                                <input type="text"  disabled="disabled" class="form-control" name="user_phone"  id=req_input placeholder="핸드폰 입력" />
+                                <input type="text"  disabled="disabled" class="form-control" name="user_phone"  id=req_input placeholder="핸드폰 입력" required />
                                 <div class="validation"></div>
                             </div>
                         </div>
@@ -307,8 +308,14 @@
                               <input type="radio" disabled="disabled" value="여"  name="user_gender" /> <span class="up">여</span>
                             <div class="validation"></div>
                         </div>
-                        
-                        
+
+                        <div class="form-group">
+                            <label for="checkKakao">
+                                카카오톡 알림</label>
+                            &nbsp;&nbsp;<input type="checkbox" disabled="disabled" name="user_check_kakao" onclick="javascript:window.open('/kakaoJoin','_blank','left=50, top=50, width=800, height=600')"/> <span class="up">알림 서비스 사용</span>&nbsp;&nbsp;
+                            <div class="validation"></div>
+                        </div>
+
                         <div class="col-md-12">
                               <input type="submit" class="btn btn-skin pull-center"  value="회원가입" id = "submit_btn"/>
                         </div>
@@ -329,7 +336,7 @@
                         <div class="form-group">
                             <label for="user_id">
                                 아이디</label>
-                            <input type="text" name="user_id" class="form-control" id="d_user_id" placeholder="아이디 입력"  />
+                            <input type="text" name="user_id" class="form-control" id="d_user_id" placeholder="아이디 입력" required  />
                             <input type="button" class="btn btn-skin pull-left"  value="아이디 중복 조회" id="d_checkuserid"/><br>
                             <div class="validation"></div>
                         </div>
@@ -337,21 +344,21 @@
                             <label for="user_passwd">
                                 비밀번호</label>
                             <div class="form-group">
-                                <input type="password" class="form-control" disabled="disabled" name="user_pw" id="d_req_input" placeholder="비밀번호 입력" />
+                                <input type="password" class="form-control" disabled="disabled" name="user_pw" id="d_user_pw" placeholder="비밀번호 입력" required />
                                 <div class="validation"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="user_passwd_ck">
                                 비밀번호 확인</label>
-                            <input type="password" class="form-control" name="confirm" disabled="disabled" id="d_req_input" placeholder="비밀번호 확인"  />
+                            <input type="password" class="form-control" name="confirm" disabled="disabled" id="d_confirm" placeholder="비밀번호 확인" required />
                             <div class="validation"></div>
                         </div>
                         <div class="form-group">
                             <label for="user_email">
                                 이메일</label>
                             <div class="form-group">
-                                <input type="email" class="form-control" name="user_email" disabled="disabled" id="d_req_input" placeholder="이메일 입력" />
+                                <input type="email" class="form-control" name="user_email" disabled="disabled" id="d_req_input" placeholder="이메일 입력" required />
                                 <div class="validation"></div>
                             </div>
                         </div>
@@ -359,14 +366,14 @@
                             <label for="user_phone">
                                 핸드폰</label>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="user_phone" disabled="disabled" id="d_req_input" placeholder="핸드폰 입력" />
+                                <input type="text" class="form-control" name="user_phone" disabled="disabled" id="d_req_input" placeholder="핸드폰 입력" required />
                                 <div class="validation"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="user_carnum">
                                 차번호</label>
-                            <input type="text" name="user_carnum" class="form-control" disabled="disabled" id="d_req_input" placeholder="차번호입력(ex:00차0000)"  />
+                            <input type="text" name="user_carnum" class="form-control" disabled="disabled" id="d_req_input" placeholder="차번호입력(ex:00차0000)" required />
                             <div class="validation"></div>
                         </div>
                         <div class="form-group">
@@ -376,6 +383,14 @@
                               <input type="radio" disabled="disabled" value="여"  name="user_gender" /> <span class="up">여</span>
                             <div class="validation"></div>
                         </div>
+
+                        <div class="form-group">
+                            <label for="checkKakao">
+                                카카오톡 알림</label>
+                            &nbsp;&nbsp;<input type="checkbox" disabled="disabled" name="user_check_kakao"/> <span class="up">알림 서비스 사용</span>&nbsp;&nbsp;
+                            <div class="validation"></div>
+                        </div>
+
                         <div class="col-md-12">
                             <button type="button" class="btn btn-skin pull-center" id="d_submit_btn">
                               회원가입</button>
@@ -392,41 +407,44 @@
             </div>
         </div>
         
-        <div class="col-lg-4">
-            <div class="widget-contact">
-                <h5>Main Office</h5>
-                
-                <address>
-                  <strong>Squas Design, Inc.</strong><br>
-                  Tower 795 Folsom Ave, Beautiful Suite 600<br>
-                  San Francisco, CA 94107<br>
-                  <abbr title="Phone">P:</abbr> (123) 456-7890
-                </address>
+        <%--<div class="col-lg-4">--%>
+            <%--<div class="widget-contact">--%>
+                <%--<h5>Main Office</h5>--%>
+                <%----%>
+                <%--<address>--%>
+                  <%--<strong>Squas Design, Inc.</strong><br>--%>
+                  <%--Tower 795 Folsom Ave, Beautiful Suite 600<br>--%>
+                  <%--San Francisco, CA 94107<br>--%>
+                  <%--<abbr title="Phone">P:</abbr> (123) 456-7890--%>
+                <%--</address>--%>
 
-                <address>
-                  <strong>Email</strong><br>
-                  <a href="mailto:#">email.name@example.com</a>
-                </address>  
-                <address>
-                  <strong>We're on social networks</strong><br>
-                        <ul class="company-social">
-                            <li class="social-facebook"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                            <li class="social-twitter"><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                            <li class="social-dribble"><a href="#" target="_blank"><i class="fa fa-dribbble"></i></a></li>
-                            <li class="social-google"><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                        </ul>   
-                </address>                  
-            
-            </div>  
-        </div>
+                <%--<address>--%>
+                  <%--<strong>Email</strong><br>--%>
+                  <%--<a href="mailto:#">email.name@example.com</a>--%>
+                <%--</address>  --%>
+                <%--<address>--%>
+                  <%--<strong>We're on social networks</strong><br>--%>
+                        <%--<ul class="company-social">--%>
+                            <%--<li class="social-facebook"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>--%>
+                            <%--<li class="social-twitter"><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>--%>
+                            <%--<li class="social-dribble"><a href="#" target="_blank"><i class="fa fa-dribbble"></i></a></li>--%>
+                            <%--<li class="social-google"><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>--%>
+                        <%--</ul>   --%>
+                <%--</address>                  --%>
+            <%----%>
+            <%--</div>  --%>
+        <%--</div>--%>
     </div>  
 
         </div>
     </section>
+
+</c:if>
     <!-- /Section: contact -->
     
     
     <!--  예약하기 입니다 -->
+<c:if test="${!empty user.user_no}">
     <section id="contact" class="home-section text-center">
         <div class="heading-contact">
             <div class="container">
@@ -443,6 +461,7 @@
             </div>
             </div>
         </div>
+        
         <div class="section-heading" >
             <label for="userordriver">
                     어떤작업을 하실꺼죠?</label><br>
@@ -512,7 +531,7 @@
 
                     </div>
                 </form>
-                
+
                 <table class="table table-condensed" id="reservation_ck" style="display:none">
                   <thead>
                     <tr  id="reservation_ck_title">
@@ -536,9 +555,9 @@
                   <tbody id="reservation_ck_content">
                   </tbody>
                 </table>
-                
+
 <!--               <table class="table table-striped" id="reservation_ck" style="display:none">
-                    <thead > 
+                    <thead >
                     <tr class = "col-md-12"  id="reservation_ck_title">
                         <th class = "col-md-3" id="r_date_ck">
                             예약날짜
@@ -559,7 +578,7 @@
                         </tr>
                     </tbody>
                 </table> -->
-                
+
 <!--                <div class="table table-striped" id="reservation_ck" style="display:none">
                     <div class = "col-md-12" id="reservation_ck_title">
                         <div class = "col-md-3" id="r_date_ck">
@@ -577,13 +596,18 @@
                     </div>
                     <div class = "col-md-12" id="reservation_ck_content">
                     </div>
+                </div>
+            </div>
+        </div>
+
                 </div>  -->
             </div>
         </div>
-    </div>  
+    </div>
 
         </div>
     </section>
+</c:if>
     <!--  예약하기 끝입니다. -->
     
     <!-- Core JavaScript Files -->
@@ -592,7 +616,7 @@
     <script src="resources/js/jquery.easing.min.js"></script> 
     <script src="resources/js/jquery.scrollTo.js"></script>
     <script src="resources/js/wow.min.js"></script>
-    <!-- Custom Theme JavaScript -->
+    <!-- Custom Theme JavaScript -->]
     <script src="resources/js/custom.js"></script>
     <script src="resources/js/jquery-1.10.2.js"></script>
     <script src="resources/js/jquery.easing.1.3.js"></script>
@@ -617,11 +641,11 @@
             $('#reservation').show(1000, 'easeOutBounce', function(){})
            /*  $('#reservation_ck').hide(1000, 'easeOutBounce', function(){}) */
         });
-    	
+
     	$('#r_c_button0').click(function(e){
-    	        		
+
     	});
-    	
+
         //일반회원 약속하기 내부 제이 꽈리
         $('#reservation_ck_btn').click(function(e){
 
@@ -647,7 +671,7 @@
                     } else {
                         alert('총 ' + result.length + '개의 예약 내역이 있습니다.');
                         $('.reservation_ck_content').remove();
-                        
+
                         for(var i=0; i < result.length; i++){
                         	$('#reservation_ck_content').append($('<tr>', {
                                 class: 'reservation_ck_content',
@@ -679,7 +703,7 @@
                                 text: '약속삭제'
                                 action: '/reservationDelete/?r_idx=${r_idx}/?user_no=${user_no}'
                             }));
-                            $('#reservation_ck_content').append("</tr>") 
+                            $('#reservation_ck_content').append("</tr>")
                         }
                     }
                 }
@@ -773,18 +797,15 @@
             });
             
             
-            $('#submit_btn').click(function(e){
-                
+            $('#confirm').focusout(function(e){
                 // 패스워드 동일 여부 체크
-                if ($('input:password[name="user_pw"]').val() === $('input:password[name="confirm"]').val() ) {
-                  // 서브밑 호출 : form 의 action 이 실행됨
-                  $('#signUpForm').submit();
-                return true;
+                if ($('input:password[id="user_pw"]').val() === $('input:password[id="confirm"]').val() ) {
+                    return true;
                }
                 else{
                     alert('패스워드가 다릅니다');
                     return false;
-            }
+               }
             });
     
             $('#req_input').keyup( function (e) {
@@ -814,12 +835,11 @@
                     $('#d_signUpForm  input').prop('disabled', false);
                 }
             });
-            $('#d_submit_btn').click(function(e){
+            $('#d_confirm').focusout(function(e){
                 
                 // 패스워드 동일 여부 체크
-                if ($('input:password[name="d_user_pw"]').val() === $('input:password[name="d_confirm"]').val() ) {
+                if ($('input:password[id="d_user_pw"]').val() === $('input:password[id="d_confirm"]').val() ) {
                   // 서브밑 호출 : form 의 action 이 실행됨
-                  $('#d_signUpForm').submit();
                 return true;
                }
                 else{
@@ -834,13 +854,7 @@
                 }
         });
     });
-    	
-      //일반 회원 예약하기 제이 꽈리
-            $('#reservation_submit_btn').click(function(e){
-                  $('#r_signUpForm').submit();
-                return true;
-            });
-    	
+
     });
     	
     	

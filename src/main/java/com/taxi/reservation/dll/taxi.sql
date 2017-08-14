@@ -1,18 +1,21 @@
 
-        
-CREATE TABLE user2 (
-   user_no INT UNSIGNED    NOT NULL AUTO_INCREMENT,
-    user_id  VARCHAR(10)   NOT NULL, -- user_id
-    user_pw VARCHAR(15)   NOT NULL,     -- user_pw
-    user_email VARCHAR(40)   NOT NULL,     -- user_email
-    user_phone VARCHAR(20)   NOT NULL,     -- user_phone
-    user_gender VARCHAR(10) NOT NULL,     -- user_gender
-    user_carnum VARCHAR(12)   NULL,     -- user_carnum
-    user_lv INTEGER(2)     NULL      -- user_lv
-    
-    , PRIMARY KEY(user_no)
-    , UNIQUE KEY(user_id)
-);
+CREATE TABLE `user2` (
+	`user_no` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`user_id` VARCHAR(10) NOT NULL,
+	`user_pw` VARCHAR(15) NOT NULL,
+	`user_email` VARCHAR(40) NOT NULL,
+	`user_phone` VARCHAR(20) NOT NULL,
+	`user_gender` VARCHAR(10) NOT NULL,
+	`user_carnum` VARCHAR(12) NULL DEFAULT NULL,
+	`user_check_kakao` VARCHAR(10) NULL DEFAULT NULL,
+	`user_refresh_token` VARCHAR(100) NULL DEFAULT NULL,
+	`user_lv` INT(2) NULL DEFAULT NULL,
+	PRIMARY KEY (`user_no`),
+	UNIQUE INDEX `user_id` (`user_id`)
+)
+;
+
+
 
 -- reservation
 CREATE TABLE reservation (
