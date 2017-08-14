@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -24,6 +25,7 @@ public class ReservationController {
     @Autowired
     ServiceReservation serviceReservation;
 
+    
     @Autowired
     KakaoController kakao;
 
@@ -67,25 +69,24 @@ public class ReservationController {
         return checkResult;
     }
     
-    @RequestMapping(value = "/reservationDelete", method = RequestMethod.POST)
-    public String reservationDelete( Model model 
-                             , @ModelAttribute ModelReservation modelReservation,
-                             @ModelAttribute("user")ModelUser modelUser) {
+    @RequestMapping(value = "/reservationdelete", method = RequestMethod.POST)
+    public String reservationdelete( Model model 
+            , @RequestParam(value="user_no",  defaultValue="" )  Integer user_no
+            , @RequestParam(value="r_idx", defaultValue="")  Integer r_idx ) {
         
+      ModelReservation reservation = new ModelReservation();
+      reservation.setUser_no(user_no);
+      reservation.setR_idx(r_idx);
+      int result = serviceReservation.deleteReservation(reservation);
         
-        modelReservation.setUser_no(modelUser.getUser_no());
-        // DB 처리              
-        int result =  serviceReservation.deleteReservation(modelReservation);
-        
-        String msg = result > 0 ? "약속 취소 완료!!" : "약속 취소 실패!";
-        String url = "/";
-        
-        logger.info("/reservationDelete");
-        
-        model.addAttribute("msg", msg);
-        model.addAttribute("url", url);
+      String msg = result > 0 ? "예약 삭제 완료!" : "예약 삭제 실패!";
+      String url = "/";
 
-        return "msg/msg";
+      model.addAttribute("msg", msg);
+      model.addAttribute("url", url);
+      
+      
+      return "msg/msg";
     } 
 
 //    @RequestMapping(value="/kakaoLogin", method = {RequestMethod.POST, RequestMethod.GET})

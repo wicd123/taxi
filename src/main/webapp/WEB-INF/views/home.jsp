@@ -797,7 +797,7 @@
 
             $.ajax({
                 url : '/reservationCheck'
-                ,data: {'user_no' : user_no }
+                ,data: {'user_no' : user_no}
                 ,type: 'post'
                 ,dataType: 'json'
                 ,success : function(result) {
@@ -836,10 +836,20 @@
                             $('#aaa'+i).append($('<button/>', {
                                 class: 'reservation_ck_content',
                                 id: 'r_c_button'+i,
-                                text: '약속삭제'
+                                text: '약속삭제',
                                 /* action: '/reservationDelete/?r_idx=${r_idx}/?user_no=${user_no}' */
                             }));
-                            $('#reservation_ck_content').append("</tr>")
+                            $(this).click(function(e){
+                                var chk = confirm('정말로 삭제하시겠습니까?');
+                                if (chk == true) {
+                                    var user_no = $(this).attr('user_no');
+                                    var r_idx = $(this).attr('r_idx');
+                            
+                                    sendPost( '/reservationdelete', {'user_no' : user_no, 'r_idx': r_idx} );
+                                }
+                            }); 
+                            
+                            $('#reservation_ck_content').append("</tr>");
                         }
                     }
                 }
