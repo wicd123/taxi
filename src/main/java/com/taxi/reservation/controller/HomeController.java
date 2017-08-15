@@ -19,6 +19,8 @@ import com.taxi.reservation.model.ModelUser;
 import com.taxi.reservation.service.IServiceUser;
 import org.springframework.web.bind.support.SessionStatus;
 
+import static com.taxi.reservation.controller.KakaoController.access_token;
+
 
 /**
  * Handles requests for the application home page.
@@ -64,9 +66,8 @@ public class HomeController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(Model model
-            , ModelUser user
-            , HttpSession session
-            , @ModelAttribute("user")ModelUser user2) {
+            , @ModelAttribute("user") ModelUser user
+            , HttpSession session) {
         logger.info("register : POST");
 
         if(user.getUser_carnum() == null){
@@ -76,13 +77,11 @@ public class HomeController {
         user.setUser_lv(2);
         }
 
-        if(user.getUser_check_kakao() == null){
+        if(user.getUser_check_kakao() == null || user.getUser_refresh_token() == null){
             user.setUser_check_kakao("off");
-        } else {
-            user.setUser_refresh_token(user2.getUser_refresh_token());
         }
 
-        System.out.println("refresh_token :" + user2.getUser_refresh_token());
+        System.out.println("refresh_token : " + user.getUser_refresh_token());
 
         int result = usersvr.insertUser(user);
         String msg = result > 0 ? "회원 가입을 축하드립니다." : "회원 가입 실패!";

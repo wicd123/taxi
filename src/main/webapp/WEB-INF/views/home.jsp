@@ -660,23 +660,28 @@
                                     <div class="validation"></div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="kakao_ck">
-                                    카톡 연동 상황</label>
-                                  <input type="radio"  value="사용중"   name="user_change_kakao_ck"  /> <span class="up">사용중</span>&nbsp;&nbsp; 
-                                  <input type="radio"  value="미사용중"  name="user_change_kakao_ck" /> <span class="up">미사용중</span>
-                                <div class="validation"></div>
+                            <div class="form-group"><strong>카톡 알림 연동 상황</strong></div>
+                            <div class="form-group col-md-8" style="padding: 0pt;">
+                                <input type="text" class="form-control col-md-6" value="사용중" style="text-align:center;font-weight:bold" readonly />
                             </div>
-                            
-                            <div class="form-group">
-                                <label for="kakao">
-                                    카톡 연동 아이디</label>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="user_cahnge_kakao" id="user_cahnge_kakao" placeholder="수정 할 카카오 아이디" required />
-                                    <div class="validation"></div>
-                                </div>
+                            <div class="form-group col-md-4" style="padding: 0pt;">
+                                <button type="button" class="btn btn-danger col-md-push-1 col-md-11">사용 해제</button>
                             </div>
-                            
+                            <!--
+                            <div class="form-group col-md-8" style="padding: 0pt;">
+                                <input type="text" class="form-control col-md-6" value="미사용중" style="text-align:center;font-weight:bold" readonly />
+                            </div>
+                            <div class="form-group col-md-4" style="padding: 0pt;">
+                                <button type="button" class="btn btn-primary col-md-push-1 col-md-11">사용하기</button>
+                            </div>
+                            -->
+                            <div class="form-group"><strong>카톡 연동 아이디</strong></div>
+                            <div class="form-group col-md-8" style="padding: 0pt;">
+                                <input type="text" class="form-control col-md-6" value="abcdef@kakaotalk.com" style="text-align:center;font-weight:bold" readonly />
+                            </div>
+                            <div class="form-group col-md-4" style="padding: 0pt;">
+                                <button type="button" class="btn btn-warning col-md-push-1 col-md-11">계정 변경</button>
+                            </div>
                             <div class="col-md-12">
                                   <input type="submit" class="btn btn-skin pull-center"  value="수정 완료" id = "user_cahange_submit"/>
                             </div>

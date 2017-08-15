@@ -92,7 +92,12 @@
         <li class="active"><a href="#intro">Home</a></li>
         <li><a href="#about">이용방법</a></li>
         <li><a href="#service">자주묻는질문</a></li>
-        <li><a href="#contact">회원가입</a></li>
+          <c:if test="${!empty user.user_no}">
+            <li><a href="#contact">예약하기</a></li>
+          </c:if>
+          <c:if test="${empty user.user_no}">
+              <li><a href="#contact">회원가입</a></li>
+          </c:if>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
           <ul class="dropdown-menu">

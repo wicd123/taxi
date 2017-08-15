@@ -55,7 +55,7 @@ public class KakaoController {
         if(!code.equals("unchecked")) {
 
             user.setUser_refresh_token(this.getAccessToken(code)); // 토큰값 확인
-            System.out.println("user_refresh_token : " + user.getUser_refresh_token());
+            //System.out.println("user_refresh_token : " + user.getUser_refresh_token());
             String msg = "알림서비스를 위한 카카오톡 연동이 완료되었습니다.";
             model.addAttribute("msg",msg);
             return "close/close";
@@ -94,7 +94,7 @@ public class KakaoController {
             final int responseCode = response.getStatusLine().getStatusCode();
 
             System.out.println("\nSending 'getAccessToken' request to URL : " + RequestUrl);
-            System.out.println("Post parameters : " + postParams);
+            //System.out.println("Post parameters : " + postParams);
             System.out.println("Response Code : " + responseCode);
 
             //JSON 형태 반환값 처리
@@ -112,7 +112,7 @@ public class KakaoController {
 
             Object obj= JSONValue.parse(content.toString());
             JSONObject finalResult=(JSONObject)obj;
-            System.out.println("getAccessToken result : " + finalResult);
+            //System.out.println("getAccessToken result : " + finalResult);
             access_token = finalResult.get("access_token").toString();
             result = finalResult.get("refresh_token").toString();
 
@@ -176,7 +176,7 @@ public class KakaoController {
 
             Object obj=JSONValue.parse(content.toString());
             JSONObject finalResult=(JSONObject)obj;
-            System.out.println("sendSelfMessage result : " + finalResult);
+            //System.out.println("sendSelfMessage result : " + finalResult);
 
         } catch (Exception e){
             e.printStackTrace();
