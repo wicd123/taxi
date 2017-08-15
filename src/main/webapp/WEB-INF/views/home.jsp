@@ -789,7 +789,9 @@
 
             var login = $('#login').val();
             var user_no = <c:out value="${user.user_no}" default="-1"/>;
-
+            
+            
+            
             if(login != undefined ){
                 alert('로그인 후 예약 확인해주세요');
                 return false;
@@ -832,23 +834,23 @@
                             	class: 'reservation_ck_content',
                                 id: 'r_arrival_place_'+i,
                                 text: result[i].r_arrival_place
-                            }));
-                            $('#aaa'+i).append($('<button/>', {
-                                class: 'reservation_ck_content',
-                                id: 'r_c_button'+i,
-                                text: '약속삭제',
-                                /* action: '/reservationDelete/?r_idx=${r_idx}/?user_no=${user_no}' */
-                            }));
-                            $(this).click(function(e){
-                                var chk = confirm('정말로 삭제하시겠습니까?');
+                            }));/* action: '/reservationDelete/?r_idx=${r_idx}/?user_no=${user_no}' */
+                            $('#aaa'+i).append($('<button/>', {class: 'reservation_ck_content',  id: 'r_c_button'+i,  text: '약속삭제',})).click(function(e){
+                            	var chk = confirm('정말로 삭제하시겠습니까?');
                                 if (chk == true) {
-                                    var user_no = $(this).attr('user_no');
-                                    var r_idx = $(this).attr('r_idx');
+                                	 $.ajax({
+                                         url : '/reservationdelete'
+                                         ,data: {'user_no' : user_no}
+                                         ,type: 'post'
+                                         ,dataType: 'json'
+                                         ,success : function(result) {
                             
-                                    sendPost( '/reservationdelete', {'user_no' : user_no, 'r_idx': r_idx} );
+                                    sendPost( '/reservationdelete', {'user_no' : user_no} );
+                                         }
+                                	 });
                                 }
-                            }); 
-                            
+                            });
+                                
                             $('#reservation_ck_content').append("</tr>");
                         }
                     }

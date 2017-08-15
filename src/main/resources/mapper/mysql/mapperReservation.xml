@@ -22,8 +22,11 @@
     <delete id="deleteReservation" parameterType="ModelReservation">
         <![CDATA[
              delete from reservation          
-             WHERE user_no = #{user_no} and r_idx = #{t_idx}
+             WHERE user_no = #{user_no}
         ]]>
     </delete>
-
+<!-- <![CDATA[
+             delete from reservation          
+             WHERE user_no = #{user_no} and r_idx = #{r_idx}
+        ]]> -->
 </mapper>
