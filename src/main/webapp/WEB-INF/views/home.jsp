@@ -853,9 +853,18 @@
                                 /* $('#aaa'+i-1).hide(); */
                                 if (chk == true) {
                                 	$(this).parent().remove();
-                                    
-                                $('#reservation_ck_content').append("</tr>");
+                                    	$.ajax({
+                                            url : '/reservationdelete'
+                                            ,data: {'r_idx' : r_idx}
+                                            ,type: 'post'
+                                            ,dataType: 'json'
+                                        })
+                                        .done( function(data, textStatus, xhr ){
+                                            
+                                        });
+                                
                                  }
+                                $('#reservation_ck_content').append("</tr>");
                             });
                         }
                         
