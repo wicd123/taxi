@@ -22,7 +22,7 @@
     <delete id="deleteReservation" parameterType="ModelReservation">
         <![CDATA[
              delete from reservation          
-             WHERE user_no = #{user_no}
+             WHERE r_idx = #{r_idx}
         ]]>
     </delete>
 <!-- <![CDATA[

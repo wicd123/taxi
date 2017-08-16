@@ -77,18 +77,17 @@ public class ReservationController {
         
         
       ModelReservation reservation = new ModelReservation();
-      reservation.setUser_no(user_no);
-      /*reservation.setR_idx(r_idx);*/
+      reservation.setR_idx(r_idx);
       int result = serviceReservation.deleteReservation(reservation);
         
-      /*String msg = result > 0 ? "예약 삭제 완료!" : "예약 삭제 실패!";
+      String msg = result > 0 ? "예약 삭제 완료!" : "예약 삭제 실패!";
       String url = "/";
 
       model.addAttribute("msg", msg);
-      model.addAttribute("url", url);*/
+      model.addAttribute("url", url);
       
       
-      return "/";
+      return "msg/msg";
     } 
 
 //    @RequestMapping(value="/kakaoLogin", method = {RequestMethod.POST, RequestMethod.GET})
