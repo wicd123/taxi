@@ -849,20 +849,22 @@
                             	action: '/reservationdelete/?r_idx=${r_idx}'}));
                             $('#r_c_button'+i).click(function(e){
                                 console.log(i);
-                            var chk = confirm('정말로 삭제하시겠습니까?');
-                            /* $('#aaa'+i-1).hide(); */
-                            if (chk == true) {
-                            	$(this).parent().remove();
-                                
-                            $('#reservation_ck_content').append("</tr>");
+                                var chk = confirm('정말로 삭제하시겠습니까?');
+                                /* $('#aaa'+i-1).hide(); */
+                                if (chk == true) {
+                                	$(this).parent().remove();
+                                    
+                                $('#reservation_ck_content').append("</tr>");
+                                 }
+                            });
                         }
+                        
+/*                  error:function(request,status,error){
+                    alert("code:"+request.status+"\n"+"error:"+error); 
+                } */
                     }
                 }
-                ,error:function(request,status,error){
-                    alert("code:"+request.status+"\n"+"error:"+error);
-                }
             });
-
             $('#reservation_ck').show(1000, 'easeOutBounce', function(){})
             /* $('#reservation').hide(1000, 'easeOutBounce', function(){}) */
         });
