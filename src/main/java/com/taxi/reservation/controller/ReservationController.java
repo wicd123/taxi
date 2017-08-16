@@ -70,6 +70,7 @@ public class ReservationController {
     }
     
     @RequestMapping(value = "/reservationdelete", method = RequestMethod.POST)
+    @ResponseBody
     public String reservationdelete( Model model 
             , @RequestParam(value="user_no",  defaultValue="" )  Integer user_no
             , @RequestParam(value="r_idx", defaultValue="")  Integer r_idx ) {

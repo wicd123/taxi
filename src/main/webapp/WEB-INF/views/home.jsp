@@ -815,7 +815,7 @@
 
             var login = $('#login').val();
             var user_no = <c:out value="${user.user_no}" default="-1"/>;
-            
+
             if(login != undefined ){
                 alert('로그인 후 예약 확인해주세요');
                 return false;
@@ -859,35 +859,36 @@
                                 id: 'r_arrival_place_'+i,
                                 text: result[i].r_arrival_place
                             }));
-                            var r_idx = result[i].r_idx;
+                            let r_idx = result[i].r_idx;
                             $('#aaa'+i).append($('<button/>', {class: 'reservation_ck_content',  id: 'r_c_button'+i,  text: '약속삭제',
-                            	action: '/reservationdelete/?r_idx='+result[i].r_idx})).click(function(e){
-                            		console.log(i);
-                            	var chk = confirm('정말로 삭제하시겠습니까?');
-                            	/* $('#aaa'+i-1).hide(); */
-                            	$(this).parent().remove();
+                                action: '/reservationdelete/?r_idx='+result[i].r_idx}));
+                            $('#r_c_button'+i).click(function(e){
+                                console.log(i);
+                                var chk = confirm('정말로 삭제하시겠습니까?');
+                                /* $('#aaa'+i-1).hide(); */
                                 if (chk == true) {
-                                	 $.ajax({
-                                         url : '/reservationdelete'
-                                         ,data: {'r_idx' : r_idx }
-                                         ,type: 'post'
-                                         ,dataType: 'json'
-                                	 })
-                                	 .done( function(data, textStatus, xhr ){
+                                	$(this).parent().remove();
+                                    	$.ajax({
+                                            url : '/reservationdelete'
+                                            ,data: {'r_idx' : r_idx}
+                                            ,type: 'post'
+                                            ,dataType: 'json'
+                                        })
+                                        .done( function(data, textStatus, xhr ){
 
-                                	 });
-                                }
-                            });
+                                        });
                                 
-                            $('#reservation_ck_content').append("</tr>");
+                                 }
+                                $('#reservation_ck_content').append("</tr>");
+                            });
                         }
+
+/*                  error:function(request,status,error){
+                    alert("code:"+request.status+"\n"+"error:"+error);
+                } */
                     }
                 }
-                ,error:function(request,status,error){
-                    alert("code:"+request.status+"\n"+"error:"+error);
-                }
             });
-
             $('#reservation_ck').show(1000, 'easeOutBounce', function(){})
             /* $('#reservation').hide(1000, 'easeOutBounce', function(){}) */
         });
@@ -1024,7 +1025,7 @@
                 }
             });
 
-    
+
             $('#req_input').keyup( function (e) {
                 if( $(this).val() !== '') {
                     $(this).next('label').remove();
