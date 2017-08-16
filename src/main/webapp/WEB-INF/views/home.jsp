@@ -842,23 +842,24 @@
                             }));
                             var r_idx = result[i].r_idx;
                             $('#aaa'+i).append($('<button/>', {class: 'reservation_ck_content',  id: 'r_c_button'+i,  text: '약속삭제',
-                            	action: '/reservationdelete/?r_idx=${r_idx}'})).click(function(e){
-                            		console.log(i);
-                            	var chk = confirm('정말로 삭제하시겠습니까?');
-                            	/* $('#aaa'+i-1).hide(); */
+                            	action: '/reservationdelete/?r_idx=${r_idx}'}));
+                            $('#r_c_button'+i).click(function(e){
+                                console.log(i);
+                            var chk = confirm('정말로 삭제하시겠습니까?');
+                            /* $('#aaa'+i-1).hide(); */
+                            if (chk == true) {
                             	$(this).parent().remove();
-                                if (chk == true) {
-                                	 $.ajax({
-                                         url : '/reservationdelete'
-                                         ,data: {'r_idx' : r_idx}
-                                         ,type: 'post'
-                                         ,dataType: 'json'
-                                	 })
-                                	 .done( function(data, textStatus, xhr ){
-                                		 
-                                	 });
-                                }
-                            });
+                                 $.ajax({
+                                     url : '/reservationdelete'
+                                     ,data: {'r_idx' : r_idx}
+                                     ,type: 'post'
+                                     ,dataType: 'json'
+                                 })
+                                 .done( function(data, textStatus, xhr ){
+                                     
+                                 });
+                            }
+                        });
                                 
                             $('#reservation_ck_content').append("</tr>");
                         }
