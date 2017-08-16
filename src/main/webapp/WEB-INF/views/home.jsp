@@ -844,9 +844,9 @@
                                 id: 'r_arrival_place_'+i,
                                 text: result[i].r_arrival_place
                             }));
-                            var r_idx = result[i].r_idx;
+                            let r_idx = result[i].r_idx; 
                             $('#aaa'+i).append($('<button/>', {class: 'reservation_ck_content',  id: 'r_c_button'+i,  text: '약속삭제',
-                            	action: '/reservationdelete/?r_idx=${r_idx}'}));
+                                action: '/reservationdelete/?r_idx='+result[i].r_idx}));
                             $('#r_c_button'+i).click(function(e){
                                 console.log(i);
                                 var chk = confirm('정말로 삭제하시겠습니까?');
