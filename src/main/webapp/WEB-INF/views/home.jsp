@@ -595,151 +595,155 @@
         </div>
         <div class="container">
 
-        <div class="row">
-            <div class="col-lg-2 col-lg-offset-5">
-                <hr class="marginbot-50">
+            <div class="row">
+                <div class="col-lg-2 col-lg-offset-5">
+                    <hr class="marginbot-50">
+                </div>
             </div>
-        </div>
-        
-        
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="boxed-grey">
-                <div id="sendmessage">Your message has been sent. Thank you!</div>
-                <div id="errormessage"></div>
-                <form id="user_change_Form"  action="user_change" method="post" role="form" class="contactForm">
-                    <div class="row" id="user_change" style="display:none">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="user_change_id">
-                                    아이디</label>
-                                <input type="text" disabled="disabled"  name="user_change_id" class="form-control" id="user_change_id" placeholder="아이디값" required  />
-                                <div class="validation"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="user_cahnge_now_passwd">
-                                    현재 비밀번호</label>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" name="user_cahnge_now_passwd" id="user_cahnge_now_passwd" placeholder="현재 비밀번호 입력" required />
-                                    <div class="validation"></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="user_cahnge_password">
-                                    수정 비밀번호</label>
-                                <input type="password"  class="form-control" name="user_cahnge_password" id="user_cahnge_password" placeholder="수정 할 비밀번호" required  />
-                                <div class="validation"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="user_cahnge_password_ck">
-                                    수정 비밀번호 확인</label>
-                                <input type="password"  class="form-control" name="user_cahnge_password_ck" id="user_cahnge_password_ck" placeholder="수정 할 비밀번호 체크" required  />
-                                <div class="validation"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">
-                                    이메일</label>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" name="user_cahnge_email" id="user_cahnge_email" placeholder="수정 할 이메일" required />
-                                    <div class="validation"></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">
-                                    핸드폰 번호</label>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="user_cahnge_phone" id="user_cahnge_phone" placeholder="수정 할 핸드폰 번호" required />
-                                    <div class="validation"></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="carnum">
-                                    차번호</label>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="user_cahnge_carnum" id="user_cahnge_carnum" placeholder="수정차번호(lv1은 수정못하게)" required />
-                                    <div class="validation"></div>
-                                </div>
-                            </div>
-                            <div class="form-group"><strong>카톡 알림 연동 상황</strong></div>
-                            <div class="form-group col-md-8" style="padding: 0pt;">
-                                <input type="text" class="form-control col-md-6" value="사용중" style="text-align:center;font-weight:bold" readonly />
-                            </div>
-                            <div class="form-group col-md-4" style="padding: 0pt;">
-                                <button type="button" class="btn btn-danger col-md-push-1 col-md-11">사용 해제</button>
-                            </div>
-                            <!--
-                            <div class="form-group col-md-8" style="padding: 0pt;">
-                                <input type="text" class="form-control col-md-6" value="미사용중" style="text-align:center;font-weight:bold" readonly />
-                            </div>
-                            <div class="form-group col-md-4" style="padding: 0pt;">
-                                <button type="button" class="btn btn-primary col-md-push-1 col-md-11">사용하기</button>
-                            </div>
-                            -->
-                            <div class="form-group"><strong>카톡 연동 아이디</strong></div>
-                            <div class="form-group col-md-8" style="padding: 0pt;">
-                                <input type="text" class="form-control col-md-6" value="abcdef@kakaotalk.com" style="text-align:center;font-weight:bold" readonly />
-                            </div>
-                            <div class="form-group col-md-4" style="padding: 0pt;">
-                                <button type="button" class="btn btn-warning col-md-push-1 col-md-11">계정 변경</button>
-                            </div>
-                            <div class="col-md-12">
-                                  <input type="submit" class="btn btn-skin pull-center"  value="수정 완료" id = "user_cahange_submit"/>
-                            </div>
-                            <br>
 
-                         </div>
-                         <div class="col-md-6">
-                            <div class="form-group">
-                                <div class="avatar"><img src="resources/img/imageplus/user_change.png" alt="" /></div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="boxed-grey">
+                        <div id="sendmessage">Your message has been sent. Thank you!</div>
+                        <div id="errormessage"></div>
+                        <form id="user_change_Form"  action="user_change" method="post" role="form" class="contactForm">
+                            <div class="row" id="user_change" style="display:none">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="user_change_id">
+                                            아이디</label>
+                                        <input type="text" disabled="disabled"  name="user_change_id" class="form-control" id="user_change_id" value="${user.user_id}" required  />
+                                        <div class="validation"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user_cahnge_now_passwd">
+                                            현재 비밀번호</label>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" name="user_cahnge_now_passwd" id="user_cahnge_now_passwd" placeholder="현재 비밀번호 입력" required />
+                                            <div class="validation"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user_cahnge_password">
+                                            수정 비밀번호</label>
+                                        <input type="password"  class="form-control" name="user_cahnge_password" id="user_cahnge_password" placeholder="수정 할 비밀번호" required  />
+                                        <div class="validation"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user_cahnge_password_ck">
+                                            수정 비밀번호 확인</label>
+                                        <input type="password"  class="form-control" name="user_cahnge_password_ck" id="user_cahnge_password_ck" placeholder="수정 할 비밀번호 체크" required  />
+                                        <div class="validation"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">
+                                            이메일</label>
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" name="user_cahnge_email" id="user_cahnge_email" value="${user.user_email}" required />
+                                            <div class="validation"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">
+                                            핸드폰 번호</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="user_cahnge_phone" id="user_cahnge_phone" value="${user.user_phone}" required />
+                                            <div class="validation"></div>
+                                        </div>
+                                    </div>
+                                    <c:if test="${!empty user.user_carnum}">
+                                        <div class="form-group">
+                                            <label for="carnum">
+                                                차번호</label>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="user_cahnge_carnum" id="user_cahnge_carnum" value="${user.user_carnum}" required />
+                                                <div class="validation"></div>
+                                            </div>
+                                        </div>
+                                    </c:if>
+                                    <div class="form-group"><strong>카톡 알림 연동 상황</strong></div>
+                                    <c:if test="${user.user_check_kakao eq 'on'}">
+                                        <div class="form-group col-md-8" style="padding: 0;">
+                                            <input type="text" class="form-control col-md-6" value="사용중" style="text-align:center;font-weight:bold" readonly />
+                                        </div>
+                                        <div class="form-group col-md-4" style="padding: 0;">
+                                            <button type="button" class="btn btn-danger col-md-push-1 col-md-11">사용 해제</button>
+                                        </div>
+                                        <div class="form-group"><strong>카톡 연동 아이디</strong></div>
+                                        <div class="form-group col-md-8" style="padding: 0;">
+                                            <input type="text" class="form-control col-md-6" value="abcdef@kakaotalk.com" style="text-align:center;font-weight:bold" readonly />
+                                        </div>
+                                        <div class="form-group col-md-4" style="padding: 0pt;">
+                                            <button type="button" class="btn btn-warning col-md-push-1 col-md-11">계정 변경</button>
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${user.user_check_kakao eq 'off'}">
+                                        <div class="form-group col-md-8" style="padding: 0;">
+                                            <input type="text" class="form-control col-md-6" value="미사용중" style="text-align:center;font-weight:bold" readonly />
+                                        </div>
+                                        <div class="form-group col-md-4" style="padding: 0pt;">
+                                            <button type="button" class="btn btn-primary col-md-push-1 col-md-11">사용하기</button>
+                                        </div>
+                                    </c:if>
+                                    <div class="col-md-12">
+                                        <input type="submit" class="btn btn-skin pull-center"  value="수정 완료" id = "user_cahange_submit"/>
+                                    </div>
+                                    <br>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="avatar"><img src="resources/img/imageplus/user_change.png" alt="" /></div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </form>
+
+                        <form id="user_delete_Form"  action="user_delete" method="post" role="form" class="contactForm">
+                            <div class="row" id="user_delete" style="display:none">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="user_delete_id">
+                                            아이디</label>
+                                        <input type="text" disabled="disabled"  name="user_delete_id" class="form-control" id="user_delete_id" placeholder="아이디값" required  />
+                                        <div class="validation"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user_delete_passwd">
+                                            현재 비밀번호</label>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" name="user_delete_password" id="user_delete_password" placeholder="현재 비밀번호 입력" required />
+                                            <div class="validation"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user_delete_ck">
+                                            정말로 탈퇴 하시겠습니까?(탈퇴를 원합니다.)</label>
+                                        <input type="text"  class="form-control" name="user_delete_ck" id="user_delete_ck" placeholder="[탈퇴를 원합니다.] or [탈퇴를 원합니다] 작성" required  />
+                                        <div class="validation"></div>
+                                    </div>
+
+
+                                    <div class="col-md-12">
+                                        <input type="submit" class="btn btn-skin pull-center"  value="탈퇴 완료" id = "user_delete_submit"/>
+                                    </div>
+                                    <br>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="avatar"><img src="resources/img/imageplus/user_delete.png" alt="" /></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+
+
                     </div>
-                </form>
-
-                <form id="user_delete_Form"  action="user_delete" method="post" role="form" class="contactForm">
-                    <div class="row" id="user_delete" style="display:none">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="user_delete_id">
-                                    아이디</label>
-                                <input type="text" disabled="disabled"  name="user_delete_id" class="form-control" id="user_delete_id" placeholder="아이디값" required  />
-                                <div class="validation"></div>
-                            </div>
-                            <div class="form-group">
-                                <label for="user_delete_passwd">
-                                    현재 비밀번호</label>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" name="user_delete_password" id="user_delete_password" placeholder="현재 비밀번호 입력" required />
-                                    <div class="validation"></div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="user_delete_ck">
-                                    정말로 탈퇴 하시겠습니까?(탈퇴를 원합니다.)</label>
-                                <input type="text"  class="form-control" name="user_delete_ck" id="user_delete_ck" placeholder="[탈퇴를 원합니다.] or [탈퇴를 원합니다] 작성" required  />
-                                <div class="validation"></div>
-                            </div>
-                            
-                            
-                            <div class="col-md-12">
-                                  <input type="submit" class="btn btn-skin pull-center"  value="탈퇴 완료" id = "user_delete_submit"/>
-                            </div>
-                            <br>
-
-                         </div>
-                         <div class="col-md-6">
-                            <div class="form-group">
-                                <div class="avatar"><img src="resources/img/imageplus/user_delete.png" alt="" /></div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                
-                
-
+                </div>
             </div>
-        </div>
-    </div>
 
         </div>
     </section>
@@ -849,17 +853,6 @@
                             /* $('#aaa'+i-1).hide(); */
                             if (chk == true) {
                             	$(this).parent().remove();
-                                 $.ajax({
-                                     url : '/reservationdelete'
-                                     ,data: {'r_idx' : r_idx}
-                                     ,type: 'post'
-                                     ,dataType: 'json'
-                                 })
-                                 .done( function(data, textStatus, xhr ){
-                                     
-                                 });
-                            }
-                        });
                                 
                             $('#reservation_ck_content').append("</tr>");
                         }
