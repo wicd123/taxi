@@ -23,10 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@SessionAttributes("user")
+@SessionAttributes({"user","kakao_user"})
 public class KakaoController {
 
     public static String access_token = null;
+    public static String kakao_user_account = null;
 
     @Autowired
     IServiceUser usersvr;
@@ -49,20 +50,38 @@ public class KakaoController {
         return "msg/msg";
     }
 
+    @RequestMapping(value="/kakaoJoin_add")
+    public String kakaoJoinAdd(Model model){
+        String msg = "카카오톡 알람 서비스를 위해 \\n카카오톡 연동을 진행합니다.";
+        String url = "https://kauth.kakao.com/oauth/authorize?client_id=bda53bc9a3fa6ede16a790719e2af4a0&redirect_uri=http://localhost:8080/kakaoLogin&response_type=code";
+        model.addAttribute("msg", msg);
+        model.addAttribute("url", url);
+        return "msg/msg";
+    }
+
     @RequestMapping(value="/kakaoLogin", method = {RequestMethod.POST, RequestMethod.GET})
     public String kakaoLogin(@RequestParam(value = "code", defaultValue = "unchecked")String code, Model model, @ModelAttribute("user") ModelUser user){
 
-        if(!code.equals("unchecked")) {
+        if(code.equals("off")){
+            String msg = "알림 서비스를 위한 카카오톡 연동이 해제 되었습니다.";
+            model.addAttribute("msg",msg);
+            model.addAttribute("status", "off");
+
+            return "close/close";
+        } else if(!code.equals("unchecked")) {
 
             user.setUser_refresh_token(this.getAccessToken(code)); // 토큰값 확인
             //System.out.println("user_refresh_token : " + user.getUser_refresh_token());
-            String msg = "알림서비스를 위한 카카오톡 연동이 완료되었습니다.";
+            String msg = "알림 서비스를 위한 카카오톡 연동이 완료 되었습니다.";
             model.addAttribute("msg",msg);
+            String kakaoUser = this.getUserInfo();
+            model.addAttribute("kakao_user",kakaoUser);
+            model.addAttribute("status", "on");
             return "close/close";
 
         } else {
 
-            String msg = "해당 카카오 이용내역은 필수 사항입니다. \\n동의하지 않으시면 서비스를 이용하실 수 없습니다.";
+            String msg = "해당 카카오 이용내역은 필수 사항입니다. \\n동의하지 않으시면 알람 서비스를 이용하실 수 없습니다.";
             String url = "/";
             model.addAttribute("msg", msg);
             model.addAttribute("url", url);
@@ -115,6 +134,49 @@ public class KakaoController {
             //System.out.println("getAccessToken result : " + finalResult);
             access_token = finalResult.get("access_token").toString();
             result = finalResult.get("refresh_token").toString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return result;
+
+    }
+
+    /** access_token을 이용하여 카카오톡 유저의 이메일 정보를 가져온다. */
+    public String getUserInfo(){
+
+        String result = null;
+
+        final String RequestUrl = "https://kapi.kakao.com/v1/user/me";
+
+        final HttpClient client = HttpClientBuilder.create().build();
+        final HttpPost post = new HttpPost(RequestUrl);
+
+        try {
+            post.setHeader("Authorization","Bearer " + access_token);
+            final HttpResponse response = client.execute(post);
+            final int responseCode = response.getStatusLine().getStatusCode();
+
+            System.out.println("\nSending 'getUserInfo' request to URL : " + RequestUrl);
+            System.out.println("Response Code : " + responseCode);
+
+            //JSON 형태 반환값 처리
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(
+                            (response.getEntity().getContent()), "UTF-8"
+                    )
+            );
+
+            StringBuilder content = new StringBuilder();
+            String line;
+            while (null != (line = br.readLine())) {
+                content.append(line);
+            }
+
+            Object obj= JSONValue.parse(content.toString());
+            JSONObject finalResult=(JSONObject)obj;
+
+            result = finalResult.get("kaccount_email").toString();
 
         } catch (Exception e){
             e.printStackTrace();

@@ -38,4 +38,17 @@ public class DaoUser implements IDaoUser {
     public int refreshToken(ModelUser user) {
         return session.insert("mapper.mapperUser.refreshToken", user);
     }
+
+    @Override
+    public int userUpdate(HashMap<String, String>userUpdate) {
+        return session.update("mapper.mapperUser.userUpdate", userUpdate);
+    }
+
+    @Override
+    public int deleteUser(String id, String password) {
+        ModelUser user = new ModelUser();
+        user.setUser_id(id);
+        user.setUser_pw(password);
+        return session.delete("mapper.mapperUser.deleteUser", user);
+    }
 }

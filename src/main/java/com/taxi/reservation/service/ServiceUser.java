@@ -1,5 +1,6 @@
 package com.taxi.reservation.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -65,6 +66,28 @@ public class ServiceUser implements IServiceUser {
             result = daouser.refreshToken(user);
         } catch (Exception e) {
             logger.error("refreshToken " + e.getMessage() );
+        }
+        return result;
+    }
+
+    @Override
+    public int userUpdate(HashMap<String, String> userUpdate) {
+        int result = -1;
+        try {
+            result = daouser.userUpdate(userUpdate);
+        } catch (Exception e) {
+            logger.error("userUpdate " + e.getMessage() );
+        }
+        return result;
+    }
+
+    @Override
+    public int deleteUser(String id, String password) {
+        int result = -1;
+        try {
+            result = daouser.deleteUser(id, password);
+        } catch (Exception e) {
+            logger.error("deleteUser " + e.getMessage() );
         }
         return result;
     }

@@ -2,6 +2,7 @@ package com.taxi.reservation.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -20,13 +21,14 @@ import com.taxi.reservation.service.IServiceUser;
 import org.springframework.web.bind.support.SessionStatus;
 
 import static com.taxi.reservation.controller.KakaoController.access_token;
+import static com.taxi.reservation.controller.KakaoController.kakao_user_account;
 
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
-@SessionAttributes("user")
+@SessionAttributes({"user", "kakao_user"})
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
@@ -96,6 +98,52 @@ public class HomeController {
         return "home";
     }
 
+    @RequestMapping(value = "/user_update", method = RequestMethod.POST)
+    public String userUpdate(Model model, @ModelAttribute("user")ModelUser user, @RequestParam("user_password")String user_password){
+
+        logger.info("userUpdate : POST");
+
+        // 수정하기 위한 정보를 담은 HashMap
+        HashMap<String, String> userUpdate = new HashMap<String, String>();
+        userUpdate.put("user_id", user.getUser_id());
+        userUpdate.put("user_pw", user.getUser_pw());
+        userUpdate.put("user_email", user.getUser_email());
+        userUpdate.put("user_phone", user.getUser_phone());
+        userUpdate.put("user_carnum", user.getUser_carnum());
+        userUpdate.put("user_check_kakao", user.getUser_check_kakao());
+        userUpdate.put("user_refresh_token", user.getUser_refresh_token());
+        userUpdate.put("user_password", user_password);
+
+        // 카카오 알림 서비스 해지시 refresh_token 초기화
+        if(user.getUser_check_kakao().equals("off")){
+            userUpdate.put("user_refresh_token", null);
+        }
+
+        int result = usersvr.userUpdate(userUpdate);
+
+        String msg = result > 0 ? "회원 정보 수정을 완료하였습니다!" : "오류가 생겨 회원 정보 수정에 실패하였습니다!\\n비밀번호 및 수정사항을 다시 확인해주세요!";
+        String url = "/";
+        model.addAttribute("msg", msg);
+        model.addAttribute("url", url);
+
+        return "msg/msg";
+    }
+
+    @RequestMapping(value = "/user_delete", method = RequestMethod.POST)
+    public String userDelete(Model model, @RequestParam("user_id")String user_id, @RequestParam("user_pw")String user_pw){
+        logger.info("userDelete : POST");
+
+        int result = usersvr.deleteUser(user_id, user_pw);
+
+        String msg = result > 0 ? "회원 탈퇴가 완료되었습니다. \\n그동안 이용해주셔서 감사합니다." : "회원 탈퇴 중 오류가 발생했습니다\\n비밀번호를 다시 확인해주세요";
+        String url = "/";
+        model.addAttribute("msg", msg);
+        model.addAttribute("url", url);
+
+        return "msg/msg";
+
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(Model model, @ModelAttribute ModelUser user){
 
@@ -125,6 +173,8 @@ public class HomeController {
             // 카카오 알림 서비스 가입시 토큰 업데이트를 통한 access_token 값 취득.
             if(loginUser.getUser_check_kakao().equals("on")){
                 kakao.kakaoRefreshToken(loginUser);
+                String kakaoUser = kakao.getUserInfo();
+                model.addAttribute("kakao_user",kakaoUser);
             }
 
             return "home";

@@ -607,40 +607,40 @@
                     <div class="boxed-grey">
                         <div id="sendmessage">Your message has been sent. Thank you!</div>
                         <div id="errormessage"></div>
-                        <form id="user_change_Form"  action="user_change" method="post" role="form" class="contactForm">
+                        <form id="user_change_Form"  action="user_update" method="post" role="form" class="contactForm">
                             <div class="row" id="user_change" style="display:none">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="user_change_id">
                                             아이디</label>
-                                        <input type="text" disabled="disabled"  name="user_change_id" class="form-control" id="user_change_id" value="${user.user_id}" required  />
+                                        <input type="text" disabled="disabled"  name="user_id" class="form-control" id="user_change_id" value="${user.user_id}" style="font-weight: bold" required  />
                                         <div class="validation"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="user_cahnge_now_passwd">
                                             현재 비밀번호</label>
                                         <div class="form-group">
-                                            <input type="password" class="form-control" name="user_cahnge_now_passwd" id="user_cahnge_now_passwd" placeholder="현재 비밀번호 입력" required />
+                                            <input type="password" class="form-control" name="user_password" id="user_cahnge_now_passwd" placeholder="현재 비밀번호를 입력하세요." required />
                                             <div class="validation"></div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="user_cahnge_password">
                                             수정 비밀번호</label>
-                                        <input type="password"  class="form-control" name="user_cahnge_password" id="user_cahnge_password" placeholder="수정 할 비밀번호" required  />
+                                        <input type="password"  class="form-control" name="user_pw" id="u_user_pw" placeholder="수정하실 비밀번호를 입력하세요" required  />
                                         <div class="validation"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="user_cahnge_password_ck">
                                             수정 비밀번호 확인</label>
-                                        <input type="password"  class="form-control" name="user_cahnge_password_ck" id="user_cahnge_password_ck" placeholder="수정 할 비밀번호 체크" required  />
+                                        <input type="password"  class="form-control" name="user_pw_ck" id="u_confirm" placeholder="다시 한번 수정하실 비밀번호를 입력하세요" required  />
                                         <div class="validation"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="email">
                                             이메일</label>
                                         <div class="form-group">
-                                            <input type="email" class="form-control" name="user_cahnge_email" id="user_cahnge_email" value="${user.user_email}" required />
+                                            <input type="email" class="form-control" name="user_email" id="user_cahnge_email" value="${user.user_email}" required />
                                             <div class="validation"></div>
                                         </div>
                                     </div>
@@ -648,7 +648,7 @@
                                         <label for="phone">
                                             핸드폰 번호</label>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="user_cahnge_phone" id="user_cahnge_phone" value="${user.user_phone}" required />
+                                            <input type="text" class="form-control" name="user_phone" id="user_cahnge_phone" value="${user.user_phone}" required />
                                             <div class="validation"></div>
                                         </div>
                                     </div>
@@ -657,7 +657,7 @@
                                             <label for="carnum">
                                                 차번호</label>
                                             <div class="form-group">
-                                                <input type="text" class="form-control" name="user_cahnge_carnum" id="user_cahnge_carnum" value="${user.user_carnum}" required />
+                                                <input type="text" class="form-control" name="user_carnum" id="user_cahnge_carnum" value="${user.user_carnum}" required />
                                                 <div class="validation"></div>
                                             </div>
                                         </div>
@@ -665,27 +665,35 @@
                                     <div class="form-group"><strong>카톡 알림 연동 상황</strong></div>
                                     <c:if test="${user.user_check_kakao eq 'on'}">
                                         <div class="form-group col-md-8" style="padding: 0;">
-                                            <input type="text" class="form-control col-md-6" value="사용중" style="text-align:center;font-weight:bold" readonly />
+                                            <input type="text" id="kakao_alarm" class="form-control col-md-6" value="사용중" style="text-align:center;font-weight:bold" readonly />
                                         </div>
                                         <div class="form-group col-md-4" style="padding: 0;">
-                                            <button type="button" class="btn btn-danger col-md-push-1 col-md-11">사용 해제</button>
+                                            <button type="button" id="kakao_alarm_button" class="btn btn-danger col-md-push-1 col-md-11 kakao_alarm_button" onclick="javascript:window.open('/kakaoLogin?code=off','_blank','left=50, top=50, width=500, height=300')">사용 해제</button>
                                         </div>
-                                        <div class="form-group"><strong>카톡 연동 아이디</strong></div>
-                                        <div class="form-group col-md-8" style="padding: 0;">
-                                            <input type="text" class="form-control col-md-6" value="abcdef@kakaotalk.com" style="text-align:center;font-weight:bold" readonly />
+                                        <div class="form-group kakao_alarm"><strong>카톡 연동 아이디</strong></div>
+                                        <div class="form-group col-md-8 kakao_alarm" style="padding: 0;">
+                                            <input type="text" id="kakao_alarm2" class="form-control col-md-6" value="${kakao_user}" style="text-align:center;font-weight:bold" readonly />
                                         </div>
-                                        <div class="form-group col-md-4" style="padding: 0pt;">
-                                            <button type="button" class="btn btn-warning col-md-push-1 col-md-11">계정 변경</button>
+                                        <div class="form-group col-md-4 kakao_alarm" style="padding: 0;">
+                                            <button type="button" id="kakao_alarm_button2" class="btn btn-warning col-md-push-1 col-md-11" onclick="javascript:window.open('/kakaoJoin_add','_blank','left=50, top=50, width=800, height=600')">계정 변경</button>
                                         </div>
                                     </c:if>
                                     <c:if test="${user.user_check_kakao eq 'off'}">
                                         <div class="form-group col-md-8" style="padding: 0;">
-                                            <input type="text" class="form-control col-md-6" value="미사용중" style="text-align:center;font-weight:bold" readonly />
+                                            <input type="text" id="kakao_alarm" class="form-control col-md-6" value="미사용중" style="text-align:center;font-weight:bold" readonly />
                                         </div>
-                                        <div class="form-group col-md-4" style="padding: 0pt;">
-                                            <button type="button" class="btn btn-primary col-md-push-1 col-md-11">사용하기</button>
+                                        <div class="form-group col-md-4 " style="padding: 0;">
+                                            <button type="button" id="kakao_alarm_button" class="btn btn-primary col-md-push-1 col-md-11" onclick="javascript:window.open('/kakaoJoin_add','_blank','left=50, top=50, width=800, height=600')">사용하기</button>
+                                        </div>
+                                        <div class="form-group kakao_alarm" style="display:none"><strong>카톡 연동 아이디</strong></div>
+                                        <div class="form-group col-md-8 kakao_alarm" style="padding: 0;display: none;">
+                                            <input type="text" id="kakao_alarm2" class="form-control col-md-6" value="${kakao_user}" style="text-align:center;font-weight:bold" readonly />
+                                        </div>
+                                        <div class="form-group col-md-4 kakao_alarm" style="padding: 0;display: none;">
+                                            <button type="button" id="kakao_alarm_button2" class="btn btn-warning col-md-push-1 col-md-11" onclick="javascript:window.open('/kakaoJoin_add','_blank','left=50, top=50, width=800, height=600')">계정 변경</button>
                                         </div>
                                     </c:if>
+                                    <input type="hidden" id="user_check_kakao" name="user_check_kakao" value="${user.user_check_kakao}"/>
                                     <div class="col-md-12">
                                         <input type="submit" class="btn btn-skin pull-center"  value="수정 완료" id = "user_cahange_submit"/>
                                     </div>
@@ -700,33 +708,33 @@
                             </div>
                         </form>
 
-                        <form id="user_delete_Form"  action="user_delete" method="post" role="form" class="contactForm">
+                        <form id="user_delete_Form" action="user_delete" method="post" role="form" class="contactForm">
                             <div class="row" id="user_delete" style="display:none">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="user_delete_id">
                                             아이디</label>
-                                        <input type="text" disabled="disabled"  name="user_delete_id" class="form-control" id="user_delete_id" placeholder="아이디값" required  />
+                                        <input type="text" name="user_id" class="form-control" id="user_delete_id" value="${user.user_id}" readonly  />
                                         <div class="validation"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="user_delete_passwd">
                                             현재 비밀번호</label>
                                         <div class="form-group">
-                                            <input type="password" class="form-control" name="user_delete_password" id="user_delete_password" placeholder="현재 비밀번호 입력" required />
+                                            <input type="password" class="form-control" name="user_pw" id="user_delete_password" placeholder="현재 비밀번호 입력" required />
                                             <div class="validation"></div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="user_delete_ck">
-                                            정말로 탈퇴 하시겠습니까?(탈퇴를 원합니다.)</label>
-                                        <input type="text"  class="form-control" name="user_delete_ck" id="user_delete_ck" placeholder="[탈퇴를 원합니다.] or [탈퇴를 원합니다] 작성" required  />
+                                            정말로 탈퇴 하시겠습니까?</label>
+                                        <input type="text"  class="form-control" name="user_delete_ck" id="user_delete_ck" placeholder="[탈퇴를 원합니다.] or [탈퇴를 원합니다]라는 문구를 정확히 작성하세요." required  />
                                         <div class="validation"></div>
                                     </div>
 
 
                                     <div class="col-md-12">
-                                        <input type="submit" class="btn btn-skin pull-center"  value="탈퇴 완료" id = "user_delete_submit"/>
+                                        <input type="submit" class="btn btn-skin pull-center"  value="탈퇴 완료" id = "user_delete_submit" data-trigger="manual" data-toggle="tooltip" data-placement="bottom" title="탈퇴 안내를 모두 확인하고 동의해 주세요."/>
                                     </div>
                                     <br>
 
@@ -750,9 +758,6 @@
     
 </c:if>
 
-
-
-
     <!--  예약하기 끝입니다. -->
     
     <!-- Core JavaScript Files -->
@@ -770,6 +775,18 @@
     
     <script>
     $(document).ready(function (e){
+
+
+        $('#user_delete_submit').click(function(){
+            var delete_text = $('#user_delete_ck').val();
+            if(delete_text == '탈퇴를 원합니다' || delete_text == '탈퇴를 원합니다.'){
+                return true;
+            } else {
+                alert('탈퇴 문구를 정확히 입력하세요.\n탈퇴를 원합니다 나 탈퇴를 원합니다.로 입력하세요');
+                return false;
+            }
+
+        });
     	//회원가입 외부 제이꽈리
     	$('#user_btn').click(function(e){
     		$('#user').show(1000, 'easeOutBounce', function(){})
@@ -798,8 +815,6 @@
 
             var login = $('#login').val();
             var user_no = <c:out value="${user.user_no}" default="-1"/>;
-            
-            
             
             if(login != undefined ){
                 alert('로그인 후 예약 확인해주세요');
@@ -846,7 +861,7 @@
                             }));
                             var r_idx = result[i].r_idx;
                             $('#aaa'+i).append($('<button/>', {class: 'reservation_ck_content',  id: 'r_c_button'+i,  text: '약속삭제',
-                            	action: '/reservationdelete/?r_idx=${r_idx}'})).click(function(e){
+                            	action: '/reservationdelete/?r_idx='+result[i].r_idx})).click(function(e){
                             		console.log(i);
                             	var chk = confirm('정말로 삭제하시겠습니까?');
                             	/* $('#aaa'+i-1).hide(); */
@@ -854,7 +869,7 @@
                                 if (chk == true) {
                                 	 $.ajax({
                                          url : '/reservationdelete'
-                                         ,data: {'r_idx' : r_idx}
+                                         ,data: {'r_idx' : r_idx }
                                          ,type: 'post'
                                          ,dataType: 'json'
                                 	 })
@@ -949,10 +964,10 @@
             .done( function(data, textStatus, xhr ){
                 // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
                 if(data === 1 ){
-                    alert('존재하는 id');
+                    alert('이미 사용중인 아이디 입니다!');
                 }
                 else{
-                    alert('가능한 id');
+                    alert('사용 가능한 아이디 입니다!');
                     $('#signUpForm  input').prop('disabled', false);
                 }
             });
@@ -964,7 +979,7 @@
                     return true;
                }
                 else{
-                    alert('패스워드가 다릅니다');
+                    alert('패스워드가 다릅니다.\n다시 비밀번호를 설정해주세요.');
                     return false;
                }
             });
@@ -989,25 +1004,26 @@
             .done( function(data, textStatus, xhr ){
                 // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
                 if(data === 1 ){
-                    alert('존재하는 id');
+                    alert('이미 사용중인 아이디 입니다!');
                 }
                 else{
-                    alert('가능한 id');
+                    alert('사용 가능한 아이디 입니다!');
                     $('#d_signUpForm  input').prop('disabled', false);
                 }
             });
             $('#d_confirm').focusout(function(e){
-                
+
                 // 패스워드 동일 여부 체크
                 if ($('input:password[id="d_user_pw"]').val() === $('input:password[id="d_confirm"]').val() ) {
-                  // 서브밑 호출 : form 의 action 이 실행됨
-                return true;
-               }
+                    // 서브밑 호출 : form 의 action 이 실행됨
+                    return true;
+                }
                 else{
-                    alert('패스워드가 다릅니다');
+                    alert('패스워드가 다릅니다.\n다시 비밀번호를 설정해주세요.');
                     return false;
-            }
+                }
             });
+
     
             $('#req_input').keyup( function (e) {
                 if( $(this).val() !== '') {
@@ -1026,12 +1042,22 @@
                 $('#user_change').hide(1000, 'easeOutBounce', function(){})
             });
 
+
+        $('#u_confirm').focusout(function(e){
+
+            // 패스워드 동일 여부 체크
+            if ($('input:password[id="u_user_pw"]').val() === $('input:password[id="u_confirm"]').val() ) {
+                // 서브밑 호출 : form 의 action 이 실행됨
+                return true;
+            }
+            else{
+                alert('패스워드가 다릅니다.\n다시 비밀번호를 설정해주세요.');
+                return false;
+            }
+        });
+
     });
-    	
-    	
-    
-    
-    
+
     </script>
     
     <jsp:include page="footer.jsp" />
