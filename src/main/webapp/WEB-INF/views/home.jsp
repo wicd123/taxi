@@ -600,8 +600,8 @@
                 <form id="s_reservationForm" class="form-inline" role="form" action="s_reservation" method="post" > 
                      <div class="form-group"> 
                        <select class="form-control">
-                          <option>출발장소</option>
-                          <option>도착장소</option>
+                          <option id="r_start_place" value="r_start_place">출발장소</option>
+                          <option id="r_arrival_place">도착장소</option>
                        </select>
                      </div> 
                      <div class="form-group"> 
