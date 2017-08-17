@@ -136,7 +136,7 @@ public class HomeController {
         int result = usersvr.deleteUser(user_id, user_pw);
 
         String msg = result > 0 ? "회원 탈퇴가 완료되었습니다. \\n그동안 이용해주셔서 감사합니다." : "회원 탈퇴 중 오류가 발생했습니다\\n비밀번호를 다시 확인해주세요";
-        String url = "/";
+        String url = "/logout";
         model.addAttribute("msg", msg);
         model.addAttribute("url", url);
 

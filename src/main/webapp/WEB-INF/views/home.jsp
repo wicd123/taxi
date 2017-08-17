@@ -392,7 +392,7 @@
                         </div>
 
                         <div class="col-md-12">
-                            <button type="button" class="btn btn-skin pull-center" id="d_submit_btn">
+                            <button type="submit" class="btn btn-skin pull-center" id="d_submit_btn">
                               회원가입</button>
                         </div>
                      </div>
@@ -438,13 +438,11 @@
 
         </div>
     </section>
-
 </c:if>
     <!-- /Section: contact -->
     
-    
     <!--  예약하기 입니다 -->
-<c:if test="${!empty user.user_no}">
+<c:if test="${!empty user.user_no && empty user.user_carnum }">
     <section id="contact" class="home-section text-center">
         <div class="heading-contact">
             <div class="container">
@@ -461,7 +459,6 @@
             </div>
             </div>
         </div>
-        
         <div class="section-heading" >
             <label for="userordriver">
                     어떤작업을 하실꺼죠?</label><br>
@@ -479,8 +476,6 @@
                 <hr class="marginbot-50">
             </div>
         </div>
-        
-        
     <div class="row">
         <div class="col-lg-12">
             <div class="boxed-grey">
@@ -535,6 +530,9 @@
                 <table class="table table-condensed" id="reservation_ck" style="display:none">
                   <thead>
                     <tr  id="reservation_ck_title">
+                        <th id="r_ck_ck">
+                            약속상태
+                        </th>
                        <th id="r_date_ck">
                             예약날짜
                         </th>
@@ -555,17 +553,129 @@
                   <tbody id="reservation_ck_content">
                   </tbody>
                 </table>
-                
-                
-
             </div>
         </div>
     </div>
-
         </div>
     </section>
-    
+</c:if>
+  <!--  드라이브 약속 받기   -->  
+<c:if test="${!empty user.user_no && !empty user.user_carnum }">
+    <section id="contact" class="home-section text-center">
+        <div class="heading-contact">
+            <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="wow bounceInDown" data-wow-delay="0.4s">
+                    <div class="section-heading">
+                    <h2>예약받기</h2>
+                    <i class="fa fa-2x fa-angle-down"></i>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="section-heading" >
+            <label for="userordriver">
+                    어떤작업을 하실꺼죠?</label><br>
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-skin pull-center" id="d_reservation_btn">
+                          약속받기</button>
+                      <button type="button" class="btn btn-skin pull-center" id="d_reservation_ck_btn">
+                          약속확인하기</button>
+                </div>
+        </div>
+        <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-lg-offset-5">
+                <hr class="marginbot-50">
+            </div>
+        </div>
+        
+        <div class="section-heading" id="s_d_reservation" style="display:none" >
+            <label for="s_reservation">
+                    원하는 장소가 있으세요?</label><br>
+                <form id="s_reservationForm" class="form-inline" role="form" action="s_reservation" method="post" > 
+                     <div class="form-group"> 
+                       <select class="form-control">
+                          <option>출발장소</option>
+                          <option>도착장소</option>
+                       </select>
+                     </div> 
+                     <div class="form-group"> 
+                       <input type="text" class="form-control" id="s_reservation" name="s_reservation"placeholder="장소검색(ex.노원)" > 
+                     </div> 
+                      <button type="submit" class="btn btn-skin pull-center">검색</button> 
+               </form>
 
+        </div>
+        
+     
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="boxed-grey">
+                <div id="sendmessage">Your message has been sent. Thank you!</div>
+                <div id="errormessage"></div>
+                <table class="table table-condensed" id="d_reservation" style="display:none">
+                  <thead>
+                    <tr  id="d_reservation_title">
+                       <th id="d_r_date">
+                            예약날짜
+                        </th>
+                        <th  id="d_r_time">
+                            예약시간
+                        </th>
+                        <th id="d_r_start_place">
+                            출발장소
+                        </th>
+                        <th id="d_r_arrival_place">
+                            도착장소
+                        </th>
+                        <th id="d_r_button">
+                            약속받기
+                        </th>
+                     </tr>
+                  </thead>
+                  <tbody id="d_reservation_content">
+                  </tbody>
+                </table>
+                <table class="table table-condensed" id="d_reservation_ck" style="display:none">
+                  <thead>
+                    <tr  id="d_reservation_ck_title">
+                       <th id="d_r_date_ck">
+                            예약날짜
+                        </th>
+                        <th  id="d_r_time_ck">
+                            예약시간
+                        </th>
+                        <th id="d_r_start_place_ck">
+                            출발장소
+                        </th>
+                        <th id="d_r_arrival_place_ck">
+                            도착장소
+                        </th>
+                        <th id="d_r_date_ck">
+                            약속핸드폰번호
+                        </th>
+                        <th id="d_r_arrival_place_ck">
+                            약속취소
+                        </th>
+                     </tr>
+                  </thead>
+                  <tbody id="d_reservation_ck_content">
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+        </div>
+    </section>
+</c:if>    
+    
+    
+<c:if test="${!empty user.user_no}">
      <section id="contact" class="home-section text-center bg-gray">
         <div class="heading-contact">
             <div class="container">
@@ -782,7 +892,7 @@
             if(delete_text == '탈퇴를 원합니다' || delete_text == '탈퇴를 원합니다.'){
                 return true;
             } else {
-                alert('탈퇴 문구를 정확히 입력하세요.\n탈퇴를 원합니다 나 탈퇴를 원합니다.로 입력하세요');
+                alert('탈퇴 문구를 정확히 입력하세요.\n탈퇴를 원합니다 또는 탈퇴를 원합니다.로 입력하세요');
                 return false;
             }
 
@@ -838,6 +948,10 @@
                         	$('#reservation_ck_content').append($('<tr>', {
                                 class: 'reservation_ck_content',
                                 id: 'aaa'+i,
+                            }));
+                        	$('#aaa'+i).append($('<td/>', {
+                                class: 'reservation_ck_content',
+                                text: '상황test'
                             }));
                             $('#aaa'+i).append($('<td/>', {
                             	class: 'reservation_ck_content',
@@ -1042,6 +1156,19 @@
                 $('#user_delete').show(1000, 'easeOutBounce', function(){})
                 $('#user_change').hide(1000, 'easeOutBounce', function(){})
             });
+            
+        //드라이브 약속받기/약속확인
+            $('#d_reservation_btn').click(function(e){
+                $('#d_reservation').show(1000, 'easeOutBounce', function(){})
+                $('#s_d_reservation').show(1000, 'easeOutBounce', function(){})
+                $('#d_reservation_ck').hide(1000, 'easeOutBounce', function(){})
+            });
+            $('#d_reservation_ck_btn').click(function(e){
+                $('#d_reservation_ck').show(1000, 'easeOutBounce', function(){})
+                $('#s_d_reservation').hide(1000, 'easeOutBounce', function(){})
+                $('#d_reservation').hide(1000, 'easeOutBounce', function(){})
+            });
+        
 
 
         $('#u_confirm').focusout(function(e){
