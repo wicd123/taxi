@@ -37,6 +37,8 @@ public class ReservationController {
 
         modelReservation.setUser_no(modelUser.getUser_no());
 
+        modelReservation.setR_ck(1);
+        
         int result = serviceReservation.insertReservation(modelReservation);
 
         String msg = result > 0 ? "예약 완료!" : "예약 실패!";
@@ -90,6 +92,18 @@ public class ReservationController {
       
       return "msg/msg";
     } 
+    @RequestMapping(value="/d_reservationCheck", method = RequestMethod.POST)
+    @ResponseBody
+    public List<ModelReservation> d_findReservation(Model model, @ModelAttribute ModelReservation modelReservation){
+
+        logger.info("d_reservationCheck : " + "POST");
+
+        List<ModelReservation> checkResult = serviceReservation.d_findReservation(modelReservation);
+
+        return checkResult;
+    }
+    
+    
 
 //    @RequestMapping(value="/kakaoLogin", method = {RequestMethod.POST, RequestMethod.GET})
 //    public String kakaoLogin(@RequestParam("code")String code, Model model){

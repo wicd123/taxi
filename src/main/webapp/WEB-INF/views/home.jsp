@@ -601,7 +601,7 @@
                      <div class="form-group"> 
                        <select class="form-control">
                           <option id="r_start_place" value="r_start_place">출발장소</option>
-                          <option id="r_arrival_place">도착장소</option>
+                          <option id="r_arrival_place" value="r_arrival_place">도착장소</option>
                        </select>
                      </div> 
                      <div class="form-group"> 
@@ -1160,6 +1160,60 @@
         //드라이브 약속받기/약속확인
             $('#d_reservation_btn').click(function(e){
                 $('#d_reservation').show(1000, 'easeOutBounce', function(){})
+                
+                            $.ajax({
+                url : '/d_reservationCheck'
+                ,type: 'post'
+                ,dataType: 'json'
+                ,success : function(result) {
+                    if(result.length == 0){
+                        alert('예약 내역이 없습니다! 예약 후 이용해주세요');
+                        location.href="/";
+                    } else {
+                        $('.d_reservation_content').remove();
+
+                        for(var i=0; i < result.length; i++){
+                            $('#d_reservation_content').append($('<tr>', {
+                                class: 'd_reservation_content',
+                                id: 'aaa'+i,
+                            }));
+                            $('#aaa'+i).append($('<td/>', {
+                                class: 'd_reservation_content',
+                                text: result[i].r_date
+                            }));
+                            $('#aaa'+i).append($('<td/>', {
+                                class: 'd_reservation_content',
+                                id: 'r_date_'+i,
+                                text: result[i].r_time
+                            }));
+                            $('#aaa'+i).append($('<td/>', {
+                                class: 'd_reservation_content',
+                                id: 'r_time_'+i,
+                                text: result[i].r_start_place
+                            }));
+                            $('#aaa'+i).append($('<td/>', {
+                                class: 'd_reservation_content',
+                                id: 'r_start_place_'+i,
+                                text: result[i].r_arrival_place
+                            }));
+                            $('#aaa'+i).append($('<button/>', {
+                                 class: 'd_reservation_content',  
+                                 id: 'd_r_button'+i,  
+                                 text: '약속받기',
+                                }));
+                            
+                                $('#d_reservation_content').append("</tr>");
+                        }
+
+/*                  error:function(request,status,error){
+                    alert("code:"+request.status+"\n"+"error:"+error);
+                } */
+                    }
+                }
+            });
+                
+                
+                
                 $('#s_d_reservation').show(1000, 'easeOutBounce', function(){})
                 $('#d_reservation_ck').hide(1000, 'easeOutBounce', function(){})
             });

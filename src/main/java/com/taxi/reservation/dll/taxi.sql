@@ -24,7 +24,9 @@ CREATE TABLE reservation (
     r_date DATE        NOT NULL,     -- r_date
     r_time TIME        NOT NULL,     -- r_time
     r_start_place VARCHAR(30) NOT NULL,     -- r_start_place
-    r_arrival_place VARCHAR(30) NOT NULL      -- r_arrival_place
+    r_arrival_place VARCHAR(30) NOT NULL,      -- r_arrival_place
+    r_ck INTEGER(2) NOT NULL,
+    d_user_no INTEGER(2) null
     
     ,PRIMARY KEY(r_idx)
 );

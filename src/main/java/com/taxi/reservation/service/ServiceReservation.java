@@ -58,6 +58,19 @@ public class ServiceReservation implements IServiceReservation {
         
         return result;
     }
+    @Override
+    public List<ModelReservation> d_findReservation(ModelReservation ModelReservation) {
+
+        List<ModelReservation> result = null;
+
+        try{
+            result = daoReservation.d_findReservation(ModelReservation);
+        }catch (Exception e){
+            logger.error("d_findReservation " + e.getMessage());
+        }
+
+        return result;
+    }
 
 
 

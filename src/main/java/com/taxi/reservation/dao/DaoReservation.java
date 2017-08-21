@@ -28,4 +28,10 @@ public class DaoReservation implements IDaoReservation {
     public int deleteReservation(ModelReservation modelReservation) {
         return  session.delete("mapper.mapperReservation.deleteReservation", modelReservation);        
     }
+    @Override
+    public List<ModelReservation> d_findReservation(ModelReservation modelReservation) {
+        return session.selectList("mapper.mapperReservation.d_findReservation", modelReservation);
+    }
+
+    
 }

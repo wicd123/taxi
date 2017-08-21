@@ -6,8 +6,8 @@
 
     <insert id="insertReservation" parameterType="ModelReservation">
     <![CDATA[
-            INSERT INTO reservation (user_no,      r_date,    r_time,    r_start_place,    r_arrival_place)
-            VALUES          (#{user_no}, #{r_date}, #{r_time}, #{r_start_place}, #{r_arrival_place})
+            INSERT INTO reservation (user_no,      r_date,    r_time,    r_start_place,    r_arrival_place,   r_ck)
+            VALUES          (#{user_no}, #{r_date}, #{r_time}, #{r_start_place}, #{r_arrival_place}, #{r_ck})
         ]]>
     </insert>
 
@@ -25,8 +25,16 @@
              WHERE r_idx = #{r_idx}
         ]]>
     </delete>
-<!-- <![CDATA[
-             delete from reservation          
-             WHERE user_no = #{user_no} and r_idx = #{r_idx}
-        ]]> -->
+    
+     <select id="d_findReservation" parameterType="Integer" resultType="ModelReservation">
+        <![CDATA[
+            Select * 
+            from reservation
+            where r_ck = 1
+            order by r_idx DESC
+        ]]>
+    </select>
+    
+    
+
 </mapper>

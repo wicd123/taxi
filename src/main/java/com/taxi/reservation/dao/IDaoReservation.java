@@ -12,5 +12,6 @@ public interface IDaoReservation {
     
     public abstract int deleteReservation(ModelReservation modelReservation);
     
+    List<ModelReservation> d_findReservation(ModelReservation modelReservation);
     
 }
