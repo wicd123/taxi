@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <jsp:include page="header.jsp" />
-    <title>Squadfree - Free bootstrap 3 one page template</title>
+    <title>약속택시 - 안전하고 편안한 이동수단 </title>
 
     <!-- Bootstrap Core CSS -->
     <link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css">
