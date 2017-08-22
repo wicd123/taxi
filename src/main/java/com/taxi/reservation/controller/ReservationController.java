@@ -1,5 +1,6 @@
 package com.taxi.reservation.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -102,6 +103,28 @@ public class ReservationController {
 
         return checkResult;
     }
+    
+    @RequestMapping(value = "/receive", method = RequestMethod.POST)
+    public String receive(Model model,                          ModelReservation modelReservation
+                                    ,@ModelAttribute("user")ModelUser modelUser
+                                    , @RequestParam(value="r_idx", defaultValue="")  Integer r_idx
+                                    , @RequestParam(value="user_no", defaultValue="")  Integer user_no){
+        logger.info("receive : POST");
+        
+        ModelReservation receive = new ModelReservation();
+        receive.setR_idx(r_idx);
+        receive.setUser_no(user_no);
+        
+        int result = serviceReservation.receive(receive);
+        
+        String msg = result > 0 ? "약속받기완료" : "약속받기실패";
+        String url = "/";
+        model.addAttribute("msg", msg);
+        model.addAttribute("url", url);
+
+        return "msg/msg";
+    }
+    
     
     
 

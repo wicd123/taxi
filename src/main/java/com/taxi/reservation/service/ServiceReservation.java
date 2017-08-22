@@ -1,5 +1,6 @@
 package com.taxi.reservation.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -71,7 +72,16 @@ public class ServiceReservation implements IServiceReservation {
 
         return result;
     }
-
+    @Override
+    public int receive(ModelReservation ModelReservation) {
+        int result = -1;
+        try {
+            result = daoReservation.receive(ModelReservation);
+        } catch (Exception e) {
+            logger.error("refreshToken " + e.getMessage() );
+        }
+        return result;
+    }
 
 
 }

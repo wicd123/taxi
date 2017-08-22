@@ -1161,7 +1161,11 @@
             $('#d_reservation_btn').click(function(e){
                 $('#d_reservation').show(1000, 'easeOutBounce', function(){})
                 
-                            $.ajax({
+                
+                var login = $('#login').val();
+                var user_no = <c:out value="${user.user_no}" default="-1"/>;
+                
+                $.ajax({
                 url : '/d_reservationCheck'
                 ,type: 'post'
                 ,dataType: 'json'
@@ -1201,8 +1205,25 @@
                                  id: 'd_r_button'+i,  
                                  text: '약속받기',
                                 }));
-                            
+                            let r_idx = result[i].r_idx;
+                            $('#d_r_button'+i).click(function(e){
+                                console.log(i);
+                                var chk = confirm('약속을 받으시겠습니까?');
+                                /* $('#aaa'+i-1).hide(); */
+                                if (chk == true) {
+                                    $(this).parent().remove();
+                                        $.ajax({
+                                            url : '/receive'
+                                            ,data: {'user_no' : user_no, 'r_idx' : r_idx}
+                                            ,type: 'post'
+                                            ,dataType: 'json'
+                                        })
+                                        .done( function(data, textStatus, xhr ){
+
+                                        });
+                                 }
                                 $('#d_reservation_content').append("</tr>");
+                            });
                         }
 
 /*                  error:function(request,status,error){

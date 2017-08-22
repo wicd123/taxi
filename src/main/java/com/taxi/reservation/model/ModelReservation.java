@@ -1,8 +1,5 @@
 package com.taxi.reservation.model;
 
-import java.sql.Time;
-import java.util.Date;
-
 public class ModelReservation {
     
     private int r_idx;
@@ -12,6 +9,7 @@ public class ModelReservation {
     private String r_start_place;
     private String r_arrival_place;
     private int r_ck;
+    private int d_user_no;
     public int getR_idx() {
         return r_idx;
     }
@@ -54,6 +52,13 @@ public class ModelReservation {
     public void setR_ck(int r_ck) {
         this.r_ck = r_ck;
     }
+    public int getD_user_no() {
+        return d_user_no;
+    }
+    public void setD_user_no(int d_user_no) {
+        this.d_user_no = d_user_no;
+    }
+    
 
     
 }

@@ -35,6 +35,13 @@
         ]]>
     </select>
     
+        <update id="receive" parameterType="ModelReservation">
+        <![CDATA[
+            update reservation
+            set d_user_no = #{user_no}, r_ck = 0
+            where user_no = #{user_no} and r_idx = #{r_idx};
+        ]]>
+    </update>
     
 
 </mapper>
