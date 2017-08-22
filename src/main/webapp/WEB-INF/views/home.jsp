@@ -605,7 +605,7 @@
                        </select>
                      </div> 
                      <div class="form-group"> 
-                       <input type="text" class="form-control" id="s_reservation" name="s_reservation"placeholder="장소검색(ex.노원)" > 
+                       <input type="text" class="form-control" id="s_reservation" name="s_reservation" placeholder="장소검색(ex.노원)" >
                      </div> 
                       <button type="submit" class="btn btn-skin pull-center">검색</button> 
                </form>
@@ -949,10 +949,22 @@
                                 class: 'reservation_ck_content',
                                 id: 'aaa'+i,
                             }));
-                        	$('#aaa'+i).append($('<td/>', {
-                                class: 'reservation_ck_content',
-                                text: '상황test'
-                            }));
+                        	if(result[i].r_ck == 1){
+                                $('#aaa'+i).append($('<td/>', {
+                                    class: 'reservation_ck_content',
+                                    text: '드라이버 약속 대기중'
+                                }));
+                            } else if(result[i].r_ck == 0) {
+                                $('#aaa'+i).append($('<td/>', {
+                                    class: 'reservation_ck_content',
+                                    text: '드라이버 약속 완료'
+                                }))
+                            } else {
+                                $('#aaa'+i).append($('<td/>', {
+                                    class: 'reservation_ck_content',
+                                    text: '예약 오류 발생'
+                                }))
+                            }
                             $('#aaa'+i).append($('<td/>', {
                             	class: 'reservation_ck_content',
                                 id: 'r_date_'+i,
