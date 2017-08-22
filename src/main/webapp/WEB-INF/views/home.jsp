@@ -33,6 +33,8 @@
 </head>
 
 
+
+
     <!-- Section: intro -->
     <section id="intro" class="intro">
     
@@ -46,6 +48,9 @@
             </a>
         </div>
     </section>
+    
+    
+    
     <!-- /Section: intro -->
 
     <!-- Section: about -->
@@ -316,6 +321,15 @@
                             <div class="validation"></div>
                         </div>
 
+                            <div id="div01">
+                            </div>
+                            <form id="form01">
+                                <input type="hidden" id="key" name="key">
+                                <input type="text" name="value">
+                                <button type="button" id="btn01">전송</button>
+                            </form>
+                        
+                        
                         <div class="col-md-12">
                               <input type="submit" class="btn btn-skin pull-center"  value="회원가입" id = "submit_btn"/>
                         </div>
@@ -390,6 +404,11 @@
                             &nbsp;&nbsp;<input type="checkbox" disabled="disabled" name="user_check_kakao"/> <span class="up">알림 서비스 사용</span>&nbsp;&nbsp;
                             <div class="validation"></div>
                         </div>
+                        
+
+
+                        
+                        
 
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-skin pull-center" id="d_submit_btn">
@@ -878,14 +897,35 @@
     <script src="resources/js/wow.min.js"></script>
     <!-- Custom Theme JavaScript -->]
     <script src="resources/js/custom.js"></script>
-    <script src="resources/js/jquery-1.10.2.js"></script>
+    <script src="resources/js/jquery-3.1.0.js"></script>
     <script src="resources/js/jquery.easing.1.3.js"></script>
     <script src="resources/js/ajaxsetup.js"></script>
     <script src="resources/js/MyApp.board.js"></script>
+
+    
     
     <script>
     $(document).ready(function (e){
-
+    	$.ajax({
+            url : "/captchaNkey.jsp",
+            dataType:"json",
+            success : function(data) {
+                console.log(data.key);
+                $("#key").val(data.key);
+                $("#div01").html("<img src='captchaImage/"+data.captchaImageName+"'>");
+            }
+        });
+        $("#btn01").on("click",function(){
+            var form01Data = $("#form01").serialize();
+            console.log(form01Data);
+            $.ajax({
+                url : "/captchaNkey.jsp",
+                data : form01Data,
+                dataType:"json",
+                success : function(data) {
+                }
+            });
+        });
 
         $('#user_delete_submit').click(function(){
             var delete_text = $('#user_delete_ck').val();
@@ -1258,6 +1298,8 @@
                 return false;
             }
         });
+        
+                    
 
     });
 
