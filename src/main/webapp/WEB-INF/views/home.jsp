@@ -327,14 +327,13 @@
                         </div>
                         
                         
-                        <div class="form-group">    
+                        <div class="form-group"  style="display: inline-block;text-align: center;">
                           <div id="recaptcha1" ></div>
                         </div>
                         
                         
-                        
                         <div class="col-md-12">
-                              <input type="submit" class="btn btn-skin pull-center"  value="회원가입" id = "submit_btn"/>
+                              <input type="submit" class="btn btn-skin pull-center"  value="회원가입" id = "submit_btn" disabled="disabled"/>
                         </div>
                      </div>
                      <div class="col-md-6">
@@ -408,13 +407,12 @@
                             <div class="validation"></div>
                         </div>
                         
-
-
+                        <div class="form-group"  style="display: inline-block;text-align: center;">
+                          <div id="recaptcha" ></div>
+                        </div>                        
                         
-                        
-
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-skin pull-center" id="d_submit_btn">
+                            <button type="submit" class="btn btn-skin pull-center" id="d_submit_btn" disabled="disabled">
                               회원가입</button>
                         </div>
                      </div>
@@ -909,20 +907,38 @@
     
     <script>
       var recaptcha1;
+      var recaptcha2;
       var myCallBack = function() {
         //Render the recaptcha1 on the element with ID "recaptcha1"
         recaptcha1 = grecaptcha.render('recaptcha1', {
           'sitekey' : '6Lf00y0UAAAAALO2TXpzKtRjV7UOYe2IDDiXd2Az', //Replace this with your Site key
           'theme' : 'light'
         });
+      //Render the recaptcha2 on the element with ID "recaptcha2"
+/*         recaptcha2 = grecaptcha.render('recaptcha2', {
+          'sitekey' : '6Lf00y0UAAAAALO2TXpzKtRjV7UOYe2IDDiXd2Az', //Replace this with your Site key
+          'theme' : 'dark'
+        }); */
       };
     </script>
     
 
     <script>
-    
-    
     $(document).ready(function (e){
+    	$('#submit_btn').click(function(e){
+            if (grecaptcha.getResponse() == ""){
+                alert("리캡챠를 체크해야 합니다.");
+                return false; 
+                } else {
+                } 
+        });
+/*     	$('#d_submit_btn').click(function(e){
+            if (grecaptcha.getResponse() == ""){
+                alert("리캡챠를 체크해야 합니다.");
+                return false; 
+                } else {
+                } 
+        }); */
         $('#user_delete_submit').click(function(){
             var delete_text = $('#user_delete_ck').val();
             if(delete_text == '탈퇴를 원합니다' || delete_text == '탈퇴를 원합니다.'){
@@ -1131,7 +1147,9 @@
                 }
                 else{
                     alert('사용 가능한 아이디 입니다!');
+                    $('#submit_btn').attr('disabled', false);
                     $('#signUpForm  input').prop('disabled', false);
+                    
                 }
             });
             
@@ -1147,15 +1165,7 @@
                }
             });
             
-            $('#submit_btn').click(function(e){
-            	if (grecaptcha.getResponse() == ""){
-                    alert("리캡챠를 체크해야 합니다.");
-                    
-                    return false; 
-                    } else {
-                    	
-                    } 
-            });
+            
             
             
     
@@ -1183,6 +1193,7 @@
                 }
                 else{
                     alert('사용 가능한 아이디 입니다!');
+                    $('#d_submit_btn').attr('disabled', false);
                     $('#d_signUpForm  input').prop('disabled', false);
                 }
             });
