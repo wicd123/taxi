@@ -616,20 +616,20 @@
             </div>
         </div>
         
-        <div class="section-heading" id="s_d_reservation" style="display:none" >
+        <div class="section-heading inline" id="s_d_reservation" style="display:none" >
             <label for="s_reservation">
                     원하는 장소가 있으세요?</label><br>
-                <form id="s_reservationForm" class="form-inline" role="form" action="s_reservation" method="post" > 
+                <form id="s_reservationForm" class="form-inline" role="form">
                      <div class="form-group"> 
-                       <select class="form-control">
+                       <select class="form-control" name="searchPlace" id="searchPlace">
                           <option id="r_start_place" value="r_start_place">출발장소</option>
                           <option id="r_arrival_place" value="r_arrival_place">도착장소</option>
                        </select>
                      </div> 
                      <div class="form-group"> 
-                       <input type="text" class="form-control" id="s_reservation" name="s_reservation" placeholder="장소검색(ex.노원)" >
+                       <input type="text" class="form-control" id="reservationPosition" name="reservationPosition" placeholder="장소검색(ex.노원)" >
                      </div> 
-                      <button type="submit" class="btn btn-skin pull-center">검색</button> 
+                      <button type="button" id="reservationPositionSearch" class="btn btn-skin pull-center">검색</button>
                </form>
 
         </div>
@@ -972,6 +972,13 @@
                 ,data: {'user_no' : user_no}
                 ,type: 'post'
                 ,dataType: 'json'
+                ,beforeSend: function(){
+                    $('#reservation_ck_content').append($('<div/>', {
+                        id: 'load',
+                        class: 'loading_image'
+                    }));
+                    $(".loading_image").delay(300).fadeOut("slow");
+                }
                 ,success : function(result) {
                     if(result.length == 0){
                         alert('예약 내역이 없습니다! 예약 후 이용해주세요');
@@ -1035,6 +1042,13 @@
                                             ,data: {'r_idx' : r_idx}
                                             ,type: 'post'
                                             ,dataType: 'json'
+                                            ,beforeSend: function(){
+                                                $('#reservation_ck_content').append($('<div/>', {
+                                                    id: 'load',
+                                                    class: 'loading_image'
+                                                }));
+                                                $(".loading_image").delay(300).fadeOut("slow");
+                                            }
                                         })
                                         .done( function(data, textStatus, xhr ){
 
@@ -1149,14 +1163,13 @@
             
             $('#submit_btn').click(function(e){
             	if (grecaptcha.getResponse() == ""){
-                    alert("리캡챠를 체크해야 합니다.");
+                    alert("Recaptcha 를 체크해야 합니다.");
                     
                     return false; 
                     } else {
                     	
                     } 
             });
-            
             
     
             $('#req_input').keyup( function (e) {
@@ -1217,6 +1230,89 @@
                 $('#user_delete').show(1000, 'easeOutBounce', function(){})
                 $('#user_change').hide(1000, 'easeOutBounce', function(){})
             });
+
+        //드라이브 검색
+            $('#reservationPositionSearch').click(function(e){
+                let searchPlace = $('#searchPlace').val();
+                let reservationPositon = $('#reservationPosition').val();
+                $.ajax({
+                    url : '/d_reservationPositionSearch'
+                    ,data: {'searchPlace' : searchPlace, 'reservationPositon' : reservationPositon}
+                    ,type: 'post'
+                    ,dataType: 'json'
+                    ,beforeSend: function(){
+                        $('#d_reservation_content').append($('<div/>', {
+                            id: 'load',
+                            class: 'loading_image'
+                        }));
+                        $(".loading_image").delay(400).fadeOut("slow");
+                    }
+                    ,success : function(result) {
+                        if(result.length == 0){
+                            alert('검색 내역이 없습니다!');
+                        } else {
+                            console.log(result);
+                            $('.d_reservation_content').remove();
+
+                            for(var i=0; i < result.length; i++){
+                                $('#d_reservation_content').append($('<tr>', {
+                                    class: 'd_reservation_content',
+                                    id: 'aaa'+i,
+                                }));
+                                $('#aaa'+i).append($('<td/>', {
+                                    class: 'd_reservation_content',
+                                    text: result[i].r_date
+                                }));
+                                $('#aaa'+i).append($('<td/>', {
+                                    class: 'd_reservation_content',
+                                    id: 'r_date_'+i,
+                                    text: result[i].r_time
+                                }));
+                                $('#aaa'+i).append($('<td/>', {
+                                    class: 'd_reservation_content',
+                                    id: 'r_time_'+i,
+                                    text: result[i].r_start_place
+                                }));
+                                $('#aaa'+i).append($('<td/>', {
+                                    class: 'd_reservation_content',
+                                    id: 'r_start_place_'+i,
+                                    text: result[i].r_arrival_place
+                                }));
+                                $('#aaa'+i).append($('<button/>', {
+                                    class: 'd_reservation_content',
+                                    id: 'd_r_button'+i,
+                                    text: '약속받기',
+                                }));
+                                let r_idx = result[i].r_idx;
+                                $('#d_r_button'+i).click(function(e){
+                                    var chk = confirm('약속을 받으시겠습니까?');
+                                    /* $('#aaa'+i-1).hide(); */
+                                    if (chk == true) {
+                                        $(this).parent().remove();
+                                        $.ajax({
+                                            url : '/receive'
+                                            ,data: {'user_no' : ${user.user_no}, 'r_idx' : r_idx}
+                                            ,type: 'post'
+                                            ,dataType: 'json'
+                                            ,success : function(result) {
+                                                alert('약속 받기에 성공하였습니다.');
+                                            }
+                                            ,error : function(e){
+                                                alert(e.responseText);
+                                            }
+                                        })
+                                    }
+                                    $('#d_reservation_content').append("</tr>");
+                                });
+                            }
+
+                            /*                  error:function(request,status,error){
+                                                alert("code:"+request.status+"\n"+"error:"+error);
+                                            } */
+                        }
+                    }
+                });
+            });
             
         //드라이브 약속받기/약속확인
             $('#d_reservation_btn').click(function(e){
@@ -1230,6 +1326,13 @@
                 url : '/d_reservationCheck'
                 ,type: 'post'
                 ,dataType: 'json'
+                ,beforeSend: function(){
+                    $('#d_reservation_content').append($('<div/>', {
+                        id: 'load',
+                        class: 'loading_image'
+                    }));
+                    $(".loading_image").delay(400).fadeOut("slow");
+                }
                 ,success : function(result) {
                     if(result.length == 0){
                         alert('예약 내역이 없습니다! 예약 후 이용해주세요');
@@ -1268,20 +1371,28 @@
                                 }));
                             let r_idx = result[i].r_idx;
                             $('#d_r_button'+i).click(function(e){
-                                console.log(i);
                                 var chk = confirm('약속을 받으시겠습니까?');
                                 /* $('#aaa'+i-1).hide(); */
                                 if (chk == true) {
                                     $(this).parent().remove();
                                         $.ajax({
                                             url : '/receive'
-                                            ,data: {'user_no' : user_no, 'r_idx' : r_idx}
+                                            ,data: {'user_no' : ${user.user_no}, 'r_idx' : r_idx}
                                             ,type: 'post'
                                             ,dataType: 'json'
+                                            ,beforeSend: function(){
+                                                $('#d_reservation_content').append($('<div/>', {
+                                                    id: 'load',
+                                                    class: 'loading_image'
+                                                }));
+                                                $(".loading_image").delay(300).fadeOut("slow");
+                                            }
+                                            ,success : function(result) {
+                                            }
+                                            ,error : function(e){
+                                                alert(e.responseText);
+                                            }
                                         })
-                                        .done( function(data, textStatus, xhr ){
-
-                                        });
                                  }
                                 $('#d_reservation_content').append("</tr>");
                             });
@@ -1300,9 +1411,99 @@
                 $('#d_reservation_ck').hide(1000, 'easeOutBounce', function(){})
             });
             $('#d_reservation_ck_btn').click(function(e){
+
+
                 $('#d_reservation_ck').show(1000, 'easeOutBounce', function(){})
-                $('#s_d_reservation').hide(1000, 'easeOutBounce', function(){})
-                $('#d_reservation').hide(1000, 'easeOutBounce', function(){})
+                $('#s_d_reservation').hide(200, 'easeOutBounce', function(){})
+                $('#d_reservation').hide(200, 'easeOutBounce', function(){})
+
+                $.ajax({
+                    url : '/d_findMyReservation'
+                    ,type: 'post'
+                    ,dataType: 'json'
+                    ,beforeSend: function(){
+                        $('#d_reservation_ck_content').append($('<div/>', {
+                            id: 'load',
+                            class: 'loading_image'
+                        }));
+                        $(".loading_image").delay(300).fadeOut("slow");
+                    }
+                    ,success : function(result) {
+                        if(result.length == 0){
+                            alert('예약 내역이 없습니다! 예약 후 이용해주세요');
+                            location.href="/";
+                        } else {
+                            $('.d_reservation_ck_content').remove();
+                            console.log(result);
+                            for(var i=0; i < result.length; i++){
+                                $('#d_reservation_ck_content').append($('<tr>', {
+                                    class: 'd_reservation_ck_content',
+                                    id: 'my_aaa'+i,
+                                }));
+                                $('#my_aaa'+i).append($('<td/>', {
+                                    class: 'd_reservation_ck_content',
+                                    text: result[i].r_date
+                                }));
+                                $('#my_aaa'+i).append($('<td/>', {
+                                    class: 'd_reservation_ck_content',
+                                    id: 'my_r_date_'+i,
+                                    text: result[i].r_time
+                                }));
+                                $('#my_aaa'+i).append($('<td/>', {
+                                    class: 'd_reservation_ck_content',
+                                    id: 'my_r_time_'+i,
+                                    text: result[i].r_start_place
+                                }));
+                                $('#my_aaa'+i).append($('<td/>', {
+                                    class: 'd_reservation_ck_content',
+                                    id: 'my_r_start_place_'+i,
+                                    text: result[i].r_arrival_place
+                                }));
+                                $('#my_aaa'+i).append($('<td/>', {
+                                    class: 'd_reservation_ck_content',
+                                    id: 'my_user_phone'+i,
+                                    text: result[i].user_phone
+                                }));
+                                $('#my_aaa'+i).append($('<button/>', {
+                                    class: 'd_reservation_ck_content',
+                                    id: 'my_d_r_button'+i,
+                                    text: '약속취소',
+                                }));
+                                let r_idx = result[i].r_idx;
+                                $('#my_d_r_button'+i).click(function(e){
+                                    var chk = confirm('약속을 취소 하시겠습니까?');
+                                    if (chk == true) {
+                                        $(this).parent().remove();
+                                        $.ajax({
+                                            url : '/d_receiveCancel'
+                                            ,data: {'r_idx' : r_idx}
+                                            ,type: 'post'
+                                            ,dataType: 'json'
+                                            ,beforeSend: function(){
+                                                $('#d_reservation_ck_content').append($('<div/>', {
+                                                    id: 'load',
+                                                    class: 'loading_image'
+                                                }));
+                                                $(".loading_image").delay(300).fadeOut("slow");
+                                            }
+                                            ,success : function(result) {
+                                            }
+                                            ,error : function(e){
+                                                alert(e.responseText);
+                                            }
+                                        })
+                                    }
+                                    $('#d_reservation_content').append("</tr>");
+                                });
+                            }
+
+                            /*                  error:function(request,status,error){
+                                                alert("code:"+request.status+"\n"+"error:"+error);
+                                            } */
+                        }
+                    }
+                });
+
             });
         
 

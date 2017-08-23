@@ -206,9 +206,13 @@ dependencies {
     // 파일업로드 할 때 사용.
     compile group: "commons-fileupload", name: "commons-fileupload", version: "1.2.1"
     compile group: "commons-io"        , name: "commons-io"        , version: "2.4"
-    
-    
-    
+
+    //log4j-remix
+    compile group: "org.lazyluke", name: "log4jdbc-remix", version:"0.2.7"
+
+    //mariadb
+    compile group: "org.mariadb.jdbc", name:"mariadb-java-client", version:"1.1.7"
+
     //
     compile group: "org.aspectj", name: "aspectjrt"    , version: "${versions.aspectj}"
     compile group: "org.aspectj", name: "aspectjweaver", version: "${versions.aspectj}"

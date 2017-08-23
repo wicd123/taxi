@@ -71,6 +71,8 @@
     <orderEntry type="library" name="Gradle: commons-collections:commons-collections:3.2.1" level="project" />
     <orderEntry type="library" name="Gradle: commons-fileupload:commons-fileupload:1.2.1" level="project" />
     <orderEntry type="library" name="Gradle: commons-io:commons-io:2.4" level="project" />
+    <orderEntry type="library" name="Gradle: org.lazyluke:log4jdbc-remix:0.2.7" level="project" />
+    <orderEntry type="library" name="Gradle: org.mariadb.jdbc:mariadb-java-client:1.1.7" level="project" />
     <orderEntry type="library" name="Gradle: org.aspectj:aspectjrt:1.8.6" level="project" />
     <orderEntry type="library" name="Gradle: org.aspectj:aspectjweaver:1.8.6" level="project" />
     <orderEntry type="library" name="Gradle: org.aspectj:aspectjtools:1.8.6" level="project" />
@@ -87,8 +89,8 @@
     <orderEntry type="library" name="Gradle: org.apache.tiles:tiles-request-servlet:1.0.6" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.tiles:tiles-request-api:1.0.6" level="project" />
     <orderEntry type="library" name="Gradle: org.slf4j:jcl-over-slf4j:1.7.6" level="project" />
-    <orderEntry type="library" name="Gradle: org.slf4j:slf4j-api:1.7.9" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.slf4j:slf4j-log4j12:1.7.9" level="project" />
+    <orderEntry type="library" name="Gradle: org.slf4j:slf4j-api:1.7.9" level="project" />
     <orderEntry type="library" name="Gradle: mysql:mysql-connector-java:5.1.34" level="project" />
     <orderEntry type="library" name="Gradle: org.mybatis:mybatis:3.2.8" level="project" />
     <orderEntry type="library" name="Gradle: org.mybatis:mybatis-spring:1.2.2" level="project" />
@@ -109,14 +111,17 @@
     <orderEntry type="library" name="Gradle: org.springframework.webflow:spring-js-resources:2.4.1.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: opensymphony:ognl:2.6.11" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.commons:commons-pool2:2.2" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Gradle: log4j:log4j:1.2.17" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.httpcomponents:httpcore:4.3.3" level="project" />
-    <orderEntry type="library" name="Gradle: org.apache.logging.log4j:log4j-api:2.1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: log4j:log4j:1.2.17" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: javax.servlet:javax.servlet-api:3.1.0" level="project" />
-    <orderEntry type="library" name="Gradle: javax.servlet:servlet-api:2.5" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.logging.log4j:log4j-api:2.1" level="project" />
+    <orderEntry type="library" name="Gradle: junit:junit:4.7" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: javax.servlet.jsp:javax.servlet.jsp-api:2.3.1" level="project" />
-    <orderEntry type="library" name="Gradle: javax.servlet.jsp:jsp-api:2.1" level="project" />
+    <orderEntry type="library" name="Gradle: net.java.dev.jna:jna:3.3.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.apache.tomcat:tomcat-servlet-api:7.0.73" level="project" />
+    <orderEntry type="library" name="Gradle: net.java.dev.jna:jna:platform:3.3.0" level="project" />
+    <orderEntry type="library" name="Gradle: javax.servlet:servlet-api:2.5" level="project" />
+    <orderEntry type="library" name="Gradle: javax.servlet.jsp:jsp-api:2.1" level="project" />
     <orderEntry type="library" name="Gradle: antlr:antlr:2.7.7" level="project" />
     <orderEntry type="library" name="Gradle: org.hibernate.common:hibernate-commons-annotations:4.0.2.Final" level="project" />
     <orderEntry type="library" name="Gradle: org.jboss.logging:jboss-logging:3.1.0.GA" level="project" />
@@ -124,20 +129,10 @@
     <orderEntry type="library" name="Gradle: org.javassist:javassist:3.18.1-GA" level="project" />
     <orderEntry type="library" name="Gradle: org.jboss.spec.javax.transaction:jboss-transaction-api_1.1_spec:1.0.1.Final" level="project" />
     <orderEntry type="library" name="Gradle: javax.activation:activation:1.1" level="project" />
-    <orderEntry type="library" name="Gradle: junit:junit:3.8.2" level="project" />
     <orderEntry type="library" name="Gradle: org.khronos:opengl-api:gl1.1-android-2.1_r1" level="project" />
     <orderEntry type="library" name="Gradle: xerces:xmlParserAPIs:2.6.2" level="project" />
     <orderEntry type="library" name="Gradle: xpp3:xpp3:1.1.4c" level="project" />
     <orderEntry type="library" name="Gradle: com.googlecode.json-simple:json-simple:1.1" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.tiles:tiles-autotag-core-runtime:1.1.0" level="project" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/mariadb-java-client-1.1.7.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
   </component>
 </module>
