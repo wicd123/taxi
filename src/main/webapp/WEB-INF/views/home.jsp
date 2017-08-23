@@ -23,6 +23,10 @@
     <!-- Squad theme CSS -->
     <link href="resources/css/style.css" rel="stylesheet">
     <link href="resources/color/default.css" rel="stylesheet">
+
+    
+
+
     
     <!-- =======================================================
         Theme Name: Squadfree
@@ -265,13 +269,14 @@
                 <div id="sendmessage">Your message has been sent. Thank you!</div>
                 <div id="errormessage"></div>
                 
-                <form id="signUpForm"  action="register" method="post" role="form" class="contactForm">
+                <form id="signUpForm"  action="register" method="post" role="form" class="contactForm" onsubmit="return FormSubmit();">
+
                 <div class="row" id="user" style="display:none">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="user_id">
                                 아이디</label>
-                            <input type="text" name="user_id" class="form-control" id="user_id" placeholder="아이디 입력"  required="required"/>
+                            <input type="text" name="user_id" class="form-control" id="user_id" placeholder="아이디 입력"  required="rsequired"/>
                             <input type="button" class="btn btn-skin pull-left"  value="아이디 중복 조회" id="checkuserid"/><br>
                             <div class="validation"></div>
                         </div>
@@ -320,14 +325,12 @@
                             &nbsp;&nbsp;<input type="checkbox" disabled="disabled" name="user_check_kakao" onclick="javascript:window.open('/kakaoJoin','_blank','left=50, top=50, width=800, height=600')"/> <span class="up">알림 서비스 사용</span>&nbsp;&nbsp;
                             <div class="validation"></div>
                         </div>
-
-                            <div id="div01">
-                            </div>
-                            <form id="form01">
-                                <input type="hidden" id="key" name="key">
-                                <input type="text" name="value">
-                                <button type="button" id="btn01">전송</button>
-                            </form>
+                        
+                        
+                        <div class="form-group">    
+                          <div id="recaptcha1" ></div>
+                        </div>
+                        
                         
                         
                         <div class="col-md-12">
@@ -895,38 +898,31 @@
     <script src="resources/js/jquery.easing.min.js"></script> 
     <script src="resources/js/jquery.scrollTo.js"></script>
     <script src="resources/js/wow.min.js"></script>
-    <!-- Custom Theme JavaScript -->]
+    <!-- Custom Theme JavaScript -->
     <script src="resources/js/custom.js"></script>
     <script src="resources/js/jquery-3.1.0.js"></script>
     <script src="resources/js/jquery.easing.1.3.js"></script>
     <script src="resources/js/ajaxsetup.js"></script>
     <script src="resources/js/MyApp.board.js"></script>
-
+    <script src="https://www.google.com/recaptcha/api.js?onload=myCallBack&render=explicit" async defer></script>
     
     
     <script>
-    $(document).ready(function (e){
-    	$.ajax({
-            url : "/captchaNkey.jsp",
-            dataType:"json",
-            success : function(data) {
-                console.log(data.key);
-                $("#key").val(data.key);
-                $("#div01").html("<img src='captchaImage/"+data.captchaImageName+"'>");
-            }
+      var recaptcha1;
+      var myCallBack = function() {
+        //Render the recaptcha1 on the element with ID "recaptcha1"
+        recaptcha1 = grecaptcha.render('recaptcha1', {
+          'sitekey' : '6Lf00y0UAAAAALO2TXpzKtRjV7UOYe2IDDiXd2Az', //Replace this with your Site key
+          'theme' : 'light'
         });
-        $("#btn01").on("click",function(){
-            var form01Data = $("#form01").serialize();
-            console.log(form01Data);
-            $.ajax({
-                url : "/captchaNkey.jsp",
-                data : form01Data,
-                dataType:"json",
-                success : function(data) {
-                }
-            });
-        });
+      };
+    </script>
+    
 
+    <script>
+    
+    
+    $(document).ready(function (e){
         $('#user_delete_submit').click(function(){
             var delete_text = $('#user_delete_ck').val();
             if(delete_text == '탈퇴를 원합니다' || delete_text == '탈퇴를 원합니다.'){
@@ -1150,6 +1146,18 @@
                     return false;
                }
             });
+            
+            $('#submit_btn').click(function(e){
+            	if (grecaptcha.getResponse() == ""){
+                    alert("리캡챠를 체크해야 합니다.");
+                    
+                    return false; 
+                    } else {
+                    	
+                    } 
+            });
+            
+            
     
             $('#req_input').keyup( function (e) {
                 if( $(this).val() !== '') {
@@ -1189,6 +1197,7 @@
                     alert('패스워드가 다릅니다.\n다시 비밀번호를 설정해주세요.');
                     return false;
                 }
+                
             });
 
 

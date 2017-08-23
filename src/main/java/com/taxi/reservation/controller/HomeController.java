@@ -1,27 +1,27 @@
 package com.taxi.reservation.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.omg.PortableInterceptor.USER_EXCEPTION;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.taxi.reservation.model.ModelUser;
 import com.taxi.reservation.service.IServiceUser;
-import org.springframework.web.bind.support.SessionStatus;
-
-import static com.taxi.reservation.controller.KakaoController.access_token;
-import static com.taxi.reservation.controller.KakaoController.kakao_user_account;
 
 
 /**
@@ -201,4 +201,6 @@ public class HomeController {
 
         return "msg/msg";
     }
+    
+    
 }
