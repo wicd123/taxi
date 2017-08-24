@@ -167,9 +167,9 @@
                         <img src="resources/img/icons/service-icon-1.png" alt="" />
                     </div>
                     <div class="service-desc">
-                        <h5>Print</h5>
-                        <p id="q_1">질문질문<span id="ico_ar_1" >▼</span></p>
-                        <p id="n_1" style="display:none" >답변답변</p>
+                        <h5>Payment</h5>
+                        <p id="q_1">결제 진행은?<span id="ico_ar_1" >▼</span></p>
+                        <p id="n_1" style="display:none" >당분간은 수수료가 무료!<br/> 결제는 택시기사님과 만나서 직접하세요!<br/></p>
                     </div>
                 </div>
                 </div>
@@ -181,9 +181,9 @@
                         <img src="resources/img/icons/service-icon-2.png" alt="" />
                     </div>
                     <div class="service-desc">
-                        <h5>Web Design</h5>
-                        <p id="q_2">질문질문<span id="ico_ar_2">▼</span></p>
-                        <p id="n_2" style="display:none" >답변답변</p>
+                        <h5>Smart Phone</h5>
+                        <p id="q_2">스마트폰으로 예약?<span id="ico_ar_2">▼</span></p>
+                        <p id="n_2" style="display:none" >공식어플리케이션은 없습니다!<br/> 인터넷에 접속해 예약은 가능합니다!</p>
                     </div>
                 </div>
                 </div>
@@ -195,9 +195,9 @@
                         <img src="resources/img/icons/service-icon-3.png" alt="" />
                     </div>
                     <div class="service-desc">
-                        <h5>Photography</h5>
-                        <p id="q_3">질문질문<span id="ico_ar_3">▼</span></p>
-                        <p id="n_3" style="display:none">답변답변</p>
+                        <h5>Reservation</h5>
+                        <p id="q_3">예약을하고 연락은?<span id="ico_ar_3">▼</span></p>
+                        <p id="n_3" style="display:none">예약이 받아지면 연락이 옵니다!<br/> 예약받은 택시기님에게 회원정보에 있는<br/>전화번호가 공개됩니다.</p>
                     </div>
                 </div>
                 </div>
@@ -209,9 +209,9 @@
                         <img src="resources/img/icons/service-icon-4.png" alt="" />
                     </div>
                     <div class="service-desc">
-                        <h5>Cloud System</h5>
-                        <p id="q_4">질문질문<span id="ico_ar_4">▼</span></p>
-                        <p id="n_4" style="display:none">답변답변</p>
+                        <h5>question</h5>
+                        <p id="q_4">궁금한게 있다면?<span id="ico_ar_4">▼</span></p>
+                        <p id="n_4" style="display:none">궁금한게 있다면 다음으로 연락주세요!<br/>email:wicd123@naver.com<br/>phone:010-9999-4444</p>
                     </div>
                 </div>
                 </div>
@@ -327,14 +327,11 @@
                         </div>
                         
                         
-                        <div class="form-group"  style="display: inline-block;text-align: center;">
-                          <div id="recaptcha1" ></div>
-                        </div>
-                        
 
                         <div class="col-md-12">
                               <input type="submit" class="btn btn-skin pull-center"  value="회원가입" id = "submit_btn" disabled="disabled"/>
                         </div>
+                        
                      </div>
                      <div class="col-md-6">
                         <div class="form-group">
@@ -343,6 +340,8 @@
                     </div>
                 </div>
                 </form>
+                
+                
                 
                 <!-- 여기부터는 드라이브 회원 입니다람쥐 -->
                 
@@ -407,23 +406,25 @@
                             <div class="validation"></div>
                         </div>
                         
-                        <div class="form-group"  style="display: inline-block;text-align: center;">
-                          <div id="recaptcha" ></div>
-                        </div>
 
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-skin pull-center" id="d_submit_btn" disabled="disabled">
                               회원가입</button>
                         </div>
                      </div>
+                     
                      <div class="col-md-6">
                         <div class="form-group">
                             <div class="avatar"><img src="resources/img/imageplus/driver_plus.png" alt="" /></div>
                         </div>
                     </div>
                 </div>
-                
                 </form>
+                
+                <div id="recaptcha" align="center" class="center-block clearfix" style="display:none">
+                          <div id="recaptcha1" ></div>
+                </div>
+                
             </div>
         </div>
         
@@ -696,7 +697,7 @@
     
     
 <c:if test="${!empty user.user_no}">
-     <section id="contact" class="home-section text-center bg-gray">
+     <section id="delete" class="home-section text-center bg-gray">
         <div class="heading-contact">
             <div class="container">
             <div class="row">
@@ -914,11 +915,6 @@
           'sitekey' : '6Lf00y0UAAAAALO2TXpzKtRjV7UOYe2IDDiXd2Az', //Replace this with your Site key
           'theme' : 'light'
         });
-      //Render the recaptcha2 on the element with ID "recaptcha2"
-/*         recaptcha2 = grecaptcha.render('recaptcha2', {
-          'sitekey' : '6Lf00y0UAAAAALO2TXpzKtRjV7UOYe2IDDiXd2Az', //Replace this with your Site key
-          'theme' : 'dark'
-        }); */
       };
     </script>
     
@@ -932,13 +928,6 @@
                 } else {
                 }
         });
-/*     	$('#d_submit_btn').click(function(e){
-            if (grecaptcha.getResponse() == ""){
-                alert("리캡챠를 체크해야 합니다.");
-                return false;
-                } else {
-                }
-        }); */
         $('#user_delete_submit').click(function(){
             var delete_text = $('#user_delete_ck').val();
             if(delete_text == '탈퇴를 원합니다' || delete_text == '탈퇴를 원합니다.'){
@@ -952,10 +941,12 @@
     	//회원가입 외부 제이꽈리
     	$('#user_btn').click(function(e){
     		$('#user').show(1000, 'easeOutBounce', function(){})
+    		$('#recaptcha').show(1000, 'easeOutBounce', function(){})
     		$('#driver').hide(1000, 'easeOutBounce', function(){})
     	});
     	$('#driver_btn').click(function(e){
             $('#driver').show(1000, 'easeOutBounce', function(){})
+            $('#recaptcha').show(1000, 'easeOutBounce', function(){})
             $('#user').hide(1000, 'easeOutBounce', function(){})
         });
     	
@@ -1246,6 +1237,7 @@
             $('#reservationPositionSearch').click(function(e){
                 let searchPlace = $('#searchPlace').val();
                 let reservationPositon = $('#reservationPosition').val();
+                var user_no = <c:out value="${user.user_no}" default="-1"/>;
                 $.ajax({
                     url : '/d_reservationPositionSearch'
                     ,data: {'searchPlace' : searchPlace, 'reservationPositon' : reservationPositon}
@@ -1302,7 +1294,7 @@
                                         $(this).parent().remove();
                                         $.ajax({
                                             url : '/receive'
-                                            ,data: {'user_no' : ${user.user_no}, 'r_idx' : r_idx}
+                                            ,data: {'user_no' : user_no, 'r_idx' : r_idx}
                                             ,type: 'post'
                                             ,dataType: 'json'
                                             ,success : function(result) {
@@ -1388,7 +1380,7 @@
                                     $(this).parent().remove();
                                         $.ajax({
                                             url : '/receive'
-                                            ,data: {'user_no' : ${user.user_no}, 'r_idx' : r_idx}
+                                            ,data: {'user_no' : user_no, 'r_idx' : r_idx}
                                             ,type: 'post'
                                             ,dataType: 'json'
                                             ,beforeSend: function(){
