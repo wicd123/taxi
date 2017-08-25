@@ -39,6 +39,20 @@ select user_id, user_email, user_phone, user_gender, user_carnum, user_lv, user_
              WHERE  user_id = goall2
               AND user_pw = 1234
         
+              
+              INSERT INTO reservation (user_no,      r_date,    r_time,    r_start_place,    r_arrival_place,     r_ck,    d_user_no)
+        VALUES (5, "2007-05-02", "15:00:00", "서울시 노원구", "서울시 강남구" , 0, 6)
+        INSERT INTO reservation (user_no,      r_date,    r_time,    r_start_place,    r_arrival_place,     r_ck,    d_user_no)
+        VALUES (5, "2007-05-02", "15:00:00", "서울시 도봉구", "서울시 강남구" , 0, 6)
+        INSERT INTO reservation (user_no,      r_date,    r_time,    r_start_place,    r_arrival_place,     r_ck,    d_user_no)
+        VALUES (5, "2007-05-02", "15:00:00", "의정부시 신곡동", "서울시 강남구" , 0, 6)
+        INSERT INTO reservation (user_no,      r_date,    r_time,    r_start_place,    r_arrival_place,     r_ck,    d_user_no)
+        VALUES (5, "2007-05-02", "15:00:00", "부산시 이수동", "서울시 강남구" , 0, 6)
+        INSERT INTO reservation (user_no,      r_date,    r_time,    r_start_place,    r_arrival_place,     r_ck,    d_user_no)
+        VALUES (5, "2007-05-02", "15:00:00", "인천시 구원동", "서울시 강남구" , 0, 6)
+        INSERT INTO reservation (user_no,      r_date,    r_time,    r_start_place,    r_arrival_place,     r_ck,    d_user_no)
+        VALUES (5, "2007-05-02", "15:00:00", "충천남도 당진", "서울시 강남구" , 0, 6)
+
         
         
 

@@ -54,9 +54,9 @@
 
     <beans:bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <beans:property name="driverClassName"         value="com.mysql.jdbc.Driver" />
-        <beans:property name="url"                     value="jdbc:mysql://localhost:3306/taxi?useUnicode=true&amp;characterEncoding=utf8" />
-        <beans:property name="username"                value="root" />
-        <beans:property name="password"                value="1234" />
+        <beans:property name="url"                     value="jdbc:mysql://wicd1234.cafe24.com/wicd1234?useUnicode=true&amp;characterEncoding=utf8" />
+        <beans:property name="username"                value="wicd1234" />
+        <beans:property name="password"                value="dltndud0823!" />
 
         <beans:property name="defaultAutoCommit"       value="true"/>
         <beans:property name="poolPreparedStatements"  value="true"/>
