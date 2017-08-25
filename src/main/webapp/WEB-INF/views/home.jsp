@@ -1465,21 +1465,22 @@
                                 }));
                                 $('#my_aaa'+i).append($('<td/>', {
                                     class: 'd_reservation_ck_content',
+                                    id: 'my_r_date_'+i,
                                     text: result[i].r_date
                                 }));
                                 $('#my_aaa'+i).append($('<td/>', {
                                     class: 'd_reservation_ck_content',
-                                    id: 'my_r_date_'+i,
+                                    id: 'my_r_time_'+i,
                                     text: result[i].r_time
                                 }));
                                 $('#my_aaa'+i).append($('<td/>', {
                                     class: 'd_reservation_ck_content',
-                                    id: 'my_r_time_'+i,
+                                    id: 'my_r_start_place_'+i,
                                     text: result[i].r_start_place
                                 }));
                                 $('#my_aaa'+i).append($('<td/>', {
                                     class: 'd_reservation_ck_content',
-                                    id: 'my_r_start_place_'+i,
+                                    id: 'my_r_arrival_place_'+i,
                                     text: result[i].r_arrival_place
                                 }));
                                 $('#my_aaa'+i).append($('<td/>', {
