@@ -499,7 +499,7 @@
         </div>
     <div class="row">
         <div class="col-lg-12">
-            <div class="boxed-grey">
+            <div>
                 <div id="sendmessage">Your message has been sent. Thank you!</div>
                 <div id="errormessage"></div>
                 <form id="reservationForm"  action="reservation" method="post" role="form" class="contactForm">
@@ -636,7 +636,7 @@
      
     <div class="row">
         <div class="col-lg-12">
-            <div class="boxed-grey">
+            <div >
                 <div id="sendmessage">Your message has been sent. Thank you!</div>
                 <div id="errormessage"></div>
                 <table class="table table-condensed" id="d_reservation" style="display:none">
@@ -904,8 +904,7 @@
     <script src="resources/js/ajaxsetup.js"></script>
     <script src="resources/js/MyApp.board.js"></script>
     <script src="https://www.google.com/recaptcha/api.js?onload=myCallBack&render=explicit" async defer></script>
-    
-    
+
     <script>
       var recaptcha1;
       var recaptcha2;
@@ -1000,15 +999,9 @@
                                 id: 'aaa'+i,
                             }));
                         	if(result[i].r_ck == 1){
-                                $('#aaa'+i).append($('<td/>', {
-                                    class: 'reservation_ck_content',
-                                    text: '드라이버 약속 대기중'
-                                }));
+                                $('#aaa'+i).append($('<td class="reservation_ck_content" style="color:#5CB95C">드라이버 약속 완료</td>'));
                             } else if(result[i].r_ck == 0) {
-                                $('#aaa'+i).append($('<td/>', {
-                                    class: 'reservation_ck_content',
-                                    text: '드라이버 약속 완료'
-                                }))
+                                $('#aaa'+i).append($('<td class="reservation_ck_content" style="color:#f1ae4d">드라이버 약속 대기중</td>'))
                             } else {
                                 $('#aaa'+i).append($('<td/>', {
                                     class: 'reservation_ck_content',
@@ -1035,8 +1028,16 @@
                                 id: 'r_arrival_place_'+i,
                                 text: result[i].r_arrival_place
                             }));
+                            
+                            $('tr').mouseenter(function (e) {
+                                $(this).css('background', '#BEE6F1');
+                            });
+                            $('tr').mouseleave(function (e) {
+                                $(this).css('background', '');
+                            });
+                            
                             let r_idx = result[i].r_idx;
-                            $('#aaa'+i).append($('<button/>', {class: 'reservation_ck_content',  id: 'r_c_button'+i,  text: '약속삭제',
+                            $('#aaa'+i).append($('<button/>', {class: 'btn btn-danger btn-sm', type:'button',  id: 'r_c_button'+i,  text: '약속삭제',
                                 action: '/reservationdelete/?r_idx='+result[i].r_idx}));
                             $('#r_c_button'+i).click(function(e){
                                 console.log(i);
@@ -1282,10 +1283,19 @@
                                     text: result[i].r_arrival_place
                                 }));
                                 $('#aaa'+i).append($('<button/>', {
-                                    class: 'd_reservation_content',
+                                	class: 'btn btn-success btn-xs',
+                                	type: 'button',
                                     id: 'd_r_button'+i,
                                     text: '약속받기',
                                 }));
+                                
+                                $('tr').mouseenter(function (e) {
+                                    $(this).css('background', '#BEE6F1');
+                                });
+                                $('tr').mouseleave(function (e) {
+                                    $(this).css('background', '');
+                                });
+                                
                                 let r_idx = result[i].r_idx;
                                 $('#d_r_button'+i).click(function(e){
                                     var chk = confirm('약속을 받으시겠습니까?');
@@ -1338,7 +1348,7 @@
                 }
                 ,success : function(result) {
                     if(result.length == 0){
-                        alert('예약 내역이 없습니다! 예약 후 이용해주세요');
+                        alert('예약 내역이 없습니다!');
                         location.href="/";
                     } else {
                         $('.d_reservation_content').remove();
@@ -1368,10 +1378,20 @@
                                 text: result[i].r_arrival_place
                             }));
                             $('#aaa'+i).append($('<button/>', {
-                                 class: 'd_reservation_content',  
+                            	 class: 'btn btn-success btn-xs',
+                                 type: 'button', 
                                  id: 'd_r_button'+i,  
                                  text: '약속받기',
                                 }));
+                            
+                            
+                            $('tr').mouseenter(function (e) {
+                                $(this).css('background', '#BEE6F1');
+                            });
+                            $('tr').mouseleave(function (e) {
+                                $(this).css('background', '');
+                            });
+                            
                             let r_idx = result[i].r_idx;
                             $('#d_r_button'+i).click(function(e){
                                 var chk = confirm('약속을 받으시겠습니까?');
@@ -1433,7 +1453,7 @@
                     }
                     ,success : function(result) {
                         if(result.length == 0){
-                            alert('예약 내역이 없습니다! 예약 후 이용해주세요');
+                            alert('예약 내역이 없습니다! 예약을 받으시고 이용해주세요!');
                             location.href="/";
                         } else {
                             $('.d_reservation_ck_content').remove();
@@ -1468,10 +1488,20 @@
                                     text: result[i].user_phone
                                 }));
                                 $('#my_aaa'+i).append($('<button/>', {
-                                    class: 'd_reservation_ck_content',
+                                	class: 'btn btn-danger btn-sm', 
+                                	type:'button',
                                     id: 'my_d_r_button'+i,
                                     text: '약속취소',
                                 }));
+                                
+                                
+                                $('tr').mouseenter(function (e) {
+                                    $(this).css('background', '#BEE6F1');
+                                });
+                                $('tr').mouseleave(function (e) {
+                                    $(this).css('background', '');
+                                });
+                                
                                 let r_idx = result[i].r_idx;
                                 $('#my_d_r_button'+i).click(function(e){
                                     var chk = confirm('약속을 취소 하시겠습니까?');

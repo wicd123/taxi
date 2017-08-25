@@ -38,7 +38,7 @@ public class ReservationController {
 
         modelReservation.setUser_no(modelUser.getUser_no());
 
-        modelReservation.setR_ck(1);
+        modelReservation.setR_ck(0);
         
         int result = serviceReservation.insertReservation(modelReservation);
 
