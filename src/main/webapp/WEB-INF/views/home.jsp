@@ -402,7 +402,7 @@
                         <div class="form-group">
                             <label for="checkKakao">
                                 카카오톡 알림</label>
-                            &nbsp;&nbsp;<input type="checkbox" disabled="disabled" name="user_check_kakao"/> <span class="up">알림 서비스 사용</span>&nbsp;&nbsp;
+                            &nbsp;&nbsp;<input type="checkbox" disabled="disabled" name="user_check_kakao" onclick="javascript:window.open('/kakaoJoin','_blank','left=50, top=50, width=800, height=600')"/> <span class="up">알림 서비스 사용</span>&nbsp;&nbsp;
                             <div class="validation"></div>
                         </div>
                         

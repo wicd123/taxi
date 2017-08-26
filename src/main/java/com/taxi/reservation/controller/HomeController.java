@@ -87,7 +87,12 @@ public class HomeController {
 
         int result = usersvr.insertUser(user);
         String msg = result > 0 ? "회원 가입을 축하드립니다." : "회원 가입 실패!";
-        String url = "/";
+        String url = result > 0 ? "/login" : "/";
+
+        if(result > 0){
+            model.addAttribute("user", user);
+        }
+
         model.addAttribute("msg", msg);
         model.addAttribute("url", url);
 
@@ -144,8 +149,8 @@ public class HomeController {
 
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(Model model, @ModelAttribute ModelUser user){
+    @RequestMapping(value = "/login", method = {RequestMethod.POST, RequestMethod.GET})
+    public String login(Model model, @ModelAttribute("user") ModelUser user){
 
         logger.info("Login : POST");
 
@@ -179,11 +184,6 @@ public class HomeController {
 
             return "home";
         }
-    }
-
-    @RequestMapping(value = "/login")
-    public String loginGet(Model model){
-        return "home";
     }
 
     @RequestMapping(value = "/logout")
