@@ -30,18 +30,51 @@
         <![CDATA[
             Select * 
             from reservation
-            where r_ck = 1
+            where r_ck = 0
             order by r_idx DESC
         ]]>
     </select>
     
-        <update id="receive" parameterType="ModelReservation">
+    <update id="receive" parameterType="ModelReservation">
         <![CDATA[
             update reservation
-            set d_user_no = #{user_no}, r_ck = 0
-            where user_no = #{user_no} and r_idx = #{r_idx};
+            set d_user_no = #{d_user_no}, r_ck = 1
+            where r_idx = #{r_idx}
         ]]>
     </update>
+
+    <select id="d_findMyReservation" parameterType="Integer" resultType="HashMap">
+        <![CDATA[
+          select e.* from (select r.*, u.user_phone
+                            from reservation r
+                                inner join user2 u
+                                    on r.user_no = u.user_no) e
+                        where d_user_no = #{d_user_no} and r_ck = 1
+                          order by r_idx desc
+        ]]>
+    </select>
+
+    <update id = "d_receiveCancel" parameterType="Integer">
+        <![CDATA[
+          update reservation
+            set d_user_no = -1, r_ck = 1
+             where r_idx = #{r_idx}
+        ]]>
+    </update>
+
+    <select id="d_reservationPositionSearch" parameterType="HashMap" resultType="ModelReservation">
+            Select *
+              from reservation
+                <if test = "searchPlace != null and searchPlace.equals('r_start_place')">
+                  where r_start_place like CONCAT('%',#{reservationPositon},'%') and r_ck = 0
+                </if>
+                <if test = "searchPlace != null and searchPlace.equals('r_arrival_place')">
+                    where r_arrival_place like CONCAT('%',#{reservationPositon},'%') and r_ck = 0
+                </if>
+                    order by r_idx desc
+
+
+    </select>
     
 
 </mapper>

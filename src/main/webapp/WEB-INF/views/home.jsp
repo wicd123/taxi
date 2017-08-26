@@ -23,6 +23,10 @@
     <!-- Squad theme CSS -->
     <link href="resources/css/style.css" rel="stylesheet">
     <link href="resources/color/default.css" rel="stylesheet">
+
+    
+
+
     
     <!-- =======================================================
         Theme Name: Squadfree
@@ -163,9 +167,9 @@
                         <img src="resources/img/icons/service-icon-1.png" alt="" />
                     </div>
                     <div class="service-desc">
-                        <h5>Print</h5>
-                        <p id="q_1">질문질문<span id="ico_ar_1" >▼</span></p>
-                        <p id="n_1" style="display:none" >답변답변</p>
+                        <h5>Payment</h5>
+                        <p id="q_1">결제 진행은?<span id="ico_ar_1" >▼</span></p>
+                        <p id="n_1" style="display:none" >당분간은 수수료가 무료!<br/> 결제는 택시기사님과 만나서 직접하세요!<br/></p>
                     </div>
                 </div>
                 </div>
@@ -177,9 +181,9 @@
                         <img src="resources/img/icons/service-icon-2.png" alt="" />
                     </div>
                     <div class="service-desc">
-                        <h5>Web Design</h5>
-                        <p id="q_2">질문질문<span id="ico_ar_2">▼</span></p>
-                        <p id="n_2" style="display:none" >답변답변</p>
+                        <h5>Smart Phone</h5>
+                        <p id="q_2">스마트폰으로 예약?<span id="ico_ar_2">▼</span></p>
+                        <p id="n_2" style="display:none" >공식어플리케이션은 없습니다!<br/> 인터넷에 접속해 예약은 가능합니다!</p>
                     </div>
                 </div>
                 </div>
@@ -191,9 +195,9 @@
                         <img src="resources/img/icons/service-icon-3.png" alt="" />
                     </div>
                     <div class="service-desc">
-                        <h5>Photography</h5>
-                        <p id="q_3">질문질문<span id="ico_ar_3">▼</span></p>
-                        <p id="n_3" style="display:none">답변답변</p>
+                        <h5>Reservation</h5>
+                        <p id="q_3">예약을하고 연락은?<span id="ico_ar_3">▼</span></p>
+                        <p id="n_3" style="display:none">예약이 받아지면 연락이 옵니다!<br/> 예약받은 택시기님에게 회원정보에 있는<br/>전화번호가 공개됩니다.</p>
                     </div>
                 </div>
                 </div>
@@ -205,9 +209,9 @@
                         <img src="resources/img/icons/service-icon-4.png" alt="" />
                     </div>
                     <div class="service-desc">
-                        <h5>Cloud System</h5>
-                        <p id="q_4">질문질문<span id="ico_ar_4">▼</span></p>
-                        <p id="n_4" style="display:none">답변답변</p>
+                        <h5>question</h5>
+                        <p id="q_4">궁금한게 있다면?<span id="ico_ar_4">▼</span></p>
+                        <p id="n_4" style="display:none">궁금한게 있다면 다음으로 연락주세요!<br/>email:wicd123@naver.com<br/>phone:010-9999-4444</p>
                     </div>
                 </div>
                 </div>
@@ -265,13 +269,14 @@
                 <div id="sendmessage">Your message has been sent. Thank you!</div>
                 <div id="errormessage"></div>
                 
-                <form id="signUpForm"  action="register" method="post" role="form" class="contactForm">
+                <form id="signUpForm"  action="register" method="post" role="form" class="contactForm" onsubmit="return FormSubmit();">
+
                 <div class="row" id="user" style="display:none">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="user_id">
                                 아이디</label>
-                            <input type="text" name="user_id" class="form-control" id="user_id" placeholder="아이디 입력"  required="required"/>
+                            <input type="text" name="user_id" class="form-control" id="user_id" placeholder="아이디 입력"  required="rsequired"/>
                             <input type="button" class="btn btn-skin pull-left"  value="아이디 중복 조회" id="checkuserid"/><br>
                             <div class="validation"></div>
                         </div>
@@ -320,19 +325,13 @@
                             &nbsp;&nbsp;<input type="checkbox" disabled="disabled" name="user_check_kakao" onclick="javascript:window.open('/kakaoJoin','_blank','left=50, top=50, width=800, height=600')"/> <span class="up">알림 서비스 사용</span>&nbsp;&nbsp;
                             <div class="validation"></div>
                         </div>
+                        
+                        
 
-                            <div id="div01">
-                            </div>
-                            <form id="form01">
-                                <input type="hidden" id="key" name="key">
-                                <input type="text" name="value">
-                                <button type="button" id="btn01">전송</button>
-                            </form>
-                        
-                        
                         <div class="col-md-12">
-                              <input type="submit" class="btn btn-skin pull-center"  value="회원가입" id = "submit_btn"/>
+                              <input type="submit" class="btn btn-skin pull-center"  value="회원가입" id = "submit_btn" disabled="disabled"/>
                         </div>
+                        
                      </div>
                      <div class="col-md-6">
                         <div class="form-group">
@@ -341,6 +340,8 @@
                     </div>
                 </div>
                 </form>
+                
+                
                 
                 <!-- 여기부터는 드라이브 회원 입니다람쥐 -->
                 
@@ -401,28 +402,29 @@
                         <div class="form-group">
                             <label for="checkKakao">
                                 카카오톡 알림</label>
-                            &nbsp;&nbsp;<input type="checkbox" disabled="disabled" name="user_check_kakao"/> <span class="up">알림 서비스 사용</span>&nbsp;&nbsp;
+                            &nbsp;&nbsp;<input type="checkbox" disabled="disabled" name="user_check_kakao" onclick="javascript:window.open('/kakaoJoin','_blank','left=50, top=50, width=800, height=600')"/> <span class="up">알림 서비스 사용</span>&nbsp;&nbsp;
                             <div class="validation"></div>
                         </div>
                         
 
-
-                        
-                        
-
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-skin pull-center" id="d_submit_btn">
+                            <button type="submit" class="btn btn-skin pull-center" id="d_submit_btn" disabled="disabled">
                               회원가입</button>
                         </div>
                      </div>
+                     
                      <div class="col-md-6">
                         <div class="form-group">
                             <div class="avatar"><img src="resources/img/imageplus/driver_plus.png" alt="" /></div>
                         </div>
                     </div>
                 </div>
-                
                 </form>
+                
+                <div id="recaptcha" align="center" class="center-block clearfix" style="display:none">
+                          <div id="recaptcha1" ></div>
+                </div>
+                
             </div>
         </div>
         
@@ -497,7 +499,7 @@
         </div>
     <div class="row">
         <div class="col-lg-12">
-            <div class="boxed-grey">
+            <div>
                 <div id="sendmessage">Your message has been sent. Thank you!</div>
                 <div id="errormessage"></div>
                 <form id="reservationForm"  action="reservation" method="post" role="form" class="contactForm">
@@ -613,20 +615,20 @@
             </div>
         </div>
         
-        <div class="section-heading" id="s_d_reservation" style="display:none" >
+        <div class="section-heading inline" id="s_d_reservation" style="display:none" >
             <label for="s_reservation">
                     원하는 장소가 있으세요?</label><br>
-                <form id="s_reservationForm" class="form-inline" role="form" action="s_reservation" method="post" > 
+                <form id="s_reservationForm" class="form-inline" role="form">
                      <div class="form-group"> 
-                       <select class="form-control">
+                       <select class="form-control" name="searchPlace" id="searchPlace">
                           <option id="r_start_place" value="r_start_place">출발장소</option>
                           <option id="r_arrival_place" value="r_arrival_place">도착장소</option>
                        </select>
                      </div> 
                      <div class="form-group"> 
-                       <input type="text" class="form-control" id="s_reservation" name="s_reservation" placeholder="장소검색(ex.노원)" >
+                       <input type="text" class="form-control" id="reservationPosition" name="reservationPosition" placeholder="장소검색(ex.노원)" >
                      </div> 
-                      <button type="submit" class="btn btn-skin pull-center">검색</button> 
+                      <button type="button" id="reservationPositionSearch" class="btn btn-skin pull-center">검색</button>
                </form>
 
         </div>
@@ -634,7 +636,7 @@
      
     <div class="row">
         <div class="col-lg-12">
-            <div class="boxed-grey">
+            <div >
                 <div id="sendmessage">Your message has been sent. Thank you!</div>
                 <div id="errormessage"></div>
                 <table class="table table-condensed" id="d_reservation" style="display:none">
@@ -695,7 +697,7 @@
     
     
 <c:if test="${!empty user.user_no}">
-     <section id="contact" class="home-section text-center bg-gray">
+     <section id="delete" class="home-section text-center bg-gray">
         <div class="heading-contact">
             <div class="container">
             <div class="row">
@@ -895,38 +897,36 @@
     <script src="resources/js/jquery.easing.min.js"></script> 
     <script src="resources/js/jquery.scrollTo.js"></script>
     <script src="resources/js/wow.min.js"></script>
-    <!-- Custom Theme JavaScript -->]
+    <!-- Custom Theme JavaScript -->
     <script src="resources/js/custom.js"></script>
     <script src="resources/js/jquery-3.1.0.js"></script>
     <script src="resources/js/jquery.easing.1.3.js"></script>
     <script src="resources/js/ajaxsetup.js"></script>
     <script src="resources/js/MyApp.board.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=myCallBack&render=explicit" async defer></script>
 
+    <script>
+      var recaptcha1;
+      var recaptcha2;
+      var myCallBack = function() {
+        //Render the recaptcha1 on the element with ID "recaptcha1"
+        recaptcha1 = grecaptcha.render('recaptcha1', {
+          'sitekey' : '6Lf00y0UAAAAALO2TXpzKtRjV7UOYe2IDDiXd2Az', //Replace this with your Site key
+          'theme' : 'light'
+        });
+      };
+    </script>
     
-    
+
     <script>
     $(document).ready(function (e){
-    	$.ajax({
-            url : "/captchaNkey.jsp",
-            dataType:"json",
-            success : function(data) {
-                console.log(data.key);
-                $("#key").val(data.key);
-                $("#div01").html("<img src='captchaImage/"+data.captchaImageName+"'>");
-            }
-        });
-        $("#btn01").on("click",function(){
-            var form01Data = $("#form01").serialize();
-            console.log(form01Data);
-            $.ajax({
-                url : "/captchaNkey.jsp",
-                data : form01Data,
-                dataType:"json",
-                success : function(data) {
+    	$('#submit_btn').click(function(e){
+            if (grecaptcha.getResponse() == ""){
+                alert("리캡챠를 체크해야 합니다.");
+                return false;
+                } else {
                 }
-            });
         });
-
         $('#user_delete_submit').click(function(){
             var delete_text = $('#user_delete_ck').val();
             if(delete_text == '탈퇴를 원합니다' || delete_text == '탈퇴를 원합니다.'){
@@ -940,10 +940,12 @@
     	//회원가입 외부 제이꽈리
     	$('#user_btn').click(function(e){
     		$('#user').show(1000, 'easeOutBounce', function(){})
+    		$('#recaptcha').show(1000, 'easeOutBounce', function(){})
     		$('#driver').hide(1000, 'easeOutBounce', function(){})
     	});
     	$('#driver_btn').click(function(e){
             $('#driver').show(1000, 'easeOutBounce', function(){})
+            $('#recaptcha').show(1000, 'easeOutBounce', function(){})
             $('#user').hide(1000, 'easeOutBounce', function(){})
         });
     	
@@ -976,6 +978,13 @@
                 ,data: {'user_no' : user_no}
                 ,type: 'post'
                 ,dataType: 'json'
+                ,beforeSend: function(){
+                    $('#reservation_ck_content').append($('<div/>', {
+                        id: 'load',
+                        class: 'loading_image'
+                    }));
+                    $(".loading_image").delay(300).fadeOut("slow");
+                }
                 ,success : function(result) {
                     if(result.length == 0){
                         alert('예약 내역이 없습니다! 예약 후 이용해주세요');
@@ -990,15 +999,9 @@
                                 id: 'aaa'+i,
                             }));
                         	if(result[i].r_ck == 1){
-                                $('#aaa'+i).append($('<td/>', {
-                                    class: 'reservation_ck_content',
-                                    text: '드라이버 약속 대기중'
-                                }));
+                                $('#aaa'+i).append($('<td class="reservation_ck_content" style="color:#5CB95C">드라이버 약속 완료</td>'));
                             } else if(result[i].r_ck == 0) {
-                                $('#aaa'+i).append($('<td/>', {
-                                    class: 'reservation_ck_content',
-                                    text: '드라이버 약속 완료'
-                                }))
+                                $('#aaa'+i).append($('<td class="reservation_ck_content" style="color:#f1ae4d">드라이버 약속 대기중</td>'))
                             } else {
                                 $('#aaa'+i).append($('<td/>', {
                                     class: 'reservation_ck_content',
@@ -1025,8 +1028,16 @@
                                 id: 'r_arrival_place_'+i,
                                 text: result[i].r_arrival_place
                             }));
+                            
+                            $('tr').mouseenter(function (e) {
+                                $(this).css('background', '#BEE6F1');
+                            });
+                            $('tr').mouseleave(function (e) {
+                                $(this).css('background', '');
+                            });
+                            
                             let r_idx = result[i].r_idx;
-                            $('#aaa'+i).append($('<button/>', {class: 'reservation_ck_content',  id: 'r_c_button'+i,  text: '약속삭제',
+                            $('#aaa'+i).append($('<button/>', {class: 'btn btn-danger btn-sm', type:'button',  id: 'r_c_button'+i,  text: '약속삭제',
                                 action: '/reservationdelete/?r_idx='+result[i].r_idx}));
                             $('#r_c_button'+i).click(function(e){
                                 console.log(i);
@@ -1039,6 +1050,13 @@
                                             ,data: {'r_idx' : r_idx}
                                             ,type: 'post'
                                             ,dataType: 'json'
+                                            ,beforeSend: function(){
+                                                $('#reservation_ck_content').append($('<div/>', {
+                                                    id: 'load',
+                                                    class: 'loading_image'
+                                                }));
+                                                $(".loading_image").delay(300).fadeOut("slow");
+                                            }
                                         })
                                         .done( function(data, textStatus, xhr ){
 
@@ -1135,7 +1153,9 @@
                 }
                 else{
                     alert('사용 가능한 아이디 입니다!');
+                    $('#submit_btn').attr('disabled', false);
                     $('#signUpForm  input').prop('disabled', false);
+
                 }
             });
             
@@ -1150,6 +1170,9 @@
                     return false;
                }
             });
+            
+
+
     
             $('#req_input').keyup( function (e) {
                 if( $(this).val() !== '') {
@@ -1175,6 +1198,7 @@
                 }
                 else{
                     alert('사용 가능한 아이디 입니다!');
+                    $('#d_submit_btn').attr('disabled', false);
                     $('#d_signUpForm  input').prop('disabled', false);
                 }
             });
@@ -1189,6 +1213,7 @@
                     alert('패스워드가 다릅니다.\n다시 비밀번호를 설정해주세요.');
                     return false;
                 }
+                
             });
 
 
@@ -1208,7 +1233,100 @@
                 $('#user_delete').show(1000, 'easeOutBounce', function(){})
                 $('#user_change').hide(1000, 'easeOutBounce', function(){})
             });
-            
+
+        //드라이브 검색
+            $('#reservationPositionSearch').click(function(e){
+                let searchPlace = $('#searchPlace').val();
+                let reservationPositon = $('#reservationPosition').val();
+                var user_no = <c:out value="${user.user_no}" default="-1"/>;
+                $.ajax({
+                    url : '/d_reservationPositionSearch'
+                    ,data: {'searchPlace' : searchPlace, 'reservationPositon' : reservationPositon}
+                    ,type: 'post'
+                    ,dataType: 'json'
+                    ,beforeSend: function(){
+                        $('#d_reservation_content').append($('<div/>', {
+                            id: 'load',
+                            class: 'loading_image'
+                        }));
+                        $(".loading_image").delay(400).fadeOut("slow");
+                    }
+                    ,success : function(result) {
+                        if(result.length == 0){
+                            alert('검색 내역이 없습니다!');
+                        } else {
+                            console.log(result);
+                            $('.d_reservation_content').remove();
+
+                            for(var i=0; i < result.length; i++){
+                                $('#d_reservation_content').append($('<tr>', {
+                                    class: 'd_reservation_content',
+                                    id: 'aaa'+i,
+                                }));
+                                $('#aaa'+i).append($('<td/>', {
+                                    class: 'd_reservation_content',
+                                    text: result[i].r_date
+                                }));
+                                $('#aaa'+i).append($('<td/>', {
+                                    class: 'd_reservation_content',
+                                    id: 'r_date_'+i,
+                                    text: result[i].r_time
+                                }));
+                                $('#aaa'+i).append($('<td/>', {
+                                    class: 'd_reservation_content',
+                                    id: 'r_time_'+i,
+                                    text: result[i].r_start_place
+                                }));
+                                $('#aaa'+i).append($('<td/>', {
+                                    class: 'd_reservation_content',
+                                    id: 'r_start_place_'+i,
+                                    text: result[i].r_arrival_place
+                                }));
+                                $('#aaa'+i).append($('<button/>', {
+                                	class: 'btn btn-success btn-xs',
+                                	type: 'button',
+                                    id: 'd_r_button'+i,
+                                    text: '약속받기',
+                                }));
+                                
+                                $('tr').mouseenter(function (e) {
+                                    $(this).css('background', '#BEE6F1');
+                                });
+                                $('tr').mouseleave(function (e) {
+                                    $(this).css('background', '');
+                                });
+                                
+                                let r_idx = result[i].r_idx;
+                                $('#d_r_button'+i).click(function(e){
+                                    var chk = confirm('약속을 받으시겠습니까?');
+                                    /* $('#aaa'+i-1).hide(); */
+                                    if (chk == true) {
+                                        $(this).parent().remove();
+                                        $.ajax({
+                                            url : '/receive'
+                                            ,data: {'user_no' : user_no, 'r_idx' : r_idx}
+                                            ,type: 'post'
+                                            ,dataType: 'json'
+                                            ,success : function(result) {
+                                                alert('약속 받기에 성공하였습니다.');
+                                            }
+                                            ,error : function(e){
+                                                alert(e.responseText);
+                                            }
+                                        })
+                                    }
+                                    $('#d_reservation_content').append("</tr>");
+                                });
+                            }
+
+                            /*                  error:function(request,status,error){
+                                                alert("code:"+request.status+"\n"+"error:"+error);
+                                            } */
+                        }
+                    }
+                });
+            });
+
         //드라이브 약속받기/약속확인
             $('#d_reservation_btn').click(function(e){
                 $('#d_reservation').show(1000, 'easeOutBounce', function(){})
@@ -1221,9 +1339,16 @@
                 url : '/d_reservationCheck'
                 ,type: 'post'
                 ,dataType: 'json'
+                ,beforeSend: function(){
+                    $('#d_reservation_content').append($('<div/>', {
+                        id: 'load',
+                        class: 'loading_image'
+                    }));
+                    $(".loading_image").delay(400).fadeOut("slow");
+                }
                 ,success : function(result) {
                     if(result.length == 0){
-                        alert('예약 내역이 없습니다! 예약 후 이용해주세요');
+                        alert('예약 내역이 없습니다!');
                         location.href="/";
                     } else {
                         $('.d_reservation_content').remove();
@@ -1253,13 +1378,22 @@
                                 text: result[i].r_arrival_place
                             }));
                             $('#aaa'+i).append($('<button/>', {
-                                 class: 'd_reservation_content',  
+                            	 class: 'btn btn-success btn-xs',
+                                 type: 'button', 
                                  id: 'd_r_button'+i,  
                                  text: '약속받기',
                                 }));
+                            
+                            
+                            $('tr').mouseenter(function (e) {
+                                $(this).css('background', '#BEE6F1');
+                            });
+                            $('tr').mouseleave(function (e) {
+                                $(this).css('background', '');
+                            });
+                            
                             let r_idx = result[i].r_idx;
                             $('#d_r_button'+i).click(function(e){
-                                console.log(i);
                                 var chk = confirm('약속을 받으시겠습니까?');
                                 /* $('#aaa'+i-1).hide(); */
                                 if (chk == true) {
@@ -1269,10 +1403,19 @@
                                             ,data: {'user_no' : user_no, 'r_idx' : r_idx}
                                             ,type: 'post'
                                             ,dataType: 'json'
+                                            ,beforeSend: function(){
+                                                $('#d_reservation_content').append($('<div/>', {
+                                                    id: 'load',
+                                                    class: 'loading_image'
+                                                }));
+                                                $(".loading_image").delay(300).fadeOut("slow");
+                                            }
+                                            ,success : function(result) {
+                                            }
+                                            ,error : function(e){
+                                                alert(e.responseText);
+                                            }
                                         })
-                                        .done( function(data, textStatus, xhr ){
-
-                                        });
                                  }
                                 $('#d_reservation_content').append("</tr>");
                             });
@@ -1291,9 +1434,110 @@
                 $('#d_reservation_ck').hide(1000, 'easeOutBounce', function(){})
             });
             $('#d_reservation_ck_btn').click(function(e){
+
+
                 $('#d_reservation_ck').show(1000, 'easeOutBounce', function(){})
-                $('#s_d_reservation').hide(1000, 'easeOutBounce', function(){})
-                $('#d_reservation').hide(1000, 'easeOutBounce', function(){})
+                $('#s_d_reservation').hide(200, 'easeOutBounce', function(){})
+                $('#d_reservation').hide(200, 'easeOutBounce', function(){})
+
+                $.ajax({
+                    url : '/d_findMyReservation'
+                    ,type: 'post'
+                    ,dataType: 'json'
+                    ,beforeSend: function(){
+                        $('#d_reservation_ck_content').append($('<div/>', {
+                            id: 'load',
+                            class: 'loading_image'
+                        }));
+                        $(".loading_image").delay(300).fadeOut("slow");
+                    }
+                    ,success : function(result) {
+                        if(result.length == 0){
+                            alert('예약 내역이 없습니다! 예약을 받으시고 이용해주세요!');
+                            location.href="/";
+                        } else {
+                            $('.d_reservation_ck_content').remove();
+                            console.log(result);
+                            for(var i=0; i < result.length; i++){
+                                $('#d_reservation_ck_content').append($('<tr>', {
+                                    class: 'd_reservation_ck_content',
+                                    id: 'my_aaa'+i,
+                                }));
+                                $('#my_aaa'+i).append($('<td/>', {
+                                    class: 'd_reservation_ck_content',
+                                    id: 'my_r_date_'+i,
+                                    text: result[i].r_date
+                                }));
+                                $('#my_aaa'+i).append($('<td/>', {
+                                    class: 'd_reservation_ck_content',
+                                    id: 'my_r_time_'+i,
+                                    text: result[i].r_time
+                                }));
+                                $('#my_aaa'+i).append($('<td/>', {
+                                    class: 'd_reservation_ck_content',
+                                    id: 'my_r_start_place_'+i,
+                                    text: result[i].r_start_place
+                                }));
+                                $('#my_aaa'+i).append($('<td/>', {
+                                    class: 'd_reservation_ck_content',
+                                    id: 'my_r_arrival_place_'+i,
+                                    text: result[i].r_arrival_place
+                                }));
+                                $('#my_aaa'+i).append($('<td/>', {
+                                    class: 'd_reservation_ck_content',
+                                    id: 'my_user_phone'+i,
+                                    text: result[i].user_phone
+                                }));
+                                $('#my_aaa'+i).append($('<button/>', {
+                                	class: 'btn btn-danger btn-sm', 
+                                	type:'button',
+                                    id: 'my_d_r_button'+i,
+                                    text: '약속취소',
+                                }));
+                                
+                                
+                                $('tr').mouseenter(function (e) {
+                                    $(this).css('background', '#BEE6F1');
+                                });
+                                $('tr').mouseleave(function (e) {
+                                    $(this).css('background', '');
+                                });
+                                
+                                let r_idx = result[i].r_idx;
+                                $('#my_d_r_button'+i).click(function(e){
+                                    var chk = confirm('약속을 취소 하시겠습니까?');
+                                    if (chk == true) {
+                                        $(this).parent().remove();
+                                        $.ajax({
+                                            url : '/d_receiveCancel'
+                                            ,data: {'r_idx' : r_idx}
+                                            ,type: 'post'
+                                            ,dataType: 'json'
+                                            ,beforeSend: function(){
+                                                $('#d_reservation_ck_content').append($('<div/>', {
+                                                    id: 'load',
+                                                    class: 'loading_image'
+                                                }));
+                                                $(".loading_image").delay(300).fadeOut("slow");
+                                            }
+                                            ,success : function(result) {
+                                            }
+                                            ,error : function(e){
+                                                alert(e.responseText);
+                                            }
+                                        })
+                                    }
+                                    $('#d_reservation_content').append("</tr>");
+                                });
+                            }
+
+                            /*                  error:function(request,status,error){
+                                                alert("code:"+request.status+"\n"+"error:"+error);
+                                            } */
+                        }
+                    }
+                });
+
             });
         
 

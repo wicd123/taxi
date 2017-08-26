@@ -1,27 +1,27 @@
 package com.taxi.reservation.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.omg.PortableInterceptor.USER_EXCEPTION;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.taxi.reservation.model.ModelUser;
 import com.taxi.reservation.service.IServiceUser;
-import org.springframework.web.bind.support.SessionStatus;
-
-import static com.taxi.reservation.controller.KakaoController.access_token;
-import static com.taxi.reservation.controller.KakaoController.kakao_user_account;
 
 
 /**
@@ -87,7 +87,12 @@ public class HomeController {
 
         int result = usersvr.insertUser(user);
         String msg = result > 0 ? "회원 가입을 축하드립니다." : "회원 가입 실패!";
-        String url = "/";
+        String url = result > 0 ? "/login" : "/";
+
+        if(result > 0){
+            model.addAttribute("user", user);
+        }
+
         model.addAttribute("msg", msg);
         model.addAttribute("url", url);
 
@@ -144,8 +149,8 @@ public class HomeController {
 
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(Model model, @ModelAttribute ModelUser user){
+    @RequestMapping(value = "/login", method = {RequestMethod.POST, RequestMethod.GET})
+    public String login(Model model, @ModelAttribute("user") ModelUser user){
 
         logger.info("Login : POST");
 
@@ -181,11 +186,6 @@ public class HomeController {
         }
     }
 
-    @RequestMapping(value = "/login")
-    public String loginGet(Model model){
-        return "home";
-    }
-
     @RequestMapping(value = "/logout")
     public String logout(Model model, SessionStatus status){
 
@@ -201,4 +201,6 @@ public class HomeController {
 
         return "msg/msg";
     }
+    
+    
 }

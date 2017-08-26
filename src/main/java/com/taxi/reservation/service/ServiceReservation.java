@@ -78,10 +78,45 @@ public class ServiceReservation implements IServiceReservation {
         try {
             result = daoReservation.receive(ModelReservation);
         } catch (Exception e) {
-            logger.error("refreshToken " + e.getMessage() );
+            logger.error("receive " + e.getMessage() );
         }
         return result;
     }
 
+    @Override
+    public List<HashMap<String,String>> d_findMyReservation(int d_user_no) {
+        List<HashMap<String,String>> result = null;
 
+        try{
+            result = daoReservation.d_findMyReservation(d_user_no);
+        }catch (Exception e){
+            logger.error("d_findMyReservation " + e.getMessage());
+        }
+
+        return result;
+    }
+
+    @Override
+    public int d_receiveCancel(int r_idx) {
+        int result = -1;
+        try {
+            result = daoReservation.d_receiveCancel(r_idx);
+        } catch (Exception e) {
+            logger.error("d_receiveCancel " + e.getMessage() );
+        }
+        return result;
+    }
+
+    @Override
+    public List<ModelReservation> d_reservationPositionSearch(String searchPlace, String reservationPositon) {
+        List<ModelReservation> result = null;
+
+        try{
+            result = daoReservation.d_reservationPositionSearch(searchPlace, reservationPositon);
+        }catch (Exception e){
+            logger.error("d_reservationPositionSearch " + e.getMessage());
+        }
+
+        return result;
+    }
 }

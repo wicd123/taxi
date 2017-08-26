@@ -39,5 +39,21 @@ public class DaoReservation implements IDaoReservation {
         return session.update("mapper.mapperReservation.receive", ModelReservation);
     }
 
-    
+    @Override
+    public List<HashMap<String,String>> d_findMyReservation(int d_user_no) {
+        return session.selectList("mapper.mapperReservation.d_findMyReservation", d_user_no);
+    }
+
+    @Override
+    public int d_receiveCancel(int r_idx) {
+        return session.update("mapper.mapperReservation.d_receiveCancel", r_idx);
+    }
+
+    @Override
+    public List<ModelReservation> d_reservationPositionSearch(String searchPlace, String reservationPositon) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("searchPlace", searchPlace);
+        params.put("reservationPositon", reservationPositon);
+        return session.selectList("mapper.mapperReservation.d_reservationPositionSearch", params);
+    }
 }

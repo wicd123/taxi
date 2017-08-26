@@ -22,7 +22,7 @@
     
     <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->    
     <!-- 스프링의 DispatcherServet에게 정적인 자원을 알려준다.  -->
-    <resources mapping="/resources/**" location="/resources/" />  
+    <resources mapping="/resources/**" location="/resources/" />
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
     <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -49,9 +49,18 @@
         <beans:property name="url" value="jdbc:mariadb://localhost:3306/mysql/users" />
         <beans:property name="username" value="root" />
         <beans:property name="password" value="1234" />
-    </beans:bean> -->
-
+<!-- 
     <beans:bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <beans:property name="driverClassName"         value="com.mysql.jdbc.Driver" />
+        <beans:property name="url"                     value="jdbc:mysql://wicd1234.cafe24.com/wicd1234?useUnicode=true&amp;characterEncoding=utf8" />
+        <beans:property name="username"                value="wicd1234" />
+        <beans:property name="password"                value="dltndud0823!" />
+
+        <beans:property name="defaultAutoCommit"       value="true"/>
+        <beans:property name="poolPreparedStatements"  value="true"/>
+        <beans:property name="cacheState"              value="true"/>
+    </beans:bean>
+     -->    <beans:bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <beans:property name="driverClassName"         value="com.mysql.jdbc.Driver" />
         <beans:property name="url"                     value="jdbc:mysql://localhost:3306/taxi?useUnicode=true&amp;characterEncoding=utf8" />
         <beans:property name="username"                value="root" />
@@ -61,7 +70,13 @@
         <beans:property name="poolPreparedStatements"  value="true"/>
         <beans:property name="cacheState"              value="true"/>
     </beans:bean>
+<<<<<<< .mine
 
+
+=======
+     -->
+    
+>>>>>>> .theirs
     <!-- step4. SessionFactory 설정 :: MyBatis가 사용할 Database에 연결하도록 설정 -->
     <beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <beans:property name="dataSource"         ref="dataSource" />

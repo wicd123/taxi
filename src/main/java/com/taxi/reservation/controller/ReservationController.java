@@ -38,7 +38,7 @@ public class ReservationController {
 
         modelReservation.setUser_no(modelUser.getUser_no());
 
-        modelReservation.setR_ck(1);
+        modelReservation.setR_ck(0);
         
         int result = serviceReservation.insertReservation(modelReservation);
 
@@ -105,33 +105,47 @@ public class ReservationController {
     }
     
     @RequestMapping(value = "/receive", method = RequestMethod.POST)
-    public String receive(Model model,                          ModelReservation modelReservation
-                                    ,@ModelAttribute("user")ModelUser modelUser
-                                    , @RequestParam(value="r_idx", defaultValue="")  Integer r_idx
-                                    , @RequestParam(value="user_no", defaultValue="")  Integer user_no){
+    @ResponseBody
+    public int receive(@RequestParam(value="r_idx", defaultValue="") Integer r_idx, @RequestParam(value="user_no", defaultValue="") Integer user_no){
+
         logger.info("receive : POST");
         
         ModelReservation receive = new ModelReservation();
         receive.setR_idx(r_idx);
-        receive.setUser_no(user_no);
+        receive.setD_user_no(user_no);
         
         int result = serviceReservation.receive(receive);
-        
-        String msg = result > 0 ? "약속받기완료" : "약속받기실패";
-        String url = "/";
-        model.addAttribute("msg", msg);
-        model.addAttribute("url", url);
 
-        return "msg/msg";
+        return result;
     }
-    
-    
-    
 
-//    @RequestMapping(value="/kakaoLogin", method = {RequestMethod.POST, RequestMethod.GET})
-//    public String kakaoLogin(@RequestParam("code")String code, Model model){
-//        System.out.println("code: " + code);
-//        return "home";
-//    }
+    @RequestMapping(value = "/d_findMyReservation", method = RequestMethod.POST)
+    @ResponseBody
+    public List<HashMap<String,String>> receive(@ModelAttribute("user")ModelUser user){
 
+        logger.info("d_findMyReservation : POST");
+
+        List<HashMap<String,String>> result = serviceReservation.d_findMyReservation(user.getUser_no());
+
+        return result;
+    }
+
+    @RequestMapping(value = "/d_receiveCancel", method = RequestMethod.POST)
+    @ResponseBody
+    public int d_receiveCancel(@RequestParam("r_idx") int r_idx){
+
+        return serviceReservation.d_receiveCancel(r_idx);
+
+    }
+
+    @RequestMapping(value = "/d_reservationPositionSearch", method = RequestMethod.POST)
+    @ResponseBody
+    public List<ModelReservation> d_reservationPositionSearch(@RequestParam("searchPlace") String searchPlace,
+                                           @RequestParam("reservationPositon") String reservationPositon){
+
+        List<ModelReservation> result = serviceReservation.d_reservationPositionSearch(searchPlace, reservationPositon);
+
+        return result;
+
+    }
 }
