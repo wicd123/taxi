@@ -3,6 +3,7 @@ package com.taxi.reservation.dao;
 import java.util.List;
 
 import com.taxi.reservation.model.ModelReservation;
+import com.taxi.reservation.model.ModelUser;
 
 public interface IDaoReservation {
 
@@ -14,4 +15,5 @@ public interface IDaoReservation {
     
     List<ModelReservation> d_findReservation(ModelReservation modelReservation);
     
+    int receive(ModelReservation ModelReservation);
 }

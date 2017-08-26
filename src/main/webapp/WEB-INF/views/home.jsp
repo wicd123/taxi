@@ -33,6 +33,8 @@
 </head>
 
 
+
+
     <!-- Section: intro -->
     <section id="intro" class="intro">
     
@@ -46,6 +48,9 @@
             </a>
         </div>
     </section>
+    
+    
+    
     <!-- /Section: intro -->
 
     <!-- Section: about -->
@@ -316,6 +321,15 @@
                             <div class="validation"></div>
                         </div>
 
+                            <div id="div01">
+                            </div>
+                            <form id="form01">
+                                <input type="hidden" id="key" name="key">
+                                <input type="text" name="value">
+                                <button type="button" id="btn01">전송</button>
+                            </form>
+                        
+                        
                         <div class="col-md-12">
                               <input type="submit" class="btn btn-skin pull-center"  value="회원가입" id = "submit_btn"/>
                         </div>
@@ -390,6 +404,11 @@
                             &nbsp;&nbsp;<input type="checkbox" disabled="disabled" name="user_check_kakao"/> <span class="up">알림 서비스 사용</span>&nbsp;&nbsp;
                             <div class="validation"></div>
                         </div>
+                        
+
+
+                        
+                        
 
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-skin pull-center" id="d_submit_btn">
@@ -605,7 +624,7 @@
                        </select>
                      </div> 
                      <div class="form-group"> 
-                       <input type="text" class="form-control" id="s_reservation" name="s_reservation"placeholder="장소검색(ex.노원)" > 
+                       <input type="text" class="form-control" id="s_reservation" name="s_reservation" placeholder="장소검색(ex.노원)" >
                      </div> 
                       <button type="submit" class="btn btn-skin pull-center">검색</button> 
                </form>
@@ -878,14 +897,35 @@
     <script src="resources/js/wow.min.js"></script>
     <!-- Custom Theme JavaScript -->]
     <script src="resources/js/custom.js"></script>
-    <script src="resources/js/jquery-1.10.2.js"></script>
+    <script src="resources/js/jquery-3.1.0.js"></script>
     <script src="resources/js/jquery.easing.1.3.js"></script>
     <script src="resources/js/ajaxsetup.js"></script>
     <script src="resources/js/MyApp.board.js"></script>
+
+    
     
     <script>
     $(document).ready(function (e){
-
+    	$.ajax({
+            url : "/captchaNkey.jsp",
+            dataType:"json",
+            success : function(data) {
+                console.log(data.key);
+                $("#key").val(data.key);
+                $("#div01").html("<img src='captchaImage/"+data.captchaImageName+"'>");
+            }
+        });
+        $("#btn01").on("click",function(){
+            var form01Data = $("#form01").serialize();
+            console.log(form01Data);
+            $.ajax({
+                url : "/captchaNkey.jsp",
+                data : form01Data,
+                dataType:"json",
+                success : function(data) {
+                }
+            });
+        });
 
         $('#user_delete_submit').click(function(){
             var delete_text = $('#user_delete_ck').val();
@@ -949,10 +989,22 @@
                                 class: 'reservation_ck_content',
                                 id: 'aaa'+i,
                             }));
-                        	$('#aaa'+i).append($('<td/>', {
-                                class: 'reservation_ck_content',
-                                text: '상황test'
-                            }));
+                        	if(result[i].r_ck == 1){
+                                $('#aaa'+i).append($('<td/>', {
+                                    class: 'reservation_ck_content',
+                                    text: '드라이버 약속 대기중'
+                                }));
+                            } else if(result[i].r_ck == 0) {
+                                $('#aaa'+i).append($('<td/>', {
+                                    class: 'reservation_ck_content',
+                                    text: '드라이버 약속 완료'
+                                }))
+                            } else {
+                                $('#aaa'+i).append($('<td/>', {
+                                    class: 'reservation_ck_content',
+                                    text: '예약 오류 발생'
+                                }))
+                            }
                             $('#aaa'+i).append($('<td/>', {
                             	class: 'reservation_ck_content',
                                 id: 'r_date_'+i,
@@ -1161,7 +1213,11 @@
             $('#d_reservation_btn').click(function(e){
                 $('#d_reservation').show(1000, 'easeOutBounce', function(){})
                 
-                            $.ajax({
+                
+                var login = $('#login').val();
+                var user_no = <c:out value="${user.user_no}" default="-1"/>;
+                
+                $.ajax({
                 url : '/d_reservationCheck'
                 ,type: 'post'
                 ,dataType: 'json'
@@ -1201,8 +1257,25 @@
                                  id: 'd_r_button'+i,  
                                  text: '약속받기',
                                 }));
-                            
+                            let r_idx = result[i].r_idx;
+                            $('#d_r_button'+i).click(function(e){
+                                console.log(i);
+                                var chk = confirm('약속을 받으시겠습니까?');
+                                /* $('#aaa'+i-1).hide(); */
+                                if (chk == true) {
+                                    $(this).parent().remove();
+                                        $.ajax({
+                                            url : '/receive'
+                                            ,data: {'user_no' : user_no, 'r_idx' : r_idx}
+                                            ,type: 'post'
+                                            ,dataType: 'json'
+                                        })
+                                        .done( function(data, textStatus, xhr ){
+
+                                        });
+                                 }
                                 $('#d_reservation_content').append("</tr>");
+                            });
                         }
 
 /*                  error:function(request,status,error){
@@ -1237,6 +1310,8 @@
                 return false;
             }
         });
+        
+                    
 
     });
 
