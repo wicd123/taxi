@@ -2,7 +2,7 @@
 <%@ page session="false" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 
 
 <head>
@@ -47,7 +47,7 @@
             <h4>가장 간단하고 가장 편안한 택시와 약속하세요.</h4>
         </div>
         <div class="page-scroll">
-            <a href="#service" class="btn btn-circle">
+            <a href="#footer" class="btn btn-circle">
                 <i class="fa fa-angle-double-down animated"></i>
             </a>
         </div>
@@ -276,7 +276,7 @@
                         <div class="form-group">
                             <label for="user_id">
                                 아이디</label>
-                            <input type="text" name="user_id" class="form-control" id="user_id" placeholder="아이디 입력"  required="rsequired"/>
+                            <input type="text" name="user_id" class="form-control" id="user_id" placeholder="영문,숫자,4~16자리로 가입해주세요"  required="rsequired"/>
                             <input type="button" class="btn btn-skin pull-left"  value="아이디 중복 조회" id="checkuserid"/><br>
                             <div class="validation"></div>
                         </div>
@@ -351,7 +351,7 @@
                         <div class="form-group">
                             <label for="user_id">
                                 아이디</label>
-                            <input type="text" name="user_id" class="form-control" id="d_user_id" placeholder="아이디 입력" required  />
+                            <input type="text" name="user_id" class="form-control" id="d_user_id" placeholder="영문,숫자,4~16자리로 가입해주세요" required  />
                             <input type="button" class="btn btn-skin pull-left"  value="아이디 중복 조회" id="d_checkuserid"/><br>
                             <div class="validation"></div>
                         </div>
@@ -907,7 +907,6 @@
 
     <script>
       var recaptcha1;
-      var recaptcha2;
       var myCallBack = function() {
         //Render the recaptcha1 on the element with ID "recaptcha1"
         recaptcha1 = grecaptcha.render('recaptcha1', {
@@ -916,6 +915,8 @@
         });
       };
     </script>
+    
+    
     
 
     <script>
@@ -927,6 +928,13 @@
                 } else {
                 }
         });
+    	
+    	//회원가입 아이디 조건
+    	
+    	
+    	
+    	
+    	
         $('#user_delete_submit').click(function(){
             var delete_text = $('#user_delete_ck').val();
             if(delete_text == '탈퇴를 원합니다' || delete_text == '탈퇴를 원합니다.'){
@@ -1138,7 +1146,19 @@
     	//일반_회원가입 내부 제이 꽈리
     	$('#checkuserid').click(function(e){
             var user_id = $('#user_id').val();
-    
+            var regex = /^[A-Za-z0-9+]{4,16}$/;
+            
+            if(user_id=="" || user_id==null){
+            	alert("아이디를 입력해주세요.");
+				return false;
+            }
+            else if(!regex.test(user_id)){
+            	alert("영문,숫자,4~16자리로 가입해주세요");
+				return false;
+            }
+            
+            
+            
             $.ajax({
                  url : '/user/checkuserid'
                 ,data: {'user_id' :  user_id }      // 사용하는 경우에는 { data1:'test1', data2:'test2' }
@@ -1184,6 +1204,17 @@
         $('#d_checkuserid').click(function(e){
             var d_user_id = $('#d_user_id').val();
     
+			var regex = /^[A-Za-z0-9+]{4,16}$/;
+            
+            if(d_user_id=="" || d_user_id==null){
+            	alert("아이디를 입력해주세요.");
+				return false;
+            }
+            else if(!regex.test(user_id)){
+            	alert("영문,숫자,4~16자리로 가입해주세요");
+				return false;
+            }
+            
             $.ajax({
                  url : '/user/checkuserid'
                 ,data: {'user_id' :  d_user_id }      // 사용하는 경우에는 { data1:'test1', data2:'test2' }

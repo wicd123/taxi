@@ -44,7 +44,8 @@ public class KakaoController {
     @RequestMapping(value="/kakaoJoin")
     public String kakaoJoin(Model model){
         String msg = "카카오톡 알람 서비스를 위해 \\n카카오톡 연동을 가입시 1회 진행합니다. \\n카카오톡으로 가입시 자동 가입됩니다.";
-        String url = "https://kauth.kakao.com/oauth/authorize?client_id=bda53bc9a3fa6ede16a790719e2af4a0&redirect_uri=http://localhost:8080/kakaoLogin&response_type=code";
+        /*String url = "https://kauth.kakao.com/oauth/authorize?client_id=7285451cb5736d58585f95457b13681d&redirect_uri=http://localhost:8080/kakaoLogin&response_type=code";*/
+        String url = "https://kauth.kakao.com/oauth/authorize?client_id=7285451cb5736d58585f95457b13681d&redirect_uri=http://wicd1234.cafe24.com/kakaoLogin&response_type=code";
         model.addAttribute("msg", msg);
         model.addAttribute("url", url);
         return "msg/msg";
@@ -53,7 +54,7 @@ public class KakaoController {
     @RequestMapping(value="/kakaoJoin_add")
     public String kakaoJoinAdd(Model model){
         String msg = "카카오톡 알람 서비스를 위해 \\n카카오톡 연동을 진행합니다.";
-        String url = "https://kauth.kakao.com/oauth/authorize?client_id=bda53bc9a3fa6ede16a790719e2af4a0&redirect_uri=http://localhost:8080/kakaoLogin&response_type=code";
+        String url = "https://kauth.kakao.com/oauth/authorize?client_id=7285451cb5736d58585f95457b13681d&redirect_uri=http://wicd1234.cafe24.com/kakaoLogin&response_type=code";
         model.addAttribute("msg", msg);
         model.addAttribute("url", url);
         return "msg/msg";
@@ -100,8 +101,9 @@ public class KakaoController {
 
         final List<NameValuePair> postParams = new ArrayList<NameValuePair>();
         postParams.add(new BasicNameValuePair("grant_type", "authorization_code"));
-        postParams.add(new BasicNameValuePair("client_id", "bda53bc9a3fa6ede16a790719e2af4a0"));    // REST API KEY
-        postParams.add(new BasicNameValuePair("redirect_uri", "http://localhost:8080/kakaoLogin"));    // 리다이렉트 URI
+        postParams.add(new BasicNameValuePair("client_id", "7285451cb5736d58585f95457b13681d")); 
+        /*postParams.add(new BasicNameValuePair("redirect_uri", "http://localhost:8080/kakaoLogin"));*/// REST API KEY
+        postParams.add(new BasicNameValuePair("redirect_uri", "http://wicd1234.cafe24.com/kakaoLogin"));    // 리다이렉트 URI
         postParams.add(new BasicNameValuePair("code", code));    // 로그인 과정중 얻은 code 값
 
         final HttpClient client = HttpClientBuilder.create().build();
@@ -253,7 +255,7 @@ public class KakaoController {
 
         final List<NameValuePair> postParams = new ArrayList<NameValuePair>();
         postParams.add(new BasicNameValuePair("grant_type", "refresh_token"));
-        postParams.add(new BasicNameValuePair("client_id", "bda53bc9a3fa6ede16a790719e2af4a0"));    // REST API KEY
+        postParams.add(new BasicNameValuePair("client_id", "7285451cb5736d58585f95457b13681d"));    // REST API KEY
         postParams.add(new BasicNameValuePair("refresh_token", user.getUser_refresh_token()));
 
         final HttpClient client = HttpClientBuilder.create().build();

@@ -7,7 +7,7 @@
 <script src="resources/js/jquery.easing.min.js"></script>
 <script src="resources/js/jquery.scrollTo.js"></script>
 <script src="resources/js/wow.min.js"></script>
-<!-- Custom Theme JavaScript -->]
+<!-- Custom Theme JavaScript -->
 <script src="resources/js/custom.js"></script>
 <script src="resources/js/jquery-1.10.2.js"></script>
 <script src="resources/js/jquery.easing.1.3.js"></script>
@@ -32,5 +32,5 @@
             $("#user_check_kakao",opener.document).val("on");
         </c:when>
     </c:choose>
-    self.close()
+    self.close();
 </script>

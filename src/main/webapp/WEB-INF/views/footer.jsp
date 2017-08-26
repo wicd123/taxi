@@ -7,7 +7,7 @@
 
 </head>
 <body>
-    
+    <section id="footer" >
     <footer>
         <div class="container">
             <div class="row">
@@ -19,7 +19,7 @@
                         </a>
                     </div>
                     </div>
-                    <p>&copy;SquadFREE. All rights reserved.</p>
+                    <p>&copy;Go-All. All rights reserved.</p>
                     <div class="credits">
                         <!-- 
                             All the links in the footer should remain intact. 
@@ -27,12 +27,18 @@
                             Licensing information: https://bootstrapmade.com/license/
                             Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Squadfree
                         -->
-                        <a href="https://bootstrapmade.com/free-one-page-bootstrap-themes-website-templates/">One Page Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                        <a>고객센터<br/>
+                        (03423)서울특별시 노원구 222 (상계동)<br/>
+                        Tel: 999-9999<br/>
+                        Fax: 02-849-4962<br/>
+                        E-mail: wwwwll@naver.com
+                        </a>
                     </div>
                 </div>
             </div>  
         </div>
     </footer>
+    </section>
     
 
 </body>

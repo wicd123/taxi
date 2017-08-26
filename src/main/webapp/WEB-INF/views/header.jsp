@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Squadfree - Free bootstrap 3 one page template</title>
+    <title>약속택시 - 신속하고 안전한 택시와 약속하세요.</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -93,10 +93,10 @@
         <li><a href="#about">이용방법</a></li>
         <li><a href="#service">자주묻는질문</a></li>
           <c:if test="${!empty user.user_no && empty user.user_carnum }">
-            <li><a href="#contact">예약하기</a></li>
+            <li><a href="#contact">약속하기</a></li>
           </c:if>
           <c:if test="${!empty user.user_no && !empty user.user_carnum }">
-            <li><a href="#contact">예약받기</a></li>
+            <li><a href="#contact">약속받기</a></li>
           </c:if>
           <c:if test="${empty user.user_no}">
               <li><a href="#contact">회원가입</a></li>
