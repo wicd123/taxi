@@ -1210,7 +1210,7 @@
             	alert("아이디를 입력해주세요.");
 				return false;
             }
-            else if(!regex.test(user_id)){
+            else if(!regex.test(d_user_id)){
             	alert("영문,숫자,4~16자리로 가입해주세요");
 				return false;
             }
