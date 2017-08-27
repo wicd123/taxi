@@ -182,8 +182,8 @@
                     </div>
                     <div class="service-desc">
                         <h5>Smart Phone</h5>
-                        <p id="q_2">스마트폰으로 예약?<span id="ico_ar_2">▼</span></p>
-                        <p id="n_2" style="display:none" >공식어플리케이션은 없습니다!<br/> 인터넷에 접속해 예약은 가능합니다!</p>
+                        <p id="q_2">스마트폰으로 약속?<span id="ico_ar_2">▼</span></p>
+                        <p id="n_2" style="display:none" >공식어플리케이션은 없습니다!<br/> 인터넷에 접속해 약속은 가능합니다!</p>
                     </div>
                 </div>
                 </div>
@@ -196,8 +196,8 @@
                     </div>
                     <div class="service-desc">
                         <h5>Reservation</h5>
-                        <p id="q_3">예약을하고 연락은?<span id="ico_ar_3">▼</span></p>
-                        <p id="n_3" style="display:none">예약이 받아지면 연락이 옵니다!<br/> 예약받은 택시기님에게 회원정보에 있는<br/>전화번호가 공개됩니다.</p>
+                        <p id="q_3">약속을하고 연락은?<span id="ico_ar_3">▼</span></p>
+                        <p id="n_3" style="display:none">약속이 받아지면 연락이 옵니다!<br/> 약속받은 택시기님에게 회원정보에 있는<br/>전화번호가 공개됩니다.</p>
                     </div>
                 </div>
                 </div>
@@ -462,7 +462,7 @@
 </c:if>
     <!-- /Section: contact -->
     
-    <!--  예약하기 입니다 -->
+    <!--  약속하기 입니다 -->
 <c:if test="${!empty user.user_no && empty user.user_carnum }">
     <section id="contact" class="home-section text-center">
         <div class="heading-contact">
@@ -471,7 +471,7 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="wow bounceInDown" data-wow-delay="0.4s">
                     <div class="section-heading">
-                    <h2>예약하기</h2>
+                    <h2>약속하기</h2>
                     <i class="fa fa-2x fa-angle-down"></i>
 
                     </div>
@@ -534,7 +534,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                  <input type="submit" class="btn btn-skin pull-center"  value="예약하기" id = "reservation_submit_btn"/>
+                                  <input type="submit" class="btn btn-skin pull-center"  value="약속하기" id = "reservation_submit_btn"/>
                             </div>
                             <br>
 
@@ -555,10 +555,10 @@
                             약속상태
                         </th>
                        <th id="r_date_ck">
-                            예약날짜
+                            약속날짜
                         </th>
                         <th  id="r_time_ck">
-                            예약시간
+                            약속시간
                         </th>
                         <th id="r_start_place_ck">
                             출발장소
@@ -589,7 +589,7 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="wow bounceInDown" data-wow-delay="0.4s">
                     <div class="section-heading">
-                    <h2>예약받기</h2>
+                    <h2>약속받기</h2>
                     <i class="fa fa-2x fa-angle-down"></i>
                     </div>
                     </div>
@@ -643,10 +643,10 @@
                   <thead>
                     <tr  id="d_reservation_title">
                        <th id="d_r_date">
-                            예약날짜
+                            약속날짜
                         </th>
                         <th  id="d_r_time">
-                            예약시간
+                            약속시간
                         </th>
                         <th id="d_r_start_place">
                             출발장소
@@ -666,10 +666,10 @@
                   <thead>
                     <tr  id="d_reservation_ck_title">
                        <th id="d_r_date_ck">
-                            예약날짜
+                            약속날짜
                         </th>
                         <th  id="d_r_time_ck">
-                            예약시간
+                            약속시간
                         </th>
                         <th id="d_r_start_place_ck">
                             출발장소
@@ -889,7 +889,7 @@
     
 </c:if>
 
-    <!--  예약하기 끝입니다. -->
+    <!--  약속하기 끝입니다. -->
     
     <!-- Core JavaScript Files -->
     <script src="resources/js/jquery.min.js"></script>
@@ -977,7 +977,7 @@
             var user_no = <c:out value="${user.user_no}" default="-1"/>;
 
             if(login != undefined ){
-                alert('로그인 후 예약 확인해주세요');
+                alert('로그인 후 약속 확인해주세요');
                 return false;
             }
 
@@ -995,10 +995,10 @@
                 }
                 ,success : function(result) {
                     if(result.length == 0){
-                        alert('예약 내역이 없습니다! 예약 후 이용해주세요');
+                        alert('약속 내역이 없습니다! 약속 후 이용해주세요');
                         location.href="/";
                     } else {
-                        alert('총 ' + result.length + '개의 예약 내역이 있습니다.');
+                        alert('총 ' + result.length + '개의 약속 내역이 있습니다.');
                         $('.reservation_ck_content').remove();
 
                         for(var i=0; i < result.length; i++){
@@ -1013,7 +1013,7 @@
                             } else {
                                 $('#aaa'+i).append($('<td/>', {
                                     class: 'reservation_ck_content',
-                                    text: '예약 오류 발생'
+                                    text: '약속 오류 발생'
                                 }))
                             }
                             $('#aaa'+i).append($('<td/>', {
@@ -1086,12 +1086,12 @@
         });
 
 
-        // 예약하기 관련 미로그인시 예외상황 처리
+        // 약속하기 관련 미로그인시 예외상황 처리
         $('#reservationForm').submit(function(){
             var login = $('#login').val();
 
             if(login != undefined ){
-                alert('로그인 후 예약해주세요');
+                alert('로그인 후 약속해주세요');
                 return false;
             }
 
@@ -1379,7 +1379,7 @@
                 }
                 ,success : function(result) {
                     if(result.length == 0){
-                        alert('예약 내역이 없습니다!');
+                        alert('약속 내역이 없습니다!');
                         location.href="/";
                     } else {
                         $('.d_reservation_content').remove();
@@ -1484,7 +1484,7 @@
                     }
                     ,success : function(result) {
                         if(result.length == 0){
-                            alert('예약 내역이 없습니다! 예약을 받으시고 이용해주세요!');
+                            alert('약속 내역이 없습니다! 약속을 받으시고 이용해주세요!');
                             location.href="/";
                         } else {
                             $('.d_reservation_ck_content').remove();
